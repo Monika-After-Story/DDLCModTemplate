@@ -1,0 +1,14 @@
+
+.DS_Store
+errors.txt
+*.rpa
+game/cache/bytecode.rpyb
+game/cache/pyanalysis.rpyb
+game/cache/screens.rpyb
+*.rpyc
+*.save
+game/saves/persistent
+*.bak
+log.txt
+project.json
+traceback.txt
