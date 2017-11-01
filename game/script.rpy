@@ -26,19 +26,16 @@ label start:
     #This section detemines the "Act Structure" for the game.
     # persistent.playthrough variable marks each of the major game events (Sayori hanging, etc.)
     #Here is an example of how you might do that
-#    if persistent.playthrough == 0:
-#        # Intro
-#        $ chapter = 0
-#        call ch0_main from _call_ch0_main
-#
-#        # Poem minigame 1
-#        call poem from _call_poem
-#        
-#        return
-
-    #Call example script    
-    call example_scene from _call_example_main
-
+    if persistent.playthrough == 0:
+        #Call example script    
+        call example_chapter
+        
+        call script_tutorial
+        
+    if persistent.playthrough == 1:
+        #Call question and answer script
+        #call q_and_a_script
+        pass
     
     return
 
