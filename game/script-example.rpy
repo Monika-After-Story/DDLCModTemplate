@@ -1,19 +1,34 @@
 ##This is an example scene
 ##It teaches you about making mods, and is also a code example itself!
 
+#Each section needs a label, this is how we will call the scene in or parts of the script
 label example_scene:
     stop music fadeout 2.0
+    
+    #This set's up the scene with a background and music
     scene bg club_day
     with dissolve_scene_full
     play music t3
     
-    
+    #Most of the story will be told using "Say" statements
+    #They take the form of a short nickname, follow by their statement in quotes.    
     m "...[player]?"
+    
+    #You will also want to show characters of other images
     show monika 1 at t11 zorder 2
     m "Ah! What a nice surprise!"
+
+    #Character images are their name followed by a number and letters
+    #The trailing letter is generally the facial expression
+    show monika 1b at t11 zorder 2
     m "Welcome to the club!"
     m "The Modification Club."
+    
+    #The number is the pose
+    show monika 3 at t11 zorder 2
     m " I started this club after I had some difficulties changing code in Doki Doki Literature Club."
+    
+    
     m "It turns out that bad coding can really hurt people."
     m "That's why I wanted to make this club to teach you how to mod responsibly!"
     

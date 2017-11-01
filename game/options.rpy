@@ -1,4 +1,6 @@
-﻿## This file contains options that can be changed to customize your game.
+﻿init 100 python:
+    config.developer = True
+## This file contains options that can be changed to customize your game.
 ##
 ## Lines beginning with two '#' marks are comments, and you shouldn't uncomment
 ## them. Lines beginning with a single '#' mark are commented-out code, and you
@@ -36,7 +38,7 @@ define gui.about = _("")
 ## distribution. This must be ASCII-only, and must not contain spaces, colons,
 ## or semicolons.
 
-define build.name = "DDLC_Mod_Template"
+define build.name = "DDLCModTemplate"
 
 ## Sounds and music ############################################################
 
@@ -123,7 +125,6 @@ default preferences.afm_time = 15
 default preferences.music_volume = 0.75
 default preferences.sfx_volume = 0.75
 
-
 ## Save directory ##############################################################
 ##
 ## Controls the platform-specific place Ren'Py will place the save files for
@@ -183,12 +184,19 @@ init python:
             return (float(height) * (float(config.screen_width) / float(config.screen_height)), height)
 
     #config.adjust_view_size = force_integer_multiplier
+
 ## Build configuration #########################################################
 ##
 ## This section controls how Ren'Py turns your project into distribution files.
 ## These settings create a set of files suitable for distributing as a mod.
 
 init python:
+
+    ## By default, renpy looks for archive files in the game and common directories
+    ## Mac needs to check in the install directory instead.    
+    #if renpy.mac:
+        
+    
 
     ## The following functions take file patterns. File patterns are case-
     ## insensitive, and matched against the path relative to the base directory,
@@ -208,10 +216,13 @@ init python:
     ## subdirectories, and "**.psd" matches psd files anywhere in the project.
 
     ## Classify files as None to exclude them from the built distributions.
+    
+#    ## This is the archive of data for your mod
+#    ## Using build.name ensures that this archive gets precedence over others
+    build.archive(build.name, "all")
 
-    build.archive("DDLCModTemplateFiles", "all")
-
-    build.classify("mod_specific/**.**", "DDLCModTemplateFiles")
+#    #These files get put into your data file
+    build.classify("game/**", build.name)
 
     build.classify('**~', None)
     build.classify('**.bak', None)
@@ -228,18 +239,16 @@ init python:
     build.classify('/game/cache/*.*', None)
     build.classify('**.rpa',None)
 
-    ## To archive files, classify them as 'archive'.
-
-    # build.classify('game/**.png', 'archive')
-    # build.classify('game/**.jpg', 'archive')
-
     ## Files matching documentation patterns are duplicated in a mac app build,
     ## so they appear in both the app and the zip file.
 
     build.documentation('*.html')
     build.documentation('*.txt')
+    build.documentation('*.md')
 
     build.include_old_themes = False
+    
+    
 
 ## A Google Play license key is required to download expansion files and perform
 ## in-app purchases. It can be found on the "Services & APIs" page of the Google
