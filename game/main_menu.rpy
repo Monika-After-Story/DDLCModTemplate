@@ -15,15 +15,6 @@ screen main_menu():
 ## contents of the main menu are in the navigation screen.
     use navigation
 
-    if gui.show_name:
-
-        vbox:
-            text "[config.name!t]":
-                style "main_menu_title"
-
-            text "v. [config.version]":
-                style "main_menu_version"
-
     add "menu_particles"
     add "menu_particles"
     add "menu_particles"
@@ -32,6 +23,16 @@ screen main_menu():
     add "menu_particles"
     add "menu_art_m"
     add "menu_fade"
+    
+    
+    if gui.show_name:
+
+        vbox:
+            text "[config.name!t]":
+                style "main_menu_title"
+
+            text "v. [config.version]":
+                style "main_menu_version"
 
     key "K_ESCAPE" action Quit(confirm=False)
 
