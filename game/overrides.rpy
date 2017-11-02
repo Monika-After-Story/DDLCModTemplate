@@ -6,6 +6,7 @@
 ## These overrides happen after any of the normal init blocks in scripts.
 ## Use these to change variables on screens, effects, and the like.
 init 10 python:
+    config.developer = "auto" #Overrides definitions.rpyc
     pass
     
 ## Early overrides

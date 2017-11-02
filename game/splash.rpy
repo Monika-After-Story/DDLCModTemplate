@@ -214,11 +214,19 @@ label splashscreen:
             "By playing [config.name] you agree that you have completed Doki Doki Literature Club and accept any spoilers contained within."
             "I agree.":
                 pass
-        $ persistent.first_run = True
         scene tos2
         with Dissolve(1.5)
         pause 1.0
+        
+        #Optional, load a copy of DDLC save data
+        #call import_ddlc_persistent
+        
         scene white
+        with Dissolve(1.5)
+        
+        $ persistent.first_run = True
+        
+        
 
     $ basedir = config.basedir.replace('\\', '/')
 
