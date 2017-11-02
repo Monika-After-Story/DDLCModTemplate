@@ -217,12 +217,11 @@ init python:
 
     ## Classify files as None to exclude them from the built distributions.
     
-#    ## This is the archive of data for your mod
-#    ## Using build.name ensures that this archive gets precedence over others
+    ## This is the archive of data for your mod
     build.archive(build.name, "all")
 
-#    #These files get put into your data file
-    build.classify("game/**", build.name)
+    ## These files get put into your data file
+    build.classify("game/mod_assets/**", build.name)
 
     build.classify('**~', None)
     build.classify('**.bak', None)

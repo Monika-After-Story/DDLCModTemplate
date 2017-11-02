@@ -144,6 +144,4 @@ label example_chapter:
             m "Well, I'll try to share all the tools I have with you."
             m "Hopefully you'll find what you need to make your perfect game!"
     
-    call script-tutorial
-    
     return

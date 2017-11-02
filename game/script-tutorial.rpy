@@ -1,4 +1,4 @@
-label script-tutorial
+label script_tutorial:
 
     m "Alright, now that I know more about you and your project..."
     m "The real tutorial can begin."
@@ -12,15 +12,15 @@ label script-tutorial
         "splash.rpy":
             m "That seems like a good place to start."
             m "It's the first thing the player will see, after all." 
-            call splash_lesson
+            call .splash_lesson from _call_splash_lesson
         "script.rpy":
             m "That's a good place to start."
             m "The file is pretty short, and it acts like an overview of your story!"
-            call script_lesson
+            call .script_lesson from _call_script_lesson
         "options.rpy":
             m "Are you the sort that likes to explore their options before a big decision?"
             m "I'm kind of like that too, sometimes."
-            call options_lesson
+            call .options_lesson from _call_options_lesson
         "script-example.rpy":
             m "Diving right into the thick of things, are we?"
             if experience_level == 0:
@@ -36,27 +36,27 @@ label script-tutorial
             else:
                 m "Actually, you won't have to do a lot of heavy coding in these basic scripts."
                 m "But that doesn't mean they aren't important!"
-            call example_lesson
+            call .example_lesson from _call_example_lesson
     return
     
-label .splash_lesson
+label .splash_lesson:
     m "The splash screen is that little thing that happens before the main menu comes up."
     m "It usually where the developer puts their logo, and any messages."
     return
             
-label .script_lesson
+label .script_lesson:
     m "The script file has the start label, which is called whenever the player hits the 'New Game' button."
     m "And you will probably send them back here between chapters."
     m "It's like the backbone of your story!"
     return
     
-label .options_lesson
+label .options_lesson:
     m "The options file let's you customize your project."
     m "While you probably won't need to change most of the settings in here."
     m "There are a few you should definitely change before you release your mod."
     return
     
-label .example-lesson
+label .example_lesson:
     m "The example script should look very familiar already."
     m "It's the little introduction we just finished!"
     return
