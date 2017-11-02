@@ -143,5 +143,14 @@ label example_chapter:
             m "Trying for something a little more complicated?"
             m "Well, I'll try to share all the tools I have with you."
             m "Hopefully you'll find what you need to make your perfect game!"
+            
+    m "Unfortunately, that's all I have to say for now."
+    m "And just when I felt like I was really getting to know you..."
+    m "Check back in the future for more information and tutorials!"
+    m "This is just a first release, after all."
+    m "So until next time!"
+    
+    scene white
+    with Dissolve(1.0)
     
     return

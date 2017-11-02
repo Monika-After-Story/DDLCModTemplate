@@ -30,11 +30,8 @@ label start:
         #Call example script    
         call example_chapter from _call_example_chapter
         
-        call script_tutorial from _call_script_tutorial
-        
     if persistent.playthrough == 1:
-        #Call question and answer script
-        #call q_and_a_script
+        #Stuff here would only play after you increased the playthrough count
         pass
     
     return
