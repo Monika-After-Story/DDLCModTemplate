@@ -218,11 +218,16 @@ init python:
     ## Classify files as None to exclude them from the built distributions.
     
     ## This is the archive of data for your mod
-    build.archive(build.name, "all")
+    #build.archive(build.name, "all")
 
     ## These files get put into your data file
-    build.classify("game/mod_assets/**", build.name)
-
+    build.classify("game/mod_assets/**",build.name)
+    #build.classify("game/**.rpy",build.name) #Optional line to include plaintext scripts
+    build.classify("game/**.rpyc",build.name) #Serialized scripts must be included
+    build.classify("README.html",build.name) #Included help file for mod installation
+    
+    build.package(build.directory_name + "Mod",'zip',build.name,description='DDLC Compatible Mod')
+    
     build.classify('**~', None)
     build.classify('**.bak', None)
     build.classify('**/.**', None)

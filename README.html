@@ -1,31 +1,52 @@
 <html>
 <head>
-<title>README</title>
+<title>Doki Doki Literature Club! Readme</title>
 <style>
 BODY {
-	background: #fff;
+  width: 100%;
+	background: #fef;
 	color: #444;
-	padding-left: 20%;
-	padding-top: 1em;
-	padding-bottom: 1em;
-	padding-right: 20%;
-	font-family: sans-serif;
+  margin: 0;
+	font-family: 'Lato', sans-serif;
 	line-height: 1.6em;
 }
 
 DT {
 	font-weight: bold;
 	margin-top: .33em;
+  margin-left: 2.5em;
 }
 
 H2 {
 	color: #000;
-	margin-left: -2.5em;
+	margin-left: 0em;
 }
 
 H3 {
 	color: #000;
-	margin-left: -1.5em;
+	margin-left: 1em;
+}
+
+p {
+  margin-left: 2.5em;
+}
+
+.banner-divider {
+  position: relative;
+  background: #ffbde1;
+  height: 40px;
+}
+
+.content {
+  width: 960px;
+  margin: 0px auto;
+  box-sizing: border-box;
+  background: #fff;
+  box-shadow: 0px 0px 15px rgba(0, 0, 0, .3);
+}
+
+.inner-content {
+  padding: 0px 20px 40px 20px;
 }
 
 .editsection {
@@ -34,7 +55,30 @@ H3 {
 </style>
 </head>
 <body>
-
+<div class="content">
+<div class="banner-divider"></div>
+<div class="inner-content">
+  <h1>DDLCModTemplate Help</h1>
+  <h2>Disclaimer</h2>
+  <p><em>
+    This mod is a Doki Doki Literature Club fan game that is not affiliated with Team Salvato. It is designed to be played only after the official game has been completed. You can download Doki Doki Literature Club at: <a href=http://ddlc.moe>http://ddlc.moe</a>
+  </em></p>
+  <h2>Installation</h2>
+  <p>
+    The files in DDLC Mod Template alter Doki Doki Literature Club. You must have an installation of DDLC, which can be downloaded for free from <a href=http://ddlc.moe>http://ddlc.moe</a>.
+  </p>
+  <p>
+    To install, copy all files from the included <tt>game</tt> folder into the <tt>game</tt> folder in your DDLC installation folder. Opening Doki Doki Literature Club will now load with all of the modified files.
+  </p>
+  <p>
+    If you are running DDLC on Steam, you can access the game files by right-clicking the game in your Library, then selecting <tt>Properties</tt>. In the <tt>Local Files</tt> tab, click the <tt>Browse local files...</tt> button. This will open a window with the game directory.
+  </p>
+  <p>
+    Mac users can access the game directory by right-clicking on the DDLC application and selecting <tt>Show Package Contents</tt>. Then, the game directory can be found in <tt>Contents/Resources/autorun</tt>.
+  </p>
+  <p>
+    To uninstall this mod, simply delete all added files in the <tt>game</tt> directory.
+  </p>
   <h2>Basic Help</h2>
   <p>
     To advance through the game, <tt>left-click</tt> or press the <tt>space</tt> or <tt>enter</tt> keys. When at a menu,
@@ -43,7 +87,7 @@ H3 {
 
   <h3>Game Menu</h3>
   <p>
-    When playing a game, <tt>right-click</tt> or press the <tt>escape</tt> key to enter the game menu. The game menu
+    When playing a game, press the <tt>escape</tt> key to enter the game menu. The game menu
     gives the following choices:
   </p>
 
@@ -60,32 +104,24 @@ H3 {
       <dl>
         <dt>Display</dt>
         <dd>Switches between fullscreen and windowed mode.</dd>
-        <dt>Transitions</dt>
-        <dd>Controls the display of transitions between game screens.</dd>
         <dt>Text Speed</dt>
         <dd>Controls the rate at which text displays. The further to the right this slider is, the faster the text
           will display. All the way to the right causes text to be shown instantly.</dd>
-        <dt>Joystick</dt>
-        <dd>Lets you control the game using a joystick.</dd>
-        <dt>Skip</dt>
+        <dt>Skip - Unseen Text</dt>
         <dd>Chooses between skipping messages that have been already seen (in any play through the game), and
           skipping all messages.</dd>
-        <dt>Begin Skipping</dt>
-        <dd>Returns to the game, while skipping.</dd>
-        <dt>After Choices</dt>
+        <dt>Skip - After Choices</dt>
         <dd>Controls if skipping stops upon reaching a menu.</dd>
         <dt>Auto-Forward Time</dt>
         <dd>Controls automatic advance. The further to the left this slider is, the shorter the amount of time
           before the game advances. All the way to the right means text will never auto-forward.</dd>
-        <dt>Music, Sound, and Voice Volume</dt>
-        <dd>Controls the volume of the Music, Sound effect, and Voice channels, respectively. The further to the
+        <dt>Music and Sound Volume</dt>
+        <dd>Controls the volume of the Music and Sound effect channels, respectively. The further to the
           right these are, the louder the volume.</dd>
       </dl>
     </dd>
     <dt>Main Menu</dt>
     <dd>Returns to the main menu, ending the current game.</dd>
-    <dt>Help</dt>
-    <dd>Shows this help screen.</dd>
     <dt>Quit</dt>
     <dd>Exits the game; the game will be closed and ended.</dd>
   </dl>
@@ -100,16 +136,9 @@ H3 {
     <dd>Navigates between menu choices, buttons, and sliders.</dd>
     <dt>Ctrl</dt>
     <dd>Causes skipping to occur while the ctrl key is held down.</dd>
-    <dt>Tab</dt>
-    <dd>Toggles skipping, causing it to occur until tab is pressed again.</dd>
-    <dt>Mousewheel-Up, PageUp</dt>
-    <dd>Causes rollback to occur. Rollback reverses the game back in time, showing prior text and even allowing
-      menu choices to be changed.</dd>
-    <dt>Mousewheel-Down, PageDown</dt>
-    <dd>Causes rollforward to occur, canceling out a previous rollback.</dd>
-    <dt>Right-click, Escape</dt>
+    <dt>Escape</dt>
     <dd>Enters the game menu. When in the game menu, returns to the game.</dd>
-    <dt>Middle-click, H</dt>
+    <dt>Right-click, H</dt>
     <dd>Hides the text window and other transient displays.</dd>
     <dt>F</dt>
     <dd>Toggles fullscreen mode</dd>
@@ -121,58 +150,31 @@ H3 {
     <dd>Quits the game.</dd>
     <dt>Delete</dt>
     <dd>When a save slot is selected, deletes that save slot.</dd>
-    <dt>v</dt>
-    <dd>
-      Toggles self-voicing mode, which reads text to the user using an os-supplied speech synthesizer. For more
-      information, please read the <a href="http://www.renpy.org/doc/html/self_voicing.html">self-voicing</a>
-      documentation.
-    </dd>
-    <dt>Shift+C</dt>
-    <dd>Toggles clipboard-voicing mode, which copies text to the clipboard so it can be read by a screen reader.</dd>
   </dl>
 
-  <h3>Controller Support and Bindings</h3>
-
+  <h2>Loading and Deleting Save Data</h2>
   <p>
-    This game should automatically detect and use game controllers supported by
-    SDL2. Other controllers can be configured using third-party configuration tools
-    like the <a href="http://www.generalarcade.com/gamepadtool/">SDL2 Gampad Tool</a>
+    Some mods may offer the option to load some or all of your data from a previous Doki Doki Literature Club playthrough. If so, that option will be presented on the first load of the game, after the initial content warning and disclaimer.
   </p>
-
   <p>
-    A small number of systems may have problems using detected game controllers. Should
-    that happen, hold down shift as the game starts, and disable the controller support.
+    If you do choose to load previous data, the original Doki Doki Literature Club save data will not be changed.
   </p>
-
-  <p>The following bindings are used:</p>
-
-  <dl>
-    <dt>Right Trigger, A (Bottom Button)</dt>
-    <dd>Advances through the game, activates menu choices, buttons, and sliders.</dd>
-
-    <dt>Guide, Start</dt>
-    <dd>Enters the game menu. When in the game menu, returns to the game.</dd>
-
-    <dt>Directional Pad, Analog Sticks</dt>
-    <dd>Navigates between menu choices, buttons, and sliders.</dd>
-
-    <dt>Left Trigger, Left Shoulder, Back</dt>
-    <dd>Causes rollback to occur. Rollback reverses the game back in time, showing prior text and even allowing
-      menu choices to be changed.</dd>
-
-    <dt>Right Shoulder</dt>
-    <dd>Causes rollforward to occur, canceling out a previous rollback.</dd>
-
-    <dt>Y (Top Button)</dt>
-    <dd>Hides the text window and other transient displays.</dd>
-
-  </dl>
-
+  <p>
+    In some cases, you may want to delete your save data to start the game completely over. To do this, select "Delete All Save Data" in the game's setting menu. You will be asked to verify this decision. Select <tt>Yes, delete my existing data.</tt> The game will then start from the beginning.
+  </p>
+  <p>
+    Deleting save data for a mod will not alter or delete original save data from Doki Doki Literature Club.
+  </p>
   <h2>Legal Notice</h2>
   <p>
     This program contains free software licensed under a number of licenses, including the GNU Lesser Public License. A
     complete list of software is available at <a href="http://www.renpy.org/doc/html/license.html">http://www.renpy.org/doc/html/license.html</a>.
   </p>
-
+  <p>
+    This mod is a fan work. Doki Doki Literature Club and all related characters and assets are the property of Team Salvato. Intellectual property in this mod is used in accordance with Team Salvato's Intellectual Property Guidelines, which can be found at <a href="http://teamsalvato.com/ip-guidelines/">http://teamsalvato.com/ip-guidelines/</a>.
+  </p>
+</div>
+<div class="banner-divider"></div>
+</div>
 </body>
 </html>
