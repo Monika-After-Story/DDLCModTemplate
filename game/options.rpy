@@ -191,10 +191,10 @@ init python:
 init python:
 
     ## By default, renpy looks for archive files in the game and common directories
-    ## Mac needs to check in the install directory instead.    
+    ## Mac needs to check in the install directory instead.
     #if renpy.mac:
-        
-    
+
+
 
     ## The following functions take file patterns. File patterns are case-
     ## insensitive, and matched against the path relative to the base directory,
@@ -214,18 +214,23 @@ init python:
     ## subdirectories, and "**.psd" matches psd files anywhere in the project.
 
     ## Classify files as None to exclude them from the built distributions.
-    
+
     ## This is the archive of data for your mod
     #build.archive(build.name, "all")
+
 
     ## These files get put into your data file
     build.classify("game/mod_assets/**",build.name)
     #build.classify("game/**.rpy",build.name) #Optional line to include plaintext scripts
     build.classify("game/**.rpyc",build.name) #Serialized scripts must be included
     build.classify("README.html",build.name) #Included help file for mod installation
-    
+
+    ##Optionally include a zip file with all source code
+    build.classify('**.rpy','source')
+    build.package(build.directory_name + "source",'zip','source',description='Source Code Archive')
+
     build.package(build.directory_name + "Mod",'zip',build.name,description='DDLC Compatible Mod')
-    
+
     build.classify('**~', None)
     build.classify('**.bak', None)
     build.classify('**/.**', None)
@@ -249,8 +254,8 @@ init python:
     build.documentation('*.md')
 
     build.include_old_themes = False
-    
-    
+
+
 
 ## A Google Play license key is required to download expansion files and perform
 ## in-app purchases. It can be found on the "Services & APIs" page of the Google
