@@ -14,6 +14,15 @@ screen main_menu():
 ## The use statement includes another screen inside this one. The actual
 ## contents of the main menu are in the navigation screen.
     use navigation
+    
+    add "menu_particles"
+    add "menu_particles"
+    add "menu_particles"
+    add "menu_logo"
+    add "menu_art_s"
+    add "menu_particles"
+    add "menu_art_m"
+    add "menu_fade"
 
     if gui.show_name:
 
@@ -24,14 +33,6 @@ screen main_menu():
             text "v. [config.version]":
                 style "main_menu_version"
 
-    add "menu_particles"
-    add "menu_particles"
-    add "menu_particles"
-    add "menu_logo"
-    add "menu_art_s"
-    add "menu_particles"
-    add "menu_art_m"
-    add "menu_fade"
 
     key "K_ESCAPE" action Quit(confirm=False)
 
