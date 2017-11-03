@@ -130,7 +130,7 @@ label example_chapter:
             "Yes.":
                 $knows_python = True
                 if not knows_renpy:
-                    m 1a"That might help you pick up renpy a little quicker, then."
+                    m 1a"That might help you pick up Renpy a little quicker, then."
                     m 3a "But there are some things that makes Renpy's python a bit different."
                     m 3j "I'll try to call them out when they come up."
                 else:
