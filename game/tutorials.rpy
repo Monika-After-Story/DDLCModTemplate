@@ -23,17 +23,15 @@ label prologue:
 init python: 
 
     items = [(_("Introduction"),"example_chapter") 
-        ,(_("DDLC Mod Template"),"tutorial_not_done")
-        ,(_("DDLC Original Files"),"tutorial_not_done")
-        ,(_("Writing Dialogue"),"tutorial_not_done")
-        ,(_("Background and Sprite "),"tutorial_not_done")
-        ,(_("Sound and Music"),"tutorial_not_done")
-        ,(_("Transition"),"tutorial_not_done")
-        ,(_("DDLC Sprite Detail"),"tutorial_not_done")
-        ,(_("DDLC Screen Position"),"tutorial_not_done")
-        ,(_("In-Game Menus and Python "),"tutorial_not_done")
-        ,(_("Transitions"),"tutorial_not_done")
-        ,(_("DDLC Glitch"),"tutorial_not_done")]
+        ,(_("How To Make A Simple Route, Part 1"),"tutorial_route_p1")
+        ,(_("Route Part 2, Music"),"tutorial_not_done")
+        ,(_("Route Part 3, Scene"),"tutorial_not_done")
+        ,(_("Route Part 4, Dialogue"),"tutorial_not_done")
+        ,(_("Route Part 5, Menu"),"tutorial_not_done")
+        ,(_("Route Part 6, Logic Statement"),"tutorial_not_done")
+        ,(_("Route Part 7, Sprite"),"tutorial_not_done")
+        ,(_("Route Part 8, Position"),"tutorial_not_done")
+        ,(_("Route Part 9, Ending"),"tutorial_not_done")]
         
     
 
@@ -130,7 +128,7 @@ label tutorial_selection:
 
 label end_tutorial:
     
-    show monika 4a at t11
+    show monika 4a at t11 zorder 2
     
     m "I hope I managed to teach you something!"
     m 4b "I look foward to seeing your mods."
@@ -147,5 +145,49 @@ label tutorial_not_done:
     
     m 4n "Ahaha...it looks like this tutorial is not done yet!"
     
+    return
+    
+label tutorial_route_p1:
+    
+    show monika 4a at t11 zorder 2 
+    
+    m "There’s no better way to become better at poetry than writing poems."
+    m "And in the same way, there’s no better way to become better at modding than making mods."
+    m "So, let’s make a mod together! I have got the perfect idea."
+    m "Let’s make my own route!"
+    m "The one the game never gave us…"
+    m "Of course, as both and I are new at programming, we should keep it simple."
+    m "We’ll need Ren’Py but unfortunately I can’t access it from here."
+    m "So I’m counting on you to help me."
+    m "Make sure you follow exactly my instructions, okay? In coding, a single mistake can totally break a program."
+    m "First, verify that you installed Ren’Py. Then make a copy of Doki Doki Literature Club’s directory and put it in the directory of Ren’Py."
+    m "Rename the directory of the game \"DDLC Monika Route\"."
+    m "Put the files of DDLC Mod Template inside DDLC Monika Route’s directory."
+    m "Try to lunch Ren’Py and then try to start DDLC Monika Route."
+    m "If there’s an error then you might have made a mistake with the files…Unfortunately, I can’t help you…If it works then we can go the next step."
+    m "Go to DDLC Monika Route’s game directory and delete tutorial.rpy. This file is used to make the tutorials of DDLC Mod Template but we won’t need it to make my route."
+    m "Then you need to edit script.rpy. You can edit it with any text editor. Open the file and find the line \"        call prologue from _call_prologue\"." 
+    m "Replace it \"        call monika_route from _call_monika_route\"."
+    m "Be very careful about the number of spaces! In Ren’Py and Python spaces are very important. I won’t go into details now, but you need to make sure to write exactly what I say."
+    m "Double check that the spaces aren’t tabs."
+    m "Once the line is replaced, save the file. Create an empty text file. Rename it monika_route_script.rpy. Check if the extension is .rpy. Rpy files are the type of files used for Ren’Py scripts."
+    m "Open monika_route_script.rpy and write \"label monika_route:\". Then jump a line and write \"     return\". Save the file."
+    m "Alright, we managed to finish the first part of our mod. Let me explain the meaning of what you just wrote."
+    m "In a book, each chapter are followed one after another. Chapter two is written after chapter two and so on. But in Ren’Py this is different."
+    m "The order isn’t determined by the place of each chapter in the scripts but by the keywords \"label\", \"call\" and \"jump\""
+    m "When the game begins and when you click on New Game, the game jumps to the chapter whose label is \"start\". Then the game reads and executes what is inside the block under the label \"start\"." 
+    m "When it reaches the keyword \"call\" or \"jump\", the game proceeds to the chapter whose label followed the keyword."
+    m "In the case of our mod, when the game reads “        call monika_route from _call_ monika_route”, it jumps to the chapter labeled monika_route."
+    m "Please don’t mind \"from _call_monika_route\", it’s quite advanced stuff and I don’t understand it well too."
+    m "The chapter monika_route is defined in the file we created, monika_route_script.rpy. But as you can see, there is nothing inside it except from \"return\"."
+    m "The keyword \"return\" makes the game goes back to the chapter that was read before but only if the current chapter was accessed through the key word \"call\"."
+    m " Otherwise, the game goes back to the main menu."
+    m "If you try to play the mod, you’ll see nothing when you click New Game. That’s because the game returns to the main menu as soon as it jumps to monika_route."
+    m "Okay! Let’s stop here for now. I hope I didn’t overwhelm you with information…"
+    m "If there’s still an error when you try playing the mod, there's a script named t1.rpy inside the folder named monika_route_answer. t1.rpy is what you should have written in monika_route_script.rpy."
+    m "You can copy-paste the content of t1.rpy to monika_route_script.rpy but don’t forget to delete the # character in front of each line."
+    m "In Python and Ren’Py, the # character tells your computer not to read and execute the line. A line with a # in front of it is nothing more than a comment that only you can read."
+    m "This is all for now! When you are ready, begin the second part! I'm waiting for you."
+
     return
     
