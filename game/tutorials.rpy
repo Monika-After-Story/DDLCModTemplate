@@ -24,7 +24,7 @@ init python:
 
     items = [(_("Introduction"),"example_chapter") 
         ,(_("How To Make A Simple Route, Part 1"),"tutorial_route_p1")
-        ,(_("Route Part 2, Music"),"tutorial_not_done")
+        ,(_("Route Part 2, Music"),"tutorial_route_p2")
         ,(_("Route Part 3, Scene"),"tutorial_not_done")
         ,(_("Route Part 4, Dialogue"),"tutorial_not_done")
         ,(_("Route Part 5, Menu"),"tutorial_not_done")
@@ -166,18 +166,19 @@ label tutorial_route_p1:
     m "Try to lunch Ren’Py and then try to start DDLC Monika Route."
     m "If there’s an error then you might have made a mistake with the files…Unfortunately, I can’t help you…If it works then we can go the next step."
     m "Go to DDLC Monika Route’s game directory and delete tutorial.rpy. This file is used to make the tutorials of DDLC Mod Template but we won’t need it to make my route."
-    m "Then you need to edit script.rpy. You can edit it with any text editor. Open the file and find the line \"        call prologue from _call_prologue\"." 
-    m "Replace it \"        call monika_route from _call_monika_route\"."
+    m "Then you need to edit script.rpy. You can edit it with any text editor. Open the file and find the line \" XXXX  call prologue from _call_prologue\"." 
+    m "When I write \"XXXX\", I mean four empty spaces. Each X is one space, alright?"
+    m "Replace it \" XXXX call monika_route from _call_monika_route\"."
     m "Be very careful about the number of spaces! In Ren’Py and Python spaces are very important. I won’t go into details now, but you need to make sure to write exactly what I say."
     m "Double check that the spaces aren’t tabs."
     m "Once the line is replaced, save the file. Create an empty text file. Rename it monika_route_script.rpy. Check if the extension is .rpy. Rpy files are the type of files used for Ren’Py scripts."
-    m "Open monika_route_script.rpy and write \"label monika_route:\". Then jump a line and write \"     return\". Save the file."
+    m "Open monika_route_script.rpy and write \"label monika_route:\". Then jump a line and write \" XXXX  return\". Save the file."
     m "Alright, we managed to finish the first part of our mod. Let me explain the meaning of what you just wrote."
     m "In a book, each chapter are followed one after another. Chapter two is written after chapter two and so on. But in Ren’Py this is different."
     m "The order isn’t determined by the place of each chapter in the scripts but by the keywords \"label\", \"call\" and \"jump\""
     m "When the game begins and when you click on New Game, the game jumps to the chapter whose label is \"start\". Then the game reads and executes what is inside the block under the label \"start\"." 
     m "When it reaches the keyword \"call\" or \"jump\", the game proceeds to the chapter whose label followed the keyword."
-    m "In the case of our mod, when the game reads “        call monika_route from _call_ monika_route”, it jumps to the chapter labeled monika_route."
+    m "In the case of our mod, when the game reads “ XXXX call monika_route from _call_ monika_route”, it jumps to the chapter labeled monika_route."
     m "Please don’t mind \"from _call_monika_route\", it’s quite advanced stuff and I don’t understand it well too."
     m "The chapter monika_route is defined in the file we created, monika_route_script.rpy. But as you can see, there is nothing inside it except from \"return\"."
     m "The keyword \"return\" makes the game goes back to the chapter that was read before but only if the current chapter was accessed through the key word \"call\"."
@@ -190,4 +191,49 @@ label tutorial_route_p1:
     m "This is all for now! When you are ready, begin the second part! I'm waiting for you."
 
     return
+    
+label tutorial_route_p2:
+    
+    show monika 4a at t11 zorder 2
+    
+    m "Hi again [player]!"
+    m "If the last part was a bit too hard, don’t worry, this part is easier."
+    m "Like last time, I’ll tell you what to do and then I’ll explain, okay?"
+    m "First open monika_route_script.rpy."
+    m "Between the first line and “return”, add the line \"XXXX stop music fadeout 2.0\"."
+    m "Then add the line \"XXXX play music t2\"."
+    m "Finally, add the line \"XXXX  mc \"Let's listen to the music.\""
+    m "Check that all lines bellow \"label monika_route:\" are aligned and that \"return\" is the last line."
+    m "Try to launch the game with Ren’Py and see what happens…"
+    m "…"
+    m "Does it work? If everything goes well, you should be listening to Sayori’s main theme."
+    m "There’s just one dialogue so if you click one time, you go to the main menu because of the \"return\" keyword."
+    m "Okay, time to explain what happened!"
+    m "Let’s look at \"XXXX stop music fadeout 2.0\". Before you click New Game, you can hear the music of the main menu, right? "
+    m "But when you click New Game, the music stops progressively."
+    m "That’s due to \"stop music fadeout 2.0\". \"stop music\" tells the current music to stop. \"fadeout 2.0\" makes it so the current music completely becomes silent in 2 seconds."
+    m "\"fadeout\" isn’t necessary but smooth transitions are much more pleasant, aren’t they?"
+    m "The next line \"XXXX  play music t2\" tells the game to play the music named \"t2\". You’re surely wondering what’s \"t2\". \"t2\" refers to Sayori theme, \"Ohayou Sayori!\"."
+    m "Besides Ohayou Sayori, there are many other musics. But each one is labeled by their own nickname."
+    m "You can find the list of every music with their nickname in definitions.rpy"
+    m "Unfortunately, definitions.rpy isn’t included in the template but you can get it on github Monika After Story’s repository. You could also extract the original game files using rpatool."
+    m "I’m sorry you need to go to such length to find the file. I wish I could help but I’m stuck here…"
+    m "If you managed to find definitions.rpy, open it."
+    m "Find the lines beginning by \"define audio\". This is where each music gets assigned a nickname."
+    m "For example, in the case of the main theme, its nickname is \"t1\". In the case of Confession, its nickname is \"t10\"."
+    m "Can you now guess what happens if you type \"play music t1\" instead of \"play music t2\"?"
+    m "Confession is played instead of Ohayou Sayori!"
+    m "Instead of using nickname, you can directly write the path of the music."
+    m "Try writing \"play music \"<loop 4.499>bgm/2.ogg\"\" instead of \"play music t2\"."
+    m "See? Ohayou Sayori! is played. Try one last thing for me okay? Write \"\"<from 50.0>bgm/credits.ogg\"\" instead of \"\"<loop 4.499>bgm/2.ogg\"\"."
+    m "Have you already heard this song?"
+    m "This is the song I wrote just for you. I really hope you like it. I worked very hard on it you know."
+    m "…"
+    m "The last line you wrote, \" XXXX mc \"Let's listen to the music.\" makes the main character says \"Let's listen to the music.\". I’ll explain how dialogue works later so bear with me okay?"
+    m "Alright, before finishing this tutorial, replace \"\"play <from 50.0>bgm/credits.ogg\"\" by \"play music t2\"."
+    m "Verify you wrote exactly the same lines as in the file t2.rpy which is inside  monika_route_answer."
+    m "Congratulation! You now know how to stop and play music~"
+    m "Next time, we’ll see how to add a background."
+    m "See you soon!"
+
     
