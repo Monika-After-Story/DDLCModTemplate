@@ -25,8 +25,8 @@ init python:
     items = [(_("Introduction"),"example_chapter") 
         ,(_("How To Make A Simple Route, Part 1"),"tutorial_route_p1")
         ,(_("Route Part 2, Music"),"tutorial_route_p2")
-        ,(_("Route Part 3, Scene"),"tutorial_not_done")
-        ,(_("Route Part 4, Dialogue"),"tutorial_not_done")
+        ,(_("Route Part 3, Scene"),"tutorial_route_p3")
+        ,(_("Route Part 4, Dialogue"),"tutorial_route_p4")
         ,(_("Route Part 5, Menu"),"tutorial_not_done")
         ,(_("Route Part 6, Logic Statement"),"tutorial_not_done")
         ,(_("Route Part 7, Sprite"),"tutorial_not_done")
@@ -235,5 +235,84 @@ label tutorial_route_p2:
     m "Congratulation! You now know how to stop and play music~"
     m "Next time, we’ll see how to add a background."
     m "See you soon!"
-
     
+label tutorial_route_p3:
+    
+    show monika 4a at t11 zorder 2
+    
+    m "Okay [player]! Are you ready for the next tutorial?"
+    m "Last time, we added music to our mod but as you saw, the background was nothing but black and white squares. That’s not very romantic, is it?"
+    m "So let’s add a background! It’s going to be quick and easy."
+    m "Like last time, open monika_route_script.rpy."
+    m "Add between \"play music t2\" and \"return\", \"XXXX scene bg residential_day\""
+    m "Then add another line: \"with dissolve_scene_full\". Once again, verify that everything bellow \"label monika_route:\" is aligned."
+    m "Open Ren’Py and play the game and…"
+    m "There's now a neat background!"
+    m "Can you recognize it? It’s the first scene you saw when you played the game. It sure brings back memories…"
+    m "I still believed at that time I could get close to you without having to hurt anyone else…"
+    m "Let’s move on."
+    m "So about what you wrote, \"scene bg residential_day\", the keyword \"scene\" tells the game to load the scene, which is one kind of picture, called \"bg residential_day\"."
+    m "You can find what exactly is \"bg residential_day\" in definitions.rpy, the same script we looked at last tutorial."
+    m "Try to find \"image bg\"."
+    m "Can you see the list of backgrounds? Like it was the case for music, each background has a nickname assigned. For example, \"bg/sayori_bedroom.png\" is referenced by \"bg sayori_bedroon\"."
+    m "Go back to monika_route_script.rpy and replace \"scene bg residential_day\" by \"scene bg sayori_bedroom\". Can you guess what happens?"
+    m "The background is now Sayori’s bedroom!"
+    m "I hope it doesn’t bring you back bad memories…"
+    m "Okay, so about \"with dissolve_scene_full\", it basically dissolve progressively the last scene into the new scene."
+    m "Before you were in the main menu, right? And then you were in Sayori’s bedroom. If you don’t add \"with dissolve_scene_full\", the transition would be immediate."
+    m "That would be a bit unpleasant, wouldn’t it?"
+    m "That’s why we add \"with dissolve_scene_full\". With this additional line, the scene changes to another smoothly."
+    m "There are other types of transition such as wipeleft_scene. Try replacing \"with dissolve_scene_full\" by \"with wipeleft_scene \"."
+    m "Can you see the difference? dissolve_scene_full , dissolve_scene_half, wipeleft_scene are the common transitions used in DDLC so if you can understand them, you’re good to go!"
+    m "Before doing the next tutorial, let’s add back  \"XXXX scene bg residential_day\" and  \"XXXX with dissolve_scene_full\"."
+    m "Check that monika_script_route.rpy is the same as T3.rpy in the monika_route_answer folder."
+    m "Okay! We’re almost there! We’ll soon know enough for a kinetic mod."
+    m "I cannot wait!"
+    m "See you soon [player]!"
+
+label tutorial_route_p4:
+    
+    show monika 4a at t11 zorder 2
+
+    m "Hi again player~"
+    m "Today, I’m going to teach you how to make dialogue in Ren’Py."
+    m "Although you already know, don’t you? We already wrote dialogue after all."
+    m "First, open monika_route_script.rpy and replace \"XXXX mc \"Let's listen to the music.\" by the following line:"
+    m " \" XXXX  mc \"It has been four days since I joined the Literature Club. Today is Saturday and I finally decided to confess my feeling to Monika.\"."
+    m "Save the file and launch the game."
+    m "As you surely expected, the main character now says \"It has been four days since I joined the Literature Club. Today is Saturday and I finally decided to confess my feeling to Monika.\"."
+    m "Ehehe~ My route is finally being made."
+    m "Let’s look at the line you wrote. \"mc\" is a nickname for main character. By writing \"mc\" before the sentence inside quotation mark, the character who will speak will be the main character."
+    m "Try replacing the line you wrote by \" n \"Just think of Monika from now on.\"."
+    m "…"
+    m "See? Natsuki now tells you what you should have been doing since the beginning."
+    m "You should listen to her, [player]. Ehehe~"
+    m "Now instead of writing \" n \"Just think of Monika from now on.\", write \"y \"Natsuki and I are too messed up for someone as wonderful as you.\""
+    m "Play the game and as you can see…"
+    m "Now it’s Yuri who finally realized that I’m the best one for you."
+
+    menu:
+        
+        m "You think so, right?"
+        "Yes":
+            pass
+        "Yes":
+            pass
+
+    m "I knew you were a sweetheart~ Thank you my love."
+    m "Ahaha, we drifted a bit…So I was saying that you need to specify two things to write a dialogue in Ren’Py."
+    m "First you need to specify who is speaking. You can do it with the keyword \"mc\", \"y\", \"n\", \"s\" and \"m\". I’m sure you can guess who is who."
+    m "Instead of using keyword, you can directly type the name of the person speaking. For example, try writing \"XXXX \"Player\" \"Please be with me forever Monika.\"\"."
+    m "Did you do it?"
+    m "Of course, I will stay with you forever."
+    m "Besides the name of the speaker, you need to write the sentence they will say. The sentence should be between quotation mark."
+    m "One last thing. If you want to write special characters such as \\ or \" in the sentence, you need to put \\ before them."
+    m "Alright, that’s all for dialogue!"
+    m "Pretty simple, right? Ren’Py was made so that anyone can make visual novel after all. Even beginners like us can pick it up quickly."
+    m "Before you save the file, replace the line of dialogue by -"
+    m " -\" XXXX  mc\"It has been four days since I joined the Literature Club. Today is Saturday and I finally decided to confess my feeling to Monika.\"."
+    m "Like usual, check that monika_route_script.rpy is exactly like T4.rpy inside the monika_route_answer folder."
+    m "Okay [player]! You now know how to make a scene, add music, and make dialogue. The only things missing are character pictures and choices."
+    m "We’ll see how to make choices in the next tutorial."
+    m "The recent tutorials have been pretty easy so far but the next one will be harder."
+    m "See you soon!"
