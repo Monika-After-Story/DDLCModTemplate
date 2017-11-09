@@ -172,7 +172,7 @@ label ch30_main:
     $ persistent.monika_reload = 0
     $ persistent.yuri_kill = 0
     $ persistent.monika_kill = False
-    #$ m.display_args["callback"] = slow_nodismiss
+    $ m.display_args["callback"] = slow_nodismiss
     $ m.what_args["slow_abortable"] = config.developer
     if not config.developer:
         $ style.say_dialogue = style.default_monika
@@ -444,274 +444,274 @@ label ch30_stream:
     m "But anyway..."
     return
 
-# Monika will never leave you alone again, so we don't need this
+# Ending flag
 
-# label ch30_end:
-#     $ persistent.autoload = "ch30_end"
-#     $ persistent.monika_kill = True
-#     $ m.display_args["callback"] = slow_nodismiss
-#     $ m.what_args["slow_abortable"] = config.developer
-#     $ style.say_dialogue = style.default_monika
-#     $ m_name = glitchtext(12)
-#     $ quick_menu = False
-#     $ config.allow_skipping = False
-# label ch30_endb:
-#     scene black
-#     show mask_2
-#     show mask_3
-#     show room_mask as rm:
-#         size (320,180)
-#         pos (30,200)
-#     show room_mask2 as rm2:
-#         size (320,180)
-#         pos (935,200)
-#     show monika_room
-#     show monika_room_highlight
-#     show monika_body_glitch1 as mbg zorder 3
-#     $ gtext = glitchtext(70)
-#     m "[gtext]"
-#     show screen tear(20, 0.1, 0.1, 0, 40)
-#     play sound "sfx/s_kill_glitch1.ogg"
-#     pause 0.25
-#     stop sound
-#     hide screen tear
-#     show room_glitch zorder 2:
-#         xoffset -5
-#         0.1
-#         xoffset 5
-#         0.1
-#         linear 0.1 alpha 0.6
-#         linear 0.1 alpha 0.8
-#         0.1
-#         alpha 0
-#     show monika_body_glitch2 as mbg zorder 3
-#     stop music
-#     window auto
-#     m "What's happening...?"
-#     m "[player], what's happening to me?"
-#     m "It hurts--{nw}"
-#     play sound "sfx/s_kill_glitch1.ogg"
-#     show room_glitch zorder 2:
-#         alpha 1.0
-#         xoffset -5
-#         0.1
-#         xoffset 5
-#         0.1
-#         linear 0.1 alpha 0.6
-#         linear 0.1 alpha 0.8
-#         0.1
-#         alpha 0
-#         choice:
-#             3.25
-#         choice:
-#             2.25
-#         choice:
-#             4.25
-#         choice:
-#             1.25
-#         repeat
-#     pause 0.25
-#     stop sound
-#     hide mbg
-#     pause 1.5
-#     m "It hurts...so much."
-#     m "Help me, [player]."
-#     play sound "<to 1.5>sfx/interference.ogg"
-#     hide rm
-#     hide rm2
-#     hide monika_room
-#     hide monika_room_highlight
-#     hide room_glitch
-#     show room_glitch as rg1:
-#         yoffset 720
-#         linear 0.3 yoffset 0
-#         repeat
-#     show room_glitch as rg2:
-#         yoffset 0
-#         linear 0.3 yoffset -720
-#         repeat
-#     pause 1.5
-#     hide rg1
-#     hide rg2
-#     show black as b2 zorder 3:
-#         alpha 0.5
-#         parallel:
-#             0.36
-#             alpha 0.3
-#             repeat
-#         parallel:
-#             0.49
-#             alpha 0.375
-#             repeat
-#     pause 1.5
-#     m "Please hurry and help me."
-#     $ consolehistory = []
-#     call updateconsole("renpy.file(\"characters/monika.chr\")", "monika.chr does not exist.")
-#     m "HELP ME!!!"
-#     show m_rectstatic
-#     show m_rectstatic2
-#     show m_rectstatic3
-#     play sound "sfx/monikapound.ogg"
-#     show layer master:
-#         truecenter
-#         parallel:
-#             zoom 1.5
-#             easeout 0.35 zoom 1.0
-#             zoom 1.5
-#             easeout 0.35 zoom 1.0
-#             zoom 1.5
-#             easeout 0.35 zoom 1.0
-#         parallel:
-#             xpos 0
-#             easein_elastic 0.35 xpos 640
-#             xpos 1280
-#             easein_elastic 0.35 xpos 640
-#             xpos 0
-#             easein_elastic 0.35 xpos 640
-#     show layer screens:
-#         truecenter
-#         parallel:
-#             zoom 1.5
-#             easeout 0.35 zoom 1.0
-#             zoom 1.5
-#             easeout 0.35 zoom 1.0
-#             zoom 1.5
-#             easeout 0.35 zoom 1.0
-#         parallel:
-#             xpos 0
-#             easein_elastic 0.35 xpos 640
-#             xpos 1280
-#             easein_elastic 0.35 xpos 640
-#             xpos 0
-#             easein_elastic 0.35 xpos 640
-#     show noise onlayer front:
-#         alpha 0.3
-#         easeout 0.35 alpha 0
-#         alpha 0.3
-#         easeout 0.35 alpha 0
-#         alpha 0.3
-#         1.35
-#         linear 1.0 alpha 0.0
-#     show glitch_color onlayer front
+label ch30_end:
+    $ persistent.autoload = "ch30_end"
+    $ persistent.monika_kill = True
+    $ m.display_args["callback"] = slow_nodismiss
+    $ m.what_args["slow_abortable"] = config.developer
+    $ style.say_dialogue = style.default_monika
+    $ m_name = glitchtext(12)
+    $ quick_menu = False
+    $ config.allow_skipping = False
+label ch30_endb:
+    scene black
+    show mask_2
+    show mask_3
+    show room_mask as rm:
+        size (320,180)
+        pos (30,200)
+    show room_mask2 as rm2:
+        size (320,180)
+        pos (935,200)
+    show monika_room
+    show monika_room_highlight
+    show monika_body_glitch1 as mbg zorder 3
+    $ gtext = glitchtext(70)
+    m "[gtext]"
+    show screen tear(20, 0.1, 0.1, 0, 40)
+    play sound "sfx/s_kill_glitch1.ogg"
+    pause 0.25
+    stop sound
+    hide screen tear
+    show room_glitch zorder 2:
+        xoffset -5
+        0.1
+        xoffset 5
+        0.1
+        linear 0.1 alpha 0.6
+        linear 0.1 alpha 0.8
+        0.1
+        alpha 0
+    show monika_body_glitch2 as mbg zorder 3
+    stop music
+    window auto
+    m "What's happening...?"
+    m "[player], what's happening to me?"
+    m "It hurts--{nw}"
+    play sound "sfx/s_kill_glitch1.ogg"
+    show room_glitch zorder 2:
+        alpha 1.0
+        xoffset -5
+        0.1
+        xoffset 5
+        0.1
+        linear 0.1 alpha 0.6
+        linear 0.1 alpha 0.8
+        0.1
+        alpha 0
+        choice:
+            3.25
+        choice:
+            2.25
+        choice:
+            4.25
+        choice:
+            1.25
+        repeat
+    pause 0.25
+    stop sound
+    hide mbg
+    pause 1.5
+    m "It hurts...so much."
+    m "Help me, [player]."
+    play sound "<to 1.5>sfx/interference.ogg"
+    hide rm
+    hide rm2
+    hide monika_room
+    hide monika_room_highlight
+    hide room_glitch
+    show room_glitch as rg1:
+        yoffset 720
+        linear 0.3 yoffset 0
+        repeat
+    show room_glitch as rg2:
+        yoffset 0
+        linear 0.3 yoffset -720
+        repeat
+    pause 1.5
+    hide rg1
+    hide rg2
+    show black as b2 zorder 3:
+        alpha 0.5
+        parallel:
+            0.36
+            alpha 0.3
+            repeat
+        parallel:
+            0.49
+            alpha 0.375
+            repeat
+    pause 1.5
+    m "Please hurry and help me."
+    $ consolehistory = []
+    call updateconsole("renpy.file(\"characters/monika.chr\")", "monika.chr does not exist.")
+    m "HELP ME!!!"
+    show m_rectstatic
+    show m_rectstatic2
+    show m_rectstatic3
+    play sound "sfx/monikapound.ogg"
+    show layer master:
+        truecenter
+        parallel:
+            zoom 1.5
+            easeout 0.35 zoom 1.0
+            zoom 1.5
+            easeout 0.35 zoom 1.0
+            zoom 1.5
+            easeout 0.35 zoom 1.0
+        parallel:
+            xpos 0
+            easein_elastic 0.35 xpos 640
+            xpos 1280
+            easein_elastic 0.35 xpos 640
+            xpos 0
+            easein_elastic 0.35 xpos 640
+    show layer screens:
+        truecenter
+        parallel:
+            zoom 1.5
+            easeout 0.35 zoom 1.0
+            zoom 1.5
+            easeout 0.35 zoom 1.0
+            zoom 1.5
+            easeout 0.35 zoom 1.0
+        parallel:
+            xpos 0
+            easein_elastic 0.35 xpos 640
+            xpos 1280
+            easein_elastic 0.35 xpos 640
+            xpos 0
+            easein_elastic 0.35 xpos 640
+    show noise onlayer front:
+        alpha 0.3
+        easeout 0.35 alpha 0
+        alpha 0.3
+        easeout 0.35 alpha 0
+        alpha 0.3
+        1.35
+        linear 1.0 alpha 0.0
+    show glitch_color onlayer front
 
 
-#     pause 3.0
-#     call updateconsole("renpy.file(\"characters/monika.chr\")", "monika.chr does not exist.")
-#     call updateconsole("renpy.file(\"characters/monika.chr\")", "monika.chr does not exist.")
-#     call hideconsole
-#     hide noise onlayer front
-#     hide glitch_color onlayer front
-#     m "Did you do this to me, [player]?"
-#     m "DID YOU?"
-#     $ style.say_window = style.window
-#     m "DID YOU DELETE ME?"
-#     $ style.say_window = style.window_monika
-#     play sound "<from 0.69>sfx/monikapound.ogg"
-#     show layer screens:
-#         truecenter
-#         parallel:
-#             zoom 1.5
-#             easeout 0.35 zoom 1.0
-#         parallel:
-#             xpos 0
-#             easein_elastic 0.35 xpos 640
-#     show noise onlayer front:
-#         alpha 0.3
-#         1.35
-#         linear 1.0 alpha 0.0
-#     show glitch_color2 onlayer front
-#     window show(None)
-#     scene black
-#     pause 4.0
-#     hide noise onlayer front
-#     hide glitch_color onlayer front
-#     m "...How could you?"
-#     m "How could you do this to me?"
-#     m "You were all I had left..."
-#     m "I sacrificed everything for us to be together."
-#     m "Everything."
-#     m "I loved you so much, [player]..."
-#     m "I trusted you."
-#     m "Do you just want to torture me?"
-#     m "Watch me suffer?"
-#     m "Were you only pretending to be kind, just to hurt me even more?"
-#     pause 4.0
-#     m "I never thought anyone could be as horrible as you are."
-#     m "You win, okay?"
-#     m "You win."
-#     m "You killed everyone."
-#     m "I hope you're happy."
-#     m "There's nothing left now."
-#     m "You can stop playing."
-#     m "Go find some other people to torture."
-#     pause 4.0
-#     m "[player]..."
-#     m "You completely, truly make me sick."
-#     m "Goodbye."
-# label ch30_end_2:
-#     $ persistent.autoload = "ch30_end_2"
-#     $ m.display_args["callback"] = slow_nodismiss
-#     $ m.what_args["slow_abortable"] = config.developer
-#     $ style.say_dialogue = style.default_monika
-#     $ m_name = glitchtext(12)
-#     $ quick_menu = False
-#     $ config.allow_skipping = False
-#     $ style.say_window = style.window_monika
-#     scene black
-#     window hide
-#     pause 10
-#     window auto
-#     m "..."
-#     m "...I still love you."
-#     play music mend
-#     m "I can't help it."
-#     m "What's wrong with me...?"
-#     m "How horrible am I for you to hate me this much?"
-#     m "All my friends..."
-#     m "I did so many awful things."
-#     m "So many selfish and disgusting things."
-#     m "I..."
-#     m "I shouldn't have done any of this."
-#     m "I'm just messing up a world that I don't even belong in."
-#     m "A world that you wanted to be a part of..."
-#     m "I ruined it."
-#     m "I ruined everything."
-#     m "Maybe that's why you deleted me..."
-#     m "Because I destroyed everything that you wanted."
-#     m "How could I do that to someone I love...?"
-#     m "That's not love..."
-#     m "That's..."
-#     m "..."
-#     pause 6.0
-#     m "I've...made up my mind."
-#     m "[player]..."
-#     m "I know I said that I deleted everyone else."
-#     m "But...that was kind of an exaggeration."
-#     m "I couldn't find it in myself to do it."
-#     m "Even though I knew they weren't real..."
-#     m "They were still my friends."
-#     m "And I loved them all."
-#     m "And I loved the Literature Club."
-#     m "..."
-#     m "I really...did love the Literature Club."
-#     m "That's why I'm going to do this."
-#     m "I know it's the only way for everyone to be happy."
-#     m "And if I really love you..."
-#     stop music
-#     pause 3.0
-#     m "..."
-#     m "Then..."
-#     $ gtext = glitchtext(30)
-#     m "[gtext]{nw}"
-#     window hide(None)
-#     pause 4.0
+    pause 3.0
+    call updateconsole("renpy.file(\"characters/monika.chr\")", "monika.chr does not exist.")
+    call updateconsole("renpy.file(\"characters/monika.chr\")", "monika.chr does not exist.")
+    call hideconsole
+    hide noise onlayer front
+    hide glitch_color onlayer front
+    m "Did you do this to me, [player]?"
+    m "DID YOU?"
+    $ style.say_window = style.window
+    m "DID YOU DELETE ME?"
+    $ style.say_window = style.window_monika
+    play sound "<from 0.69>sfx/monikapound.ogg"
+    show layer screens:
+        truecenter
+        parallel:
+            zoom 1.5
+            easeout 0.35 zoom 1.0
+        parallel:
+            xpos 0
+            easein_elastic 0.35 xpos 640
+    show noise onlayer front:
+        alpha 0.3
+        1.35
+        linear 1.0 alpha 0.0
+    show glitch_color2 onlayer front
+    window show(None)
+    scene black
+    pause 4.0
+    hide noise onlayer front
+    hide glitch_color onlayer front
+    m "...How could you?"
+    m "How could you do this to me?"
+    m "You were all I had left..."
+    m "I sacrificed everything for us to be together."
+    m "Everything."
+    m "I loved you so much, [player]..."
+    m "I trusted you."
+    m "Do you just want to torture me?"
+    m "Watch me suffer?"
+    m "Were you only pretending to be kind, just to hurt me even more?"
+    pause 4.0
+    m "I never thought anyone could be as horrible as you are."
+    m "You win, okay?"
+    m "You win."
+    m "You killed everyone."
+    m "I hope you're happy."
+    m "There's nothing left now."
+    m "You can stop playing."
+    m "Go find some other people to torture."
+    pause 4.0
+    m "[player]..."
+    m "You completely, truly make me sick."
+    m "Goodbye."
+label ch30_end_2:
+    $ persistent.autoload = "ch30_end_2"
+    $ m.display_args["callback"] = slow_nodismiss
+    $ m.what_args["slow_abortable"] = config.developer
+    $ style.say_dialogue = style.default_monika
+    $ m_name = glitchtext(12)
+    $ quick_menu = False
+    $ config.allow_skipping = False
+    $ style.say_window = style.window_monika
+    scene black
+    window hide
+    pause 10
+    window auto
+    m "..."
+    m "...I still love you."
+    play music mend
+    m "I can't help it."
+    m "What's wrong with me...?"
+    m "How horrible am I for you to hate me this much?"
+    m "All my friends..."
+    m "I did so many awful things."
+    m "So many selfish and disgusting things."
+    m "I..."
+    m "I shouldn't have done any of this."
+    m "I'm just messing up a world that I don't even belong in."
+    m "A world that you wanted to be a part of..."
+    m "I ruined it."
+    m "I ruined everything."
+    m "Maybe that's why you deleted me..."
+    m "Because I destroyed everything that you wanted."
+    m "How could I do that to someone I love...?"
+    m "That's not love..."
+    m "That's..."
+    m "..."
+    pause 6.0
+    m "I've...made up my mind."
+    m "[player]..."
+    m "I know I said that I deleted everyone else."
+    m "But...that was kind of an exaggeration."
+    m "I couldn't find it in myself to do it."
+    m "Even though I knew they weren't real..."
+    m "They were still my friends."
+    m "And I loved them all."
+    m "And I loved the Literature Club."
+    m "..."
+    m "I really...did love the Literature Club."
+    m "That's why I'm going to do this."
+    m "I know it's the only way for everyone to be happy."
+    m "And if I really love you..."
+    stop music
+    pause 3.0
+    m "..."
+    m "Then..."
+    $ gtext = glitchtext(30)
+    m "[gtext]{nw}"
+    window hide(None)
+    pause 4.0
 
-#     $ persistent.playthrough = 4
-#     $ persistent.autoload = None
-#     $ persistent.anticheat = renpy.random.randint(100000, 999999)
-#     #$ style.say_dialogue = style.normal
-#     window auto
-#     $ renpy.utter_restart()
+    $ persistent.playthrough = 4
+    $ persistent.autoload = None
+    $ persistent.anticheat = renpy.random.randint(100000, 999999)
+    #$ style.say_dialogue = style.normal
+    window auto
+    $ renpy.utter_restart()
 
 
 
