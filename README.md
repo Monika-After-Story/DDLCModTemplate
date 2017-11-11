@@ -18,3 +18,7 @@ Follow these steps to set up the template.
 3. Mod Installation instructions & guide. Run the game to get a tutorial by Monika!
 4. Splash screen on first load. This adheres to the Team Salvato guidelines for creating fan mods of the game.
 5. Customizable! Use as a starting point for any ideas you wish to create.
+
+## DDLC-Toolkit
+
+We're proud to be a submodule of the [DDLC-Toolkit](https://github.com/GarnetSunset/DDLC-Toolkit).
