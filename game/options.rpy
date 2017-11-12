@@ -224,6 +224,10 @@ init python:
     #build.classify("game/**.rpy",build.name) #Optional line to include plaintext scripts
     build.classify("game/**.rpyc",build.name) #Serialized scripts must be included
     build.classify("README.html",build.name) #Included help file for mod installation
+    
+    #Add the pictures necessary for the tutorial selection menu
+    build.classify("game/gui/button/tutorial_hover_background.png",build.name)
+    build.classify("game/gui/button/tutorial_idle_background.png",build.name)
 
     ##Optionally include a zip file with all source code
     build.classify('**.rpy','source')

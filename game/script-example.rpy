@@ -179,4 +179,7 @@ label example_chapter:
     scene white
     with Dissolve(1.0)
 
+    $ persistent.introduction_read = True
+    
     return
+    
