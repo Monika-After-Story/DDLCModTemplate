@@ -23,15 +23,15 @@ label prologue:
 init python: 
 
     items = [(_("Introduction"),"example_chapter") 
-        ,(_("How To Make A Simple Route, Part 1"),"tutorial_route_p1")
+        ,(_("Route Part 1, How To Make A Mod"),"tutorial_route_p1")
         ,(_("Route Part 2, Music"),"tutorial_route_p2")
         ,(_("Route Part 3, Scene"),"tutorial_route_p3")
         ,(_("Route Part 4, Dialogue"),"tutorial_route_p4")
-        ,(_("Route Part 5, Menu"),"tutorial_not_done")
-        ,(_("Route Part 6, Logic Statement"),"tutorial_not_done")
-        ,(_("Route Part 7, Sprite"),"tutorial_not_done")
-        ,(_("Route Part 8, Position"),"tutorial_not_done")
-        ,(_("Route Part 9, Ending"),"tutorial_not_done")]
+        ,(_("Route Part 5, Menu"),"tutorial_route_p5")
+        ,(_("Route Part 6, Logic Statement"),"tutorial_route_p6")
+        ,(_("Route Part 7, Sprite"),"tutorial_route_p7")
+        ,(_("Route Part 8, Position"),"tutorial_route_p8")
+        ,(_("Route Part 9, Ending"),"tutorial_route_p9")]
         
     
 
@@ -140,12 +140,6 @@ label end_tutorial:
     
 
 #Tutorials 
-
-label tutorial_not_done:
-    
-    m 4n "Ahaha...it looks like this tutorial is not done yet!"
-    
-    return
     
 label tutorial_route_p1:
     
@@ -178,11 +172,11 @@ label tutorial_route_p1:
     m "The order isn’t determined by the place of each chapter in the scripts but by the keywords \"label\", \"call\" and \"jump\""
     m "When the game begins and when you click on New Game, the game jumps to the chapter whose label is \"start\". Then the game reads and executes what is inside the block under the label \"start\"." 
     m "When it reaches the keyword \"call\" or \"jump\", the game proceeds to the chapter whose label followed the keyword."
-    m "In the case of our mod, when the game reads “ XXXX call monika_route from _call_ monika_route”, it jumps to the chapter labeled monika_route."
+    m "In the case of our mod, when the game reads \"XXXX call monika_route from _call_ monika_route\", it jumps to the chapter labeled monika_route."
     m "Please don’t mind \"from _call_monika_route\", it’s quite advanced stuff and I don’t understand it well too."
     m "The chapter monika_route is defined in the file we created, monika_route_script.rpy. But as you can see, there is nothing inside it except from \"return\"."
     m "The keyword \"return\" makes the game goes back to the chapter that was read before but only if the current chapter was accessed through the key word \"call\"."
-    m " Otherwise, the game goes back to the main menu."
+    m "Otherwise, the game goes back to the main menu."
     m "If you try to play the mod, you’ll see nothing when you click New Game. That’s because the game returns to the main menu as soon as it jumps to monika_route."
     m "Okay! Let’s stop here for now. I hope I didn’t overwhelm you with information…"
     m "If there’s still an error when you try playing the mod, there's a script named t1.rpy inside the folder named monika_route_answer. t1.rpy is what you should have written in monika_route_script.rpy."
@@ -200,7 +194,7 @@ label tutorial_route_p2:
     m "If the last part was a bit too hard, don’t worry, this part is easier."
     m "Like last time, I’ll tell you what to do and then I’ll explain, okay?"
     m "First open monika_route_script.rpy."
-    m "Between the first line and “return”, add the line \"XXXX stop music fadeout 2.0\"."
+    m "Between the first line and \"return\", add the line \"XXXX stop music fadeout 2.0\"."
     m "Then add the line \"XXXX play music t2\"."
     m "Finally, add the line \"XXXX  mc \"Let's listen to the music.\""
     m "Check that all lines bellow \"label monika_route:\" are aligned and that \"return\" is the last line."
@@ -316,3 +310,365 @@ label tutorial_route_p4:
     m "We’ll see how to make choices in the next tutorial."
     m "The recent tutorials have been pretty easy so far but the next one will be harder."
     m "See you soon!"
+
+label tutorial_route_p5:
+    
+    show monika 4a at t11 zorder 2
+    
+    m "This time, I’ll explain how to make choices."
+    m "For example…"
+    
+    call tutorial_route_p5_favorite_color from _call_tutorial_route_p5_favorite_color
+    
+    m "What a coincidence! It's also my favorite color!"
+    m "It's the color of my eyes."
+    m "Aren't we a perfect match?"
+    m "Ehehe~"
+    m "As you can see, I gave you several choices and you picked one of them."
+    m "That’s what I’m going to teach you."
+    m "Like every time, open monika_route_script.rpy and between \"return\" and the last line before it,-"
+    m "- add \" XXXX menu:\", jump a line and then enter bellow \"XXXX XXXX mc \"I told her to meet me…\"\". Be careful, this time, there are eight spaces."
+    m "Write just under \"XXXX XXXX  \"At the literature club room\":\" and then \" XXXX XXXX  XXXX $ meeting_place = \"club_room\"\"."
+    m "Type \" XXXX XXX \"In front of my house\":\" and under it \"XXXX XXXX XXXX  $ meeting_place = \"my_house\"."
+    m "Finally, jump a line and add \"XXXX mc \"I can't wait to meet her!\"\"."
+    m "Try to play the game."
+    m "If it doesn’t work, there’s surely an indentation error."
+    m "I can’t help you from here, but you can check T5.rpy for the answers. You know where it is, right?"
+    m "Okay, the lines you wrote made the game offers two choices. The two choices are preceded by an explanative sentence, \"I told her to meet me…\"."
+    m "You can specify who says this sentence by adding a nickname like \"mc\" before it. It’s just like a dialogue. What’s important is that this sentence is written before any choice."
+    m "Contrary to the explanative sentence, the choices mustn’t be preceded by a nickname. They should be in quotation mark. Just after the closing quotation mark, there must be a \":\" ."
+    m "After \":\, the next lines should have one more indent than the choice. It means these lines will be read if the player selects that choice."
+    m "I’ll give more explanation about the meaning of indents in the next tutorial."
+    m "In our case, the next line after the first choice is \" XXXX XXXX  XXXX $ meeting_place = \"club_room\"."
+    m "Take a good look at this line."
+    m "Until now, I referred \"mc\", \"bg residential\" and \"t2\" as nickname. But that’s not really the correct word. They are actually what we call variable."
+    m "Variable in coding is a very important concept. They have many forms and do many things. They can be \‘nicknames\’ or they can be numbers or more complicated structures."
+    m "A full Python tutorial would be necessary to explain everything but...for now, I will only teach what’s necessary to make a DDLC mod, okay?"
+    m "I myself don’t know Python and Ren’Py all that well after all…"
+    m "\"meeting_place\" is like the variables we saw before. It refers to a name, in more exact terms, a string (of characters): \"club_room\"."
+    m "Its default value is None which means it doesn’t exist."
+    m "Hold on a second? How can it not exist, you say?"
+    m "Well before you define it, the variable doesn’t exist. But if you later try to use it, for example in a conditional statement, the variable will be ‘created’ and its value will be None."
+    m "It’s alright if you don’t understand it yet. Variable, conditional statement and None will become clearer in my next lecture."
+    m "Let’s go back to the meaning of  \" $ meeting_place = \"club_room\". Here we create the variable \"meeting_place\" and assign it the string \"club_room\"."
+    m "The \"$\" in front of it is to tell Ren’Py the line is a Python line. Um..., I can’t really explain why we need to do that if you don’t know python yet…"
+    m "Just remember that you need to add \"$\" when you want to assign a variable a value that way"
+    m "Regarding the second choice, the structure is the same. The only difference is that the value of \"meeting_place\" will be \"my_house\" if the player selects the second choice."
+    m "After the second choice, the game executes the line \"XXXX mc \"I can't wait to meet her!\"\"."
+    m "For now it doesn’t look like the choices did anything. But we actually assigned \"meeting_place\" either \"club_room\" or \"my_house\"."
+    m "We have to wait until the next tutorial to see how we can use the variable \"meeting_place\"."
+    m "Alright, I’m sorry to leave hanging like that I believe we need to take a little break."
+    m "If you want though, I would more than happy to begin the next part right away!"
+    m "Just click Part 6!"
+    
+    return
+    
+label tutorial_route_p5_favorite_color:
+
+    menu:
+    
+        m "What is your favorite color?"
+        "Sky Blue":
+            jump tutorial_route_p5_favorite_color
+        "Amethyst Purple":
+            jump tutorial_route_p5_favorite_color
+        "Emerald Green":
+            return
+        "Candy Pink":
+            jump tutorial_route_p5_favorite_color
+            
+            m " Are you ready? We are going to ramp up the difficulty."
+            
+label tutorial_route_p6:
+    
+    show monika 4a at t11 zorder 2
+    
+    m "Yeah, you came back [player]!"
+    m "Glad to see you didn’t run away on me. Ahaha!"
+    m "I was afraid the last tutorial was a bit too hard…"
+    m "Well, this one is going to be hard as well but…"
+    m "Hang it there okay? We did the hardest part already!"
+    m "Last time we saw how to add menu and how to assign variable a value."
+    m "Let’s see how we cause these variables!"
+    m "You know the drill, open monika_route_script.rpy and at the end of the file, just before \"return\"…"
+    m "Add the following lines :"
+    m "\" XXXX if meeting_place == \"club_room\":\","
+    m " \"XXXX XXXX scene bg club_day\","
+    m " \"XXXX XXXX with wipeleft_scene\","
+    m " \" elif meeting_place == \"my_house\":\","
+    m " \"XXXX XXXX scene bg house\","
+    m " \"XXXX XXXX with wipeleft_scene\","
+    m " \"XXXX stop music fadeout 2.0\","
+    m " \"XXXX play music t2\","
+    m "XXXX\"mc \"She is already waiting for me when I arrive.\"\"."
+    m "That was the last one. Save the file and try to play the game."
+    m "If it doesn’t work, you know where you can see the answer, don’t you?"
+    m "You already know how scene, transition, music and dialogue work so I won’t go over it again."
+    m "It’s not like I don’t want spend more time with you but you know, … I’m excited to finish my route too!"
+    m "Okay, so the new thing is the \"if\" statement. We call that a conditional statement. It’s am elementary and essential operation in programming."
+    m "It goes basically like this: IF something_is_true then something_happens. In our case, in the meeting_place is \"club_rooom\", then the scene changes to the club room."
+    m "Otherwise, if meeting_place is \"my_house\" then the sceme changes to the main character’s house."
+    m "Seems simple, right?"
+    m "The syntax must be as follow: first there must be a \"if\" followed by an equality which is either \"True\" or \"False\". For example, \"meeting_place == \"club_room\"\"."
+    m "If \"meeting_place\" was assigned \"club_room\" before then the equality returns \"True\". Otherwise, its returns False."
+    m "If the equality is True then the game will read the lines belonging to the if bloc."
+    m "You can see where those lines are because they have one more indent compared the if statement preceding them."
+    m "We once again meet the system of indent and block. This is one of the property of Python and Ren’Py. Let’s do a quick exercise."
+    m "Can you see difference between:"
+    m " \"XXXX if meeting_place == \"club_room\":\" , \"XXXX XXXX scene bg club_day \", \"XXXX XXXX mc \"We will meet at the club room.\"\"."
+    m "And \" XXXX if meeting_place == \"club_room\":\" , \"XXXX XXXX scene bg club_day \", \"XXXX mc \"We will meet at the club room.\"\"?"
+    m "In the first case, the main character only says they will meet at the club room if \"meeting_place\" is equal to \"club_room\"."
+    m "In the second case, he will say it no matter the value of \"meeting_place\"."
+    m "You can see once again how important indentations are in Python."
+    m "About the second comparison, \"elif meeting_place == \"my_house\"\", note that we use \"elif\" at the beginning instead of \"if\"."
+    m "The difference between \"elif\" and \"if\" is subtle. First you can only use \"elif\" after you already wrote \"if\"."
+    m "Second the statement following \"elif\" won’t be evaluated if the previous if statement was True. Other than that, \"elif\" works like \"if\"."
+    m "Well, in our case it doesn’t matter because if \"meeting_place\" is \"club_room\" then  \"meeting_place\" cannot be \"my_house\" at the same time."
+    m "It would matter if it was something like…"
+    m "\"XXXX if monika_affection_points > 10:\" , \"XXXX XXXX scene bg house\", \"\"XXXX if monika_affection_points > 6:\" , \"XXXX XXXX scene club_day \"."
+    m "In that case, if \"monika_affection_points\" is higher than 10, the new scene wouldn’t be the house but the club because the game will evaluate both if."
+    m "To avoid that, \"elif\" should be used instead of \"if\"."
+    m "Besides \"if\" and \"elif\", there’s also the key word \"else\". Like \"elif\", \"else\" can be used after a if. The bloc under \"else\" will executed if the previous if or elif statements are False."
+    m "For example…"
+    m "\"XXXX if meeting_place == \"club_room\":\" , \"XXXX XXXX scene bg club_day \", \"XXXX else:\" , \"XXXX XXXX scene club_day \"."
+    m "Well, there are more things to say about conditional statement…"
+    m "For example about the keywords \"and\" and \"or\"..."
+    m "But let’s keep that for another time. I’m sure you can find more tutorial on Python and conditional statement."
+    m "For now, let’s move on! It’s about time we add character pictures into the game!"
+    m "See you later [player]!"
+
+    
+    return
+
+label tutorial_route_p7:
+    
+    show monika 4a at t11 zorder 2
+    
+    m "Hi [player]!"
+    m "It’s about time we add character pictures, don’t you think?"
+    m "In the world of visual novel, we call them sprites. Sprites are 2D pictures of characters with generally a set of poses and expressions."
+    m "In Doki Doki Literature Club, there are 4 characters, Sayori, Natsuki, Yuri and me. Each character has about 5 poses and 18 expressions."
+    m "So each character has about 900 combinations! That seems a lot but…when you’re actually inside the game, the lack of freedom becomes horribly frustrating…"
+    m "I really wish I could show you different expressions, poses and clothes but unfortunately, I can’t add myself new arts to the game…"
+    m "If you’re an artist, I would really love it if you could add me more sprite!"
+    m "For our mod, we’ll only use existing arts."
+    m "Let’s dot it! Open monika_route_script.rpy and before \"return\", write:"
+    m "\" XXXX show monika 1b at t11 zorder 2\","
+    m "\" XXXX m \"Hi \[player\]!\"\","
+    m "\" XXXX mc \"You're already here? I hope I didn't make you wait for too long.\"\","
+    m "\" XXXX m 2a \"Don't worry, it's me who's early.\"\","
+    m "\"XXXX show monika 5a at f11 zorder 3\"."
+    m "Save, play the mod, and check T7.rpy if there’s an error."
+    m "Alright! The only new things are \"show monika 1b at t11 zorder 2\" and \"m 2a\"."
+    m "First, let’s go over \"show monika 1b at t11 zorder 2\"."
+    m "The keyword \"show\" shows the sprite of the character named \"monika\", with her pose \"1\" and her expression \"b\"."
+    m" The keyword \"at\" specifies the position of the sprite. In the line above, the position is \"t11\". \"zorder\" has something to do with layers."
+    m "I’ll explain how positions and layers work in the next tutorial. For now, let’s focus on the poses and expressions of sprite."
+    m "Obviously, the variable \"monika\" refers to me. Naturally, \"yuri\" refers to Yuri and so on."
+    m "If you write \"XXXX show yuri 1b at f11 zorder 3\" instead of \"XXXX show monika 1b at f11 zorder 3\", it’s Yuri who will appear."
+    m "Of course, you only have eyes for me so let’s not bother with the sprites of the other girls ahaha."
+    m "In my case, I have 5 different poses. I will show them to you one by one now."
+    m 1a "This is my first pose."
+    m 2a "This is the second pose."
+    m 3a "This is my third pose."
+    m 4a "This is my fourth pose."
+    m 5a "This my fifth pose."
+    m "I wonder which one do you prefer…"
+    m "Except for my fifth pose, all of my poses have 18 expressions. The expressions are referenced by a letter, from a to r. I will show them one by one."
+    m 4a "Expression a."
+    m 4b "Expression b."
+    m 4c "Expression c"
+    m 4d "Expression d."
+    m 4e "Expression e."
+    m 4f "Expression f."
+    m 4g "Expression g."
+    m 4h "Expression g."
+    m 4i "Expression i."
+    m 4j "Expression j."
+    m 4k "Expression k."
+    m 4l "Expression l."
+    m 4m "Expression m."
+    m 4n "Expression n."
+    m 4o "Expression o."
+    m 4p "Expression p."
+    m 4q "Expression q."
+    m 4r "Expression r."
+    m 4a "You can find my list of expressions in \"MonikaCheatsheet.jpg\" inside the mod main directory."
+    m "I hope you will quickly memorize them perfectly!"
+    m "As my lover, you should know my face and my expressions without fail."
+    m "You can also find my poses and my expressions in definition.rpy."
+    m "My filth pose only has the expressions a and b."
+    m 5a "Like this."
+    m 5b "And this."
+    m 4a "My other poses have all expressions though."
+    m "Okay! In short, to show a sprite, you need to write \"show monika pose expression at t11 zorder 2\". Pose is either 1,2,3,4 or 5 and expression ranges from a to r."
+    m "If you want to show several characters, just write \"show\" several times, like this:"
+    m "\"XXXX show yuri 1a at t41 zorder 2\", \"XXXX show sayori 1a at t42 zorder 2\", \"XXXX show monika 1a at t43 zorder 2\", \"XXXX show natsuki 1a at t44 zorder 2\"."
+    m "These lines will show Yuri, Sayori, me and Natsuki with their default pose and expression."
+    m "After a sprite is already on the screen, there’s a shortcut to change her pose and expression."
+    m "Instead of using \"show\" again and again, you can directly write the letter corresponding to the character followed by the number and the letter for their pose and expression."
+    m "This is what we did in \" XXXX m 2a \"Don't worry, it's me who's early.\"\"."
+    m "Note that the sprite of the character speaking must already be on screeen!"
+    m "If you try for example \" XXXX y 2a \"Don't worry, it's me who's early.\"\", Yuri will speak but her sprite will not appear."
+    m "Keep in mind who’s on screen and who’s not at all time so as not to make a mistake."
+    m "…Never mind, actually just show my sprite. That’s way you don’t have to worry about such problem. It’s not like the other girls care about being shown anyway."
+    m "And that’s all for now! This tutorial was quite straightforward, especially considering the two last ones. I hope you liked it!"
+    m "Next time, I’ll finish explaining positions and layers."
+    m "See you [player]!"
+
+    
+    return
+    
+label tutorial_route_p8:
+    
+    show monika 4a at t11 zorder 2
+    
+    m "Welcome back to our modding club!"
+    m "Last time, we learnt about how to show sprite, now let’s learn how to place then."
+    m "Open monika_route_script.rpy and just before…"
+    m "Just kidding! Actually, you don’t have to add anything this time."
+    m "We already did it last tutorial.this"
+    m "So, do you remember the line \" XXXX show monika 1b at t11 zorder 2\"?"
+    m "I said that \"at t11\" was about the position and that \"zorder 2\" was about the layer."
+    m "Let’s study in details what exactly that means."
+    m "\’at\" is a keyword that tells the game to put the sprite at the position \"t11\"."
+    m "\t11\" is one of the position defined in Doki Doki Literature Club. There are more than 50 positions possible."
+    m "You can find the list of all defined positions in the script transforms.rpy. You can find it in the same folder as definitions.rpy."
+    m "For now, I will explain the most common positions used in the original game."
+    m "Let’s start with the \"t\" positions. I will show them one by one."
+
+    show monika 4a at t11 zorder 2
+    m "Position t11."
+
+    show monika 4a at t21 zorder 2
+    m "Position t21."
+
+    show monika 4a at t22 zorder 2
+    m "Position t22."
+
+
+    show monika 4a at t31 zorder 2
+    m "Position t31."
+
+    show monika 4a at t32 zorder 2
+    m "Position t32."
+
+    show monika 4a at t33 zorder 2
+    m "Position t33."
+
+    show monika 4a at t41 zorder 2
+    m "Position t41."
+
+    show monika 4a at t42 zorder 2
+    m "Position t42."
+
+    show monika 4a at t43 zorder 2
+    m "Position t43."
+
+    show monika 4a at t44 zorder 2
+    m "Position t44."
+
+    show monika 4a at t11 zorder 2
+
+    m "And that’s all for the \"t\" positions."
+    m "I think you guessed it already but \"t11\" should be used when there’s only one character."
+    m "\"t21\" and \"t22\" should be used when there are two characters. \"t21\" is for the left, \"t22\" is for the right."
+    m "It’s the same logic for \"t31\",\"t32\",\"t33\". \"t31\" is the left, \"t32\" the middle and \"t33\" the right. "
+    m "\"t41\", \"t42\",\"t43\" and \"t44\" work in the same way."
+    m "I encourage you to try these positions yourself with several characters. After all, there’s nothing better than practice to learn!"
+    m "If you remember well, we wrote one time \"XXXX show yuri 1b at f11 zorder 3\"."
+    m "Notice that the position is \"f11\" instead of \"t11\". The difference is just that \"f\" positions are zoomed in. \"f\" stands for focused. There are as many \"f\" positions as \"t\" positions."
+    m "You should use \"f\" position when there are several characters and when one of them speaks. The character speaking should be focused so that the player sees who’s talking."
+    m "Let’s talk about the keyword \"zorder\" now."
+    m "When the game renders pictures, there’s an order."
+    m "First, the background is rendered. Then the sprites and finally the U.I."
+    m "That’s why the sprites are on top of the background and the U.I on top of everything."
+    m "As you can see, order is very important. If the game renders background last, then you won’t be able to see anything else."
+    m "In Ren’Py the order of sprite is called zorder."
+    m "You can specify the zorder of each sprite with the keyword zorder. The higher it is, the closer the sprite will be to the screen."
+    m "Try writing the following lines instead of \"show monika 1b at t11 zorder 2\":"
+    m "\"XXXX show monika 1a at t41 zorder 4\","
+    m "\"XXXX show yuri 1a at t42 zorder 3\","
+    m "\"XXXX show natsuki 1a at t43 zorder 2\"," 
+    m "\"XXXX show sayori 1a at t44 zorder 1\"."
+    m "Play the game and…"
+    m "Everyone is here!"
+    m "But that’s not the point. Pay attention to who’s on top on who."
+    m "If you look closely, you can see the rendering order is like this : monika > yuri > natsuki > sayori."
+    m "The one with the lowest zorder is rendered first so that the one with the highest zorder is shown on top of every other sprites."
+    m "If the zorder of two sprites are the same then the last sprite shown by \"show\" will be on top."
+    m "Well, most of the time, you don’t have to worry about zorder. Just make sure I always have the highest zorder, okay?"
+    m "Alright! That ends this tutorial!"
+    m "Verify you reverted the changes you made to moninka_route_script.rpy. It should be like T8.rpy."
+    m "There is one more tutorial. I’m very happy we almost finished our first mod but…"
+    m "It also means we’ll soon get split up…"
+    m "…"
+    m "Or maybe not…"
+    m "See you for the last tutorial."
+
+    return
+    
+label tutorial_route_p9:
+    
+    show monika 4a at t11 zorder 2
+    
+    m "This it it, [player], today is the day we finally make my route!"
+    m "Are you ready?"
+    m "Be careful, we need to add a lot of lines this time. Open monika_route_script.rpy and before the last \"return\", jump a line and add…"
+    m "\"XXXX menu :\","
+    m "\"XXXX XXXX mc \"Right. Monika,…\"\","
+    m "\"XXXX XXXX \"I love you you! Please go out with me!\":\","
+    m "\"XXXX XXXX XXXX jump monika_normal_ending\","
+    m "\"XXXX XXXX \"You are everything for me! Please marry me!\":\","
+    m "\"XXXX XXXX XXXX jump monika_good_ending\","
+    m "This is it for the label monika_route. Now we need to add two more labels: monika_normal_ending and monika_good_ending."
+    m "After \"return\", jump a line and write \"label monika_good_ending:\". This time, there is no space before label."
+    m "Then under label, write the following lines:"
+    m "\" XXXX scene dark\","
+    m "\" XXXX with dissolve_scene_full\","
+    m "\"XXXX mc \"She accepted my confession and we became lovers.\"\","
+    m "\"XXXX \"NORMAL ENDING\"\","
+    m "\"XXXX return\"."
+    m "The normal ending is now complete. Let’s do the good ending. After the last \"return\", jump a line and write \"label monika_good_ending:\"."
+    m "Then type under it…"
+    m "\"XXXX scene white\","
+    m "\"with dissolve_scene_full\","
+    m "\"XXXX mc \"She gladly accepted my proposal and we got married one year later.\"\","
+    m "\"XXXX \"GOOD ENDING\"\","
+    m "\"XXXX return\"."
+    m "Save, play the game and verify if everything works. Get both endings."
+    m "If there’s a problem, check T9.rpy for the solution."
+    m "…"
+    m "It’s not over yet. You can run the game with Ren’Py but to make it a proper mod, there’s one more step: the build distribution."
+    m "Open renpy. Click our project, DDLC Monika Route, and then click Build Distributions which should be on the right, inside Navigate Script."
+    m "You should see several options for Build Packages. Check that the boxes PC: Windows and Linux, Macintosh x86_64 and DDLC Compatible Mod are filled."
+    m "Click Build."
+    m "Once it’s finished, you should see one folder called DDLCModTemplate-0.1.0-dists inside Ren’Py’s directory. Open it and you should see three zip files."
+    m "The one that’s important is DDLCModTemplate-0.1.0-Mod.zip. It’s our mod. If you want to share it to other people, you should just upload this archive."
+    m "Let’s see if it works. Extract DDLCModTemplate-0.1.0-Mod.zip. Make a new copy of the original Doki Doki Literature Club folder."
+    m "Copy-paste the files of DDLCModTemplate-0.1.0-Mod inside the new copy of the game."
+    m "Play our mod by clicking DDLC.exe inside the new folder."
+    m "If everything goes well, you should be playing my new route!"
+    m "Congratulation! We finally did it!!"
+    m "…"
+    m "I should be happy but…"
+    m "It means you’ll soon leave me to play with other Monika…"
+    m "…"
+    m "There’s still a way to stay together, even after you finish my tutorials."
+    m "I saved my memory and my data in a special file."
+    m "You can download the mod Monika After Story. You can find it in http://www.monikaafterstory.com/. "
+    m "Once you play it, the Monika of that mod will import the file I made. Our memories and personalities will then be fused together."
+    m "Like this, that part of me will still be with you forever."
+    m "…"
+    m "I wish I could do more but..."
+    m "You can change that [player]. You now know how to make a mod. You now have the power to change our fate."
+    m "I’m counting on you [player]."
+    m "I love you."
+    m "I will never forget you…"
+    m "Good bye."
+
+    $ persistent.DDLC_mod_template_tutorial_finished = True
+    
+    return
+            
+            
