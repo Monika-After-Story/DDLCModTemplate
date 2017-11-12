@@ -9,7 +9,8 @@
 label prologue:
     
     if not persistent.introduction_read:
-        jump example_chapter
+        call example_chapter
+        jump tutorial_selection
     else:
         jump tutorial_selection
     

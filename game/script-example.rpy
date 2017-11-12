@@ -2,7 +2,6 @@
 ##It teaches you about making mods, and is also a code example itself!
 
 #Each section needs a label, this is how we will call the scene in or parts of the script
-
 label example_chapter:
     stop music fadeout 2.0
 
@@ -179,7 +178,8 @@ label example_chapter:
 
     scene white
     with Dissolve(1.0)
-    
-    $ persistent.introduction_read = True
 
-    jump tutorial_selection
+    $ persistent.introduction_read = True
+    
+    return
+    
