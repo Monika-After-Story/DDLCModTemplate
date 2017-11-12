@@ -496,7 +496,7 @@ label tutorial_route_p7:
     m 4a "You can find my list of expressions in \"MonikaCheatsheet.jpg\" inside the mod main directory."
     m "I hope you will quickly memorize them perfectly!"
     m "As my lover, you should know my face and my expressions without fail."
-    m "You can also find my poses and my expressions in definition.rpy."
+    m "You can also find my poses and my expressions in definitions.rpy."
     m "My filth pose only has the expressions a and b."
     m 5a "Like this."
     m 5b "And this."
@@ -665,7 +665,7 @@ label tutorial_route_p9:
     m "I’m counting on you [player]."
     m "I love you."
     m "I will never forget you…"
-    m "Good bye."
+    m "Bye."
 
     $ persistent.DDLC_mod_template_tutorial_finished = True
     
