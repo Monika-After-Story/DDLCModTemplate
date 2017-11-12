@@ -179,4 +179,4 @@ label example_chapter:
     scene white
     with Dissolve(1.0)
 
-    return
+    jump tutorial_selection
