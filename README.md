@@ -5,7 +5,7 @@ The DDLC Mod Template is an easy way to get started building your own game mods 
 ### Getting Started
 Follow these steps to set up the template.
 
-1. Download and install the [Ren'Py SDK](https://www.renpy.org/latest.html).
+1. Download and install the [Ren'Py SDK version 6.99.12](https://www.renpy.org/release/6.99.12). *(NOTE: The current version of DDLC is not compatible with .rpyc files generated with other versions of the Renpy SDK)*
 2. Go to releases to download the [latest stable build](https://github.com/therationalpi/DDLCModTemplate/releases). For development builds, fork this repository or download the files by clicking the button labeled "Clone or Download" above.
 3. Place the files in the Ren'py working directory (chosen during installation).
 4. Download the DDLC files (available for free at http://ddlc.moe) & drop the .rpa files from it into the /game directory.
