@@ -174,6 +174,7 @@ init python:
 
 
 #This is the beginning of the poem minigame
+label poem(transition=True):
     stop music fadeout 2.0 #Stop previous music
 
     #These checks change the game for the glitchy minigame in Act3
