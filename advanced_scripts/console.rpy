@@ -1,4 +1,4 @@
-#This is a copy of cgs.rpy from DDLC.
+#This is a copy of console.rpy from DDLC.
 #Use this as a starting point if you would like to override with your own.
 
 #Explanation for console.rpy
