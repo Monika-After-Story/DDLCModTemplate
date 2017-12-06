@@ -1,3 +1,7 @@
+#This is a copy of splash.rpy from DDLC.
+#Use this as a reference for DDLC's normal game flow.
+#The version of splash.rpy in the /game folder is better as a base for modding.
+
 init python:
     menu_trans_time = 1
     splash_message_default = "This game is not suitable for children\nor those who are easily disturbed."
@@ -295,7 +299,7 @@ label splashscreen:
         pause 3.0
         $ config.allow_skipping = True
         return
-        
+
 
     # Actual splash screen
     show white
@@ -427,4 +431,3 @@ label quit:
             xpos -100 ypos -100 zoom 3.5
         pause 0.01
     return
-
