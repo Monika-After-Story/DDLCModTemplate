@@ -1,6 +1,12 @@
+#This is a copy of credits.rpy from DDLC.
+#Use this as a starting point if you would like to override with your own.
+
+#Import the datetime library for using time
 init python:
     import datetime
 
+#This defines the CGs that disappear after a few seconds
+#These are the colored CGs used for scene cgs
 image credits_cg1:
     "images/cg/credits/1.png"
     size(640, 360)
@@ -61,6 +67,7 @@ image credits_cg10:
     8.6
     "images/menu/notfound.png"
 
+#These are the grayed out CGs for unseen cgs
 image credits_cg1_locked:
     "images/cg/credits/1b.png"
     size(640, 360)
@@ -121,6 +128,7 @@ image credits_cg10_locked:
     8.6
     "images/menu/notfound.png"
 
+#This defines the CGs that don't fade for a "perfect ending"
 image credits_cg1_clearall:
     "images/cg/credits/1.png"
     size(640, 360)
@@ -161,6 +169,7 @@ image credits_cg10_clearall:
     "images/cg/credits/10.png"
     size(640, 360)
 
+#DDLC Logo
 image credits_logo:
     "gui/logo.png"
     truecenter
@@ -169,6 +178,7 @@ image credits_logo:
     4.5
     linear 2.0 alpha 0
 
+#Team Salvato logo
 image credits_ts:
     "images/bg/splash-white.png"
     xalign 0.5 yalign 0.6
@@ -177,6 +187,7 @@ image credits_ts:
     4.5
     linear 2.0 alpha 0
 
+#This styles the different text in the credits
 style credits_header:
     font "gui/font/RifficFree-Bold.ttf"
     color "#ffaae6"
@@ -202,7 +213,7 @@ image credits_header = ParameterizedText(style="credits_header", ypos=-40)
 image credits_text = ParameterizedText(style="credits_text", ypos=40)
 image monika_credits_text = ParameterizedText(style="monika_credits_text", xalign=0.5)
 
-
+#These are the animations applied to the make the credits and images scroll
 transform credits_scroll:
     subpixel True
     yoffset 740
@@ -254,6 +265,7 @@ transform credits_sticker_4:
 
 define credits_ypos = 250
 
+#This defines the Karaoke for Monika's singing
 image mcredits_1a:
     ypos credits_ypos
     xoffset -205
@@ -333,6 +345,7 @@ image mcredits_1_test:
     ypos credits_ypos + 300
     Text("What will it take just to find that special day?", style="monika_credits_text") with ImageDissolve("images/menu/wipeleft.png", 15.0, ramplen=4)
 
+#Glitchy images
 image end_glitch1:
     "bg/end-glitch1.jpg"
     alpha 0.0
@@ -375,8 +388,10 @@ image end_glitch4:
         linear 4 yoffset 0
         repeat
 
+#Start for the actual credits scene
 label credits:
-    $ persistent.autoload = "credits"
+    $ persistent.autoload = "credits" #Come back to the credits if the game is quit
+    #Disable player interactions
     $ config.keymap['game_menu'] = []
     $ config.keymap['hide_windows'] = []
     $ renpy.display.behavior.clear_keymap_cache()
@@ -384,6 +399,7 @@ label credits:
     $ config.skipping = False
     $ config.allow_skipping = False
     scene black
+    #Start Monika's spoken dialogue
     play music "bgm/end-voice.ogg" noloop
 
     show noise zorder 9:
@@ -438,7 +454,7 @@ label credits:
             linear 15 ypos -500
             repeat
 
-
+    #Play monika's song with Karaoke lines
     pause 41
     scene black
     pause 0.5
@@ -463,6 +479,7 @@ label credits:
     pause 50
     jump credits2
 
+#This is where the credits scroll starts
 label credits2:
     python:
         sayoriTime = renpy.random.random() * 4 + 4
@@ -489,12 +506,18 @@ label credits2:
     pause 0.88
     show credits_logo
     pause 9.12
+    #Each CG is shown. If it's unseen gray it out, if it's not a perfect ending
+    #make each image get deleted after a few seconds
     $ lockedtext = "" if persistent.clear[imagenum] else "_locked"
     $ if persistent.clearall: lockedtext = "_clearall"
     $ imagenum += 1
     show image ("credits_cg1" + lockedtext) at credits_scroll_right as credits_image_1
+
+    #Actual names for the credits
     show credits_header "Concept & Game Design" at credits_text_scroll_left as credits_header_1
     show credits_text "Dan Salvato" at credits_text_scroll_left as credits_text_1
+
+    ##The rest of the sections follow this same pattern
     $ lockedtext = "" if persistent.clear[imagenum] else "_locked"
     $ if persistent.clearall: lockedtext = "_clearall"
     $ imagenum += 1
@@ -609,6 +632,8 @@ label credits2:
     call updateconsole("os.remove(\"game/menu.rpy\")", "menu.rpy deleted successfully.")
     call updateconsole("os.remove(\"game/script.rpy\")", "script.rpy deleted successfully.")
     $ pause(115.72 - (datetime.datetime.now() - starttime).total_seconds())
+
+    #Hide console and show the Team salvato logo and thankyou
     call hideconsole
     show credits_ts
     show credits_text "made with love by":
@@ -619,16 +644,23 @@ label credits2:
     pause 9.3
     play sound page_turn
     show poem_end with Dissolve(1)
+
+    #Fade to black and make player quit
     label postcredits_loop:
-        $ persistent.autoload = "postcredits_loop"
+        $ persistent.autoload = "postcredits_loop" #If the game quits come back here
+
+        #Disable player input
         $ config.keymap['game_menu'] = []
         $ config.keymap['hide_windows'] = []
         $ renpy.display.behavior.clear_keymap_cache()
         $ quick_menu = False
         $ config.skipping = False
         $ config.allow_skipping = False
+
+        #Fade to black
         scene black
-        show poem_end
+        show poem_end #Show special ending message
         $ pause()
+        #Make player quit
         call screen dialog(message="Error: Script file is missing or corrupt.\nPlease reinstall the game.", ok_action=Quit(confirm=False))
         return
