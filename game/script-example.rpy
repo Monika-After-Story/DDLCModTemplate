@@ -170,16 +170,13 @@ label example_chapter:
             m 1e "Well, I'll try to share all the tools I have with you."
             m 1k "Hopefully you'll find what you need to make your perfect game!"
 
-    m 1h "Unfortunately, that's all I have to say for now."
-    m 1r "And just when I felt like I was really getting to know you..."
-    m 1a "Check back in the future for more information and tutorials!"
-    m 3j "This is just a first release, after all."
-    m 5 "So until next time!"
+    m 2b "Now that I know more about you and your project, we're really ready to get started!"
+    m "I've prepared a few lessons to help get you started!"
+    m 2a "And when we're done, you'll have made your first mod."
 
-    scene white
-    with Dissolve(1.0)
+    #This makes sure we skip the intro the next time you play
+    $ persistent.playthrough = 1
 
-    $ persistent.introduction_read = True
-    
+    jump tutorial_selection
+
     return
-    

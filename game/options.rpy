@@ -23,7 +23,7 @@ define gui.show_name = True
 
 ## The version of the game.
 
-define config.version = "0.1.0"
+define config.version = "0.2.0"
 
 
 ## Text that is placed on the game's about screen. To insert a blank line
@@ -224,7 +224,7 @@ init python:
     #build.classify("game/**.rpy",build.name) #Optional line to include plaintext scripts
     build.classify("game/**.rpyc",build.name) #Serialized scripts must be included
     build.classify("README.html",build.name) #Included help file for mod installation
-    
+
     #Add the pictures necessary for the tutorial selection menu
     build.classify("game/gui/button/tutorial_hover_background.png",build.name)
     build.classify("game/gui/button/tutorial_idle_background.png",build.name)

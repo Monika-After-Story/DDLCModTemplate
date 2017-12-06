@@ -22,18 +22,19 @@ label start:
     $ style.say_dialogue = style.normal
     $ allow_skipping = True
     $ config.allow_skipping = True
-    
+
     #This section detemines the "Act Structure" for the game.
     # persistent.playthrough variable marks each of the major game events (Sayori hanging, etc.)
     #Here is an example of how you might do that
     if persistent.playthrough == 0:
-        #Call example script    
-        call prologue from _call_prologue
-        
+        #Call example script
+        call example_chapter
+
     if persistent.playthrough == 1:
-        #Stuff here would only play after you increased the playthrough count
+        #Stuff here will only play after you increased the playthrough count
+        call tutorial_selection
         pass
-    
+
     return
 
 label endgame(pause_length=4.0):
