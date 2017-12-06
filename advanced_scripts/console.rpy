@@ -1,8 +1,17 @@
+#This is a copy of cgs.rpy from DDLC.
+#Use this as a starting point if you would like to override with your own.
+
+#Explanation for console.rpy
+#This script defines the "fake console" that sometimes appears in the game when
+#monika deletes characters
+
+#A gray semi-transparent overlay on the screen
 image console_bg:
     "#333"
     topleft
     alpha 0.75 size (480,180)
 
+#Styling for the console text
 style console_text:
     font "gui/font/F25_Bank_Printer.ttf"
     color "#fff"
@@ -18,6 +27,7 @@ image console_text = ParameterizedText(style="console_text_console", anchor=(0,0
 image console_history = ParameterizedText(style="console_text", anchor=(0,0), xpos=30, ypos=50)
 image console_caret = Text(">", style="console_text", anchor=(0,0), xpos=5, ypos=10)
 
+#This defines a function that displays text in the console
 label updateconsole(text="", history=""):
     show console_bg zorder 100
     show console_caret zorder 100
@@ -30,11 +40,13 @@ label updateconsole(text="", history=""):
     pause 0.5
     return
 
+#This function clears the console history
 label updateconsole_clearall(text="", history=""):
     $ pause(len(text) / 30.0 + 0.5)
     pause 0.5
     return
 
+#Seems to be an unused alternative console function
 label updateconsole_old(text="", history=""):
     $ starttime = datetime.datetime.now()
     $ textlength = len(text)
@@ -52,7 +64,7 @@ label updateconsole_old(text="", history=""):
         $ textcount += 1
         if textcount <= textlength:
             jump updateconsole_loop
-    
+
     pause 0.5
     hide ctext
     show console_text "_" as ctext zorder 100
@@ -66,6 +78,7 @@ label updateconsole_old(text="", history=""):
         #show console_text cursortext as ccursor zorder 100
         return
 
+#This adds the passed text to the console history
 label updateconsolehistory(text=""):
     if text:
         python:
@@ -76,6 +89,7 @@ label updateconsolehistory(text=""):
         show console_history "[consolehistorydisplay]" as chistory zorder 100
     return
 
+#This hides all of the parts of the console
 label hideconsole:
     hide console_bg
     hide console_caret
