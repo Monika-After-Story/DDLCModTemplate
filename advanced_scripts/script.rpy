@@ -1,3 +1,7 @@
+#This is a copy of script.rpy from DDLC.
+#Use this as a reference for DDLC's normal game flow.
+#The version of script.rpy in the /game folder is better as a base for modding.
+
 ﻿# This is used for top-level game strucutre.
 # Should not include any actual events or scripting; only logic and calling other labels.
 
@@ -23,7 +27,7 @@ label start:
     #    $ in_sayori_kill = None
     $ allow_skipping = True
     $ config.allow_skipping = True
-    
+
     if persistent.playthrough == 0:
         # Intro
         $ chapter = 0
