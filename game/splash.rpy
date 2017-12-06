@@ -251,7 +251,6 @@ label splashscreen:
     show white
     $ persistent.ghost_menu = False #Handling for easter egg from DDLC
     $ splash_message = splash_message_default #Default splash message
-    $ config.main_menu_music = audio.t1
     $ renpy.music.play(config.main_menu_music)
     show intro with Dissolve(0.5, alpha=True)
     pause 2.5
@@ -307,10 +306,6 @@ label autoload:
     # Pop the _splashscreen label which has _confirm_quit as False and other stuff
     $ renpy.pop_call()
     jump expression persistent.autoload
-
-label before_main_menu:
-    $ config.main_menu_music = audio.t1
-    return
 
 label quit:
     return
