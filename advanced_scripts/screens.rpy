@@ -336,7 +336,7 @@ screen rigged_choice(items):
     vbox:
         for i in items:
             textbutton i.caption action i.action
-    
+
     timer 1.0/30.0 repeat True action Function(RigMouse)
 
 
@@ -514,16 +514,14 @@ screen main_menu():
 
     style_prefix "main_menu"
 
-#Just add Monika art now!
-    
-    #   if persistent.ghost_menu:
-    #      add "white"
-    #     add "menu_art_y_ghost"
-    #    add "menu_art_n_ghost"
-    #    else:
-    add "menu_bg"
-        #add "menu_art_y"
-        #add "menu_art_n"
+    if persistent.ghost_menu:
+         add "white"
+         add "menu_art_y_ghost"
+         add "menu_art_n_ghost"
+    else:
+        add "menu_bg"
+        add "menu_art_y"
+        add "menu_art_n"
     frame:
         pass
 
@@ -540,23 +538,23 @@ screen main_menu():
             text "[config.version]":
                 style "main_menu_version"
 
-#    if not persistent.ghost_menu:
+    if not persistent.ghost_menu:
+        add "menu_particles"
+        add "menu_particles"
+        add "menu_particles"
+        add "menu_logo"
+    if persistent.ghost_menu:
+        add "menu_art_s_ghost"
+        add "menu_art_m_ghost"
+    else:
+        if persistent.playthrough == 1 or persistent.playthrough == 2:
+            add "menu_art_s_glitch"
+        else:
+            add "menu_art_s"
     add "menu_particles"
-    add "menu_particles"
-    add "menu_particles"
-    add "menu_logo"
-#    if persistent.ghost_menu:
-#        add "menu_art_s_ghost"
-#        add "menu_art_m_ghost"
-#    else:
-#        if persistent.playthrough == 1 or persistent.playthrough == 2:
-#            add "menu_art_s_glitch"
-#        else:
-#            add "menu_art_s"
-    add "menu_particles"
-#        if persistent.playthrough != 4:
-    add "menu_art_m"
-    add "menu_fade"
+    if persistent.playthrough != 4:
+        add "menu_art_m"
+        add "menu_fade"
 
     key "K_ESCAPE" action Quit(confirm=False)
 
@@ -1586,4 +1584,3 @@ style notify_frame:
 
 style notify_text:
     size gui.notify_text_size
-
