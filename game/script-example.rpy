@@ -26,13 +26,13 @@ label example_chapter:
 
     #The number is the pose
     show monika 3 at t11 zorder 2
-    m " I started this club after I had some difficulties changing code in Doki Doki Literature Club."
+    m "I started this club after I had some difficulties changing code in Doki Doki Literature Club."
 
     #Faces and poses can be changed inline if you are not changing positions of the character(s).
     #For face reference, view the image files of the character you are trying to manipulate,
     #and choose the face image letter that most accurately displays the emotion you are trying to convey.
 
-    m 3l  "It turns out that bad coding can really hurt people."
+    m 3l "It turns out that bad coding can really hurt people."
     m 3j "That's why I wanted to make this club to teach people how to mod responsibly!"
 
     m 2a "First, you need the right template."
@@ -56,7 +56,7 @@ label example_chapter:
     m 1a "Finally, you're going to want to download the Ren'Py SDK."
     m 2a "That's at https://www.renpy.org/latest.html"
     if config.developer:
-        m 2j"I promise I'll get to the good stuff now."
+        m 2j "I promise I'll get to the good stuff now."
     else:
         m 2a "You'll be using that to write and test your scripts."
 
