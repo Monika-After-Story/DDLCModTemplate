@@ -1,5 +1,5 @@
 ##This is an example scene
-##It teaches you about making mods, and is also a code example itself!
+##It teaches you a little about making mods, and is also a code example itself!
 
 #Each section needs a label, this is how we will call the scene in or parts of the script
 label example_chapter:
@@ -31,8 +31,6 @@ label example_chapter:
     #Faces and poses can be changed inline if you are not changing positions of the character(s).
     #For face reference, view the image files of the character you are trying to manipulate,
     #and choose the face image letter that most accurately displays the emotion you are trying to convey.
-
-    #Refer to the Character Pose Cheat Sheet(This doesn't exist yet!) to find out which number corresponds to which pose!
 
     m 3l  "It turns out that bad coding can really hurt people."
     m 3j "That's why I wanted to make this club to teach people how to mod responsibly!"
@@ -66,7 +64,7 @@ label example_chapter:
     m 4b "Start by opening up your /game folder"
     m 4c "You'll notice there aren't a lot of files in there."
     m 4a "Most of the data we'll be using is coming from DDLC."
-    m "Including all of the user interface and system coding."
+    m "Including all of the images and audio the game will be using."
     m 4k "All you need to bring are the stories you want to tell!"
     m 4c "Of course, if you really want to dig deep and change how the game works..."
     m 4b "That's possible too."
@@ -170,13 +168,6 @@ label example_chapter:
             m 1e "Well, I'll try to share all the tools I have with you."
             m 1k "Hopefully you'll find what you need to make your perfect game!"
 
-    m 2b "Now that I know more about you and your project, we're really ready to get started!"
-    m "I've prepared a few lessons to help get you started!"
-    m 2a "And when we're done, you'll have made your first mod."
-
-    #This makes sure we skip the intro the next time you play
-    $ persistent.playthrough = 1
-
-    jump tutorial_selection
+    m 2b "Have fun building your mod!"
 
     return
