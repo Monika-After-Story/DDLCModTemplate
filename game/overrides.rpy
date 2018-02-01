@@ -8,6 +8,12 @@
 init 10 python:
     pass
 
+## Late overrides
+## These overrides happen after pretty much everything else in startup.
+## Use these to change displayables and other late definitions in renpy.
+init 501 python:
+    pass
+
 ## Early overrides
 ## These overrides happen before the normal init blocks in scripts.
 ## Use this in the rare event that you need to overwrite some variable
