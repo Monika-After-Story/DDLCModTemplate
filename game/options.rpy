@@ -23,7 +23,7 @@ define gui.show_name = True
 
 ## The version of the game.
 
-define config.version = "0.2.0"
+define config.version = "1.0.0"
 
 
 ## Text that is placed on the game's about screen. To insert a blank line
@@ -220,20 +220,19 @@ init python:
 
 
     ## These files get put into your data file
-    build.classify("game/mod_assets/**",build.name)
-    #build.classify("game/**.rpy",build.name) #Optional line to include plaintext scripts
-    build.classify("game/**.rpyc",build.name) #Serialized scripts must be included
-    build.classify("README.html",build.name) #Included help file for mod installation
-
-    #Add the pictures necessary for the tutorial selection menu
-    build.classify("game/gui/button/tutorial_hover_background.png",build.name)
-    build.classify("game/gui/button/tutorial_idle_background.png",build.name)
-
-    ##Optionally include a zip file with all source code
-    build.classify('**.rpy','source')
-    build.package(build.directory_name + "source",'zip','source',description='Source Code Archive')
-
     build.package(build.directory_name + "Mod",'zip',build.name,description='DDLC Compatible Mod')
+
+    # Declare archives
+    build.archive("scripts",build.name)
+    build.archive("mod_assets",build.name)
+    build.archive("submods",build.name)
+
+    #Choose files for archives
+    build.classify("game/mod_assets/**","mod_assets")
+    build.classify("game/submods/**","submods")
+    build.classify('game/**.rpyc',"scripts")
+    build.classify('game/advanced_scripts/**',"scripts")
+    build.classify('game/original_story_scripts/**',"scripts")
 
     build.classify('**~', None)
     build.classify('**.bak', None)
@@ -252,6 +251,10 @@ init python:
 
     ## Files matching documentation patterns are duplicated in a mac app build,
     ## so they appear in both the app and the zip file.
+
+    build.classify('*.html',build.name)
+    build.classify('*.txt',build.name)
+    build.classify('*.md',build.name)
 
     build.documentation('*.html')
     build.documentation('*.txt')
