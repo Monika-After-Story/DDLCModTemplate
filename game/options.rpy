@@ -231,7 +231,8 @@ init python:
     build.classify("game/mod_assets/**","mod_assets")
     build.classify("game/submods/**","submods")
     build.classify('game/**.rpyc',"scripts")
-    build.classify('game/advanced_scripts/**',"scripts")
+    build.classify('game/advanced_scripts/**.rpyc',"scripts")
+    build.classify('game/advanced_scripts/poemwords.txt',"scripts")
     build.classify('game/original_story_scripts/**',"scripts")
 
     build.classify('**~', None)
@@ -252,13 +253,9 @@ init python:
     ## Files matching documentation patterns are duplicated in a mac app build,
     ## so they appear in both the app and the zip file.
 
-    build.classify('*.html',build.name)
-    build.classify('*.txt',build.name)
-    build.classify('*.md',build.name)
+    build.classify('README.html',build.name)
 
-    build.documentation('*.html')
-    build.documentation('*.txt')
-    build.documentation('*.md')
+    build.documentation('README.html')
 
     build.include_old_themes = False
 
