@@ -133,10 +133,10 @@ init python:
                 config.allow_skipping = False
                 renpy.jump("ch30_noskip")
                 return
-       if event == "begin":
+        if event == "begin":
            config.keymap['dismiss'] = []
            renpy.display.behavior.clear_keymap_cache()
-       elif event == "slow_done":
+        elif event == "slow_done":
            config.keymap['dismiss'] = dismiss_keys
            renpy.display.behavior.clear_keymap_cache()
 
