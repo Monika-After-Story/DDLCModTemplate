@@ -1,4 +1,4 @@
-﻿# This is used for top-level game strucutre.
+﻿# This is used for top-level game structure.
 # Should not include any actual events or scripting; only logic and calling other labels.
 
 label start:
