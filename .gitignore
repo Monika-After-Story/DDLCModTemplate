@@ -13,6 +13,4 @@ log.txt
 project.json
 traceback.txt
 game/firstrun
-characters/monika.chr
-characters/natsuki.chr
-*.chr
+characters/*.chr

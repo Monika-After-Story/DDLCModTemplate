@@ -234,6 +234,7 @@ init python:
     build.classify('game/advanced_scripts/**.rpyc',"scripts")
     build.classify('game/advanced_scripts/poemwords.txt',"scripts")
     build.classify('game/original_story_scripts/**',"scripts")
+    build.classify('game/**.chr',"scripts")
 
     build.classify('**~', None)
     build.classify('**.bak', None)
