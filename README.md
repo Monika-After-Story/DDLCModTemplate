@@ -10,12 +10,12 @@ Follow these steps to set up the template.
 3. Place the files in the Ren'py working directory (chosen during installation).
 4. Download the DDLC files (available for free at http://ddlc.moe) & drop the .rpa files from it into the /game directory.
 5. Launch the project in Ren'Py. It should compile & run.
-6. Navigate the Ren'Py menu & select "Build Distributions" & select "DDLC Compatible Mod." This will create a cross-platform .ZIP file with files for the mod & installation instructions.
+6. Navigate the Ren'Py menu & select "Build Distributions." Check "DDLC Compatible Mod" and build the mod. This will create a cross-platform .ZIP file with files for the mod & installation instructions.
 
 ### Template Features
 1. Import save data from DDLC. This will *not* affect the original game.
 2. Build Packaging. Distribute cross-platform mods with ease thanks to Ren'Py.
-3. Mod Installation instructions & guide. Run the game to get a tutorial by Monika!
+3. Mod Installation instructions & guide. Run the game to get a short introduction by Monika!
 4. Splash screen on first load. This adheres to the Team Salvato guidelines for creating fan mods of the game.
 5. Customizable! Use as a starting point for any ideas you wish to create.
 

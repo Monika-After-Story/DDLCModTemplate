@@ -2,7 +2,7 @@
 
 These `.rpy` files are copies of important script files found in DDLC's `script.rpa` archive that are not necessary to change for basic modding projects, but may need to be replaced by more advanced projects.
 
-As written, each of these files is functionally identical to the one included in DDLC, but with additional comments added to help you understand what they do. To override these files in your release, copy the script you want to change to the `/game` directory, and make any changes needed there.
+As written, each of these files is functionally identical to the one included in DDLC, but with additional comments added to help you understand what they do. To override these files in your release simply make any changes needed there.
 
 ## Explanation of scripts
 
@@ -46,10 +46,6 @@ A comma separated list of words for the poem game, with the point values for eac
 
 Defines all of the major screen objects in the game, like the say screen, menu screens, dialogue and input boxes, etc. Note that this gives both the appearance and the *functionality* of those objects.
 
-#### `script.rpy`
-
-The original main control file from DDLC. **THIS MAY NOT WORK WITH THE TEMPLATE AS IS**. It's offered here as a reference, if you want to include specific features or copy a portion of the original game's flow.
-
 #### `script-poemgame.rpy`
 
 The entirety of the poem mini-game, including its appearance, functionality, and all of the weird glitchy things it can do in later acts.
@@ -57,10 +53,6 @@ The entirety of the poem mini-game, including its appearance, functionality, and
 #### `script-poemresponses.rpy`
 
 This is the scene where the Main Character talks to each girl about his poem and reads theirs. It's a good example of how to use the results from the poem mini-game.
-
-#### `splash.rpy`
-
-The original splashscreen file for DDLC. **THIS MAY NOT WORK WITH THE TEMPLATE AS IS**. It's offered here as a reference, if you want to include specific features or copy a portion of the original game's flow.
 
 #### `transforms.rpy`
 
