@@ -1403,7 +1403,7 @@ init 1 python:
     # This persistent simply tracks which mods have been played
     if mp.played is None:
         mp.played = {}
-    mp.played[build.name] = True
+    mp.played[config.name] = True
 
     #Be sure to save the multipersistent after any changes
     mp.save()
