@@ -222,9 +222,19 @@ image warning:
 image tos = "bg/warning.png"
 image tos2 = "bg/warning2.png"
 
-# Make sure character files are in place
 init python:
+
+    # make sure character files are in place
     if not persistent.do_not_delete:
+
+        # test for characters folder
+        import os
+        try: 
+            if not os.access(config.basedir + "/characters/", os.F_OK):
+                os.mkdir(config.basedir + "/characters")
+        except:
+            pass
+
         if persistent.playthrough <= 2:
             try: renpy.file("../characters/monika.chr")
             except: open(config.basedir + "/characters/monika.chr", "wb").write(renpy.file("monika.chr").read())
