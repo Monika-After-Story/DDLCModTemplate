@@ -1,26 +1,20 @@
-
-
-
-
+## splash screen is first thing that gets shown to player
 init -100 python:
 
+    # archive check for mods
     for archive in ['audio','images','fonts']:
         if archive not in config.archives:
-            
             renpy.error("DDLC archive files not found in /game folder. Check installation and try again.")
 
-
-
-
-
+# disclaimers
 init python:
     menu_trans_time = 1
 
     splash_message_default = "This game is an unofficial fan work, unaffiliated with Team Salvato."
 
     splash_messages = [
-    "Please support Doki Doki Literature Club."
-    "Monika is watching you code."
+        "Please support Doki Doki Literature Club.",
+        "Monika is watching you code."
     ]
 
 
@@ -277,8 +271,6 @@ label splashscreen:
         "It is designed to be played only after the official game has been completed, and contains spoilers for the official game."
         "Game files for Doki Doki Literature Club are required to play this mod and can be downloaded for free at: http://ddlc.moe"
 
-
-
         menu:
             "By playing [config.name] you agree that you have completed Doki Doki Literature Club and accept any spoilers contained within."
             "I agree.":
@@ -289,50 +281,18 @@ label splashscreen:
         pause 1.0
 
 
-
-
         scene white
         with Dissolve(1.5)
 
         $ persistent.first_run = True
 
-
-
-
-
-
-
-
-
-
-
-
-
-    $ basedir = config.basedir.replace('\\', '/')
-
-
+    python:
+        basedir = config.basedir.replace('\\', '/')
 
     if persistent.autoload and not _restart:
         jump autoload
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     $ config.allow_skipping = False
-
 
     show white
     $ persistent.ghost_menu = False
@@ -362,35 +322,6 @@ label after_load:
     $ persistent.ghost_menu = False
     $ style.say_dialogue = style.normal
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     if anticheat != persistent.anticheat:
         stop music
         scene black
@@ -398,19 +329,8 @@ label after_load:
         "Are you trying to cheat?"
 
 
-
-
-
-
-
-
-
-
-
-
         $ renpy.utter_restart()
     return
-
 
 
 label autoload:
@@ -432,39 +352,8 @@ label autoload:
 
 
 
-
-
-
-
-
     $ renpy.pop_call()
     jump expression persistent.autoload
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 label before_main_menu:
     $ config.main_menu_music = audio.t1
@@ -472,13 +361,6 @@ label before_main_menu:
 
 label quit:
 
-
-
-
-
-
-
-
+    # stuff that happens when the game closes
 
     return
-# Decompiled by unrpyc: https://github.com/CensoredUsername/unrpyc

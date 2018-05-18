@@ -1,18 +1,16 @@
-
-
-
+# Entry point
 label start:
 
-
+    # ID of this playtrhoguh
     $ anticheat = persistent.anticheat
 
-
+    # keep track of chapter
     $ chapter = 0
 
-
+    # if they quit during a pause, we have to set _dismiss_pause to false again
     $ _dismiss_pause = config.developer
 
-
+    # girl names
     $ s_name = "Sayori"
     $ m_name = "Monika"
     $ n_name = "Natsuki"
@@ -25,125 +23,9 @@ label start:
     $ config.allow_skipping = True
 
 
-
-
     if persistent.playthrough == 0:
 
         call example_chapter from _call_example_chapter
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     return
 

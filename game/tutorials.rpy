@@ -1,12 +1,8 @@
-
-
-
-
-
-
-
-
-
+## Tutorials
+# sorry about the lack of comments
+#
+# transition of ownership is tough to do when the github repo doesnt have
+# the latest changes
 
 init python:
 
@@ -22,11 +18,6 @@ init python:
         ,(_("Route Part 9, Ending"),"tutorial_route_p9")]
 
 
-
-
-
-
-
 define adj = ui.adjustment()
 define gui.tutorial_button_width = 500
 define gui.tutorial_button_height = None
@@ -38,8 +29,6 @@ define gui.tutorial_button_text_size = gui.text_size
 define gui.tutorial_button_text_xalign = 0.0
 define gui.tutorial_button_text_idle_color = "#000"
 define gui.tutorial_button_text_hover_color = "#fa9"
-
-
 
 
 style tutorial_vbox:

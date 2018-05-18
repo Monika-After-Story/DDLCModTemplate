@@ -1,25 +1,25 @@
+## This is an example scene
+## It teaches you a little about making mods
 
-
-
-
+# Each section needs a label, this is how we will call the scene in other parts
+# of the script
 label example_chapter:
     stop music fadeout 2.0
 
-
+    # setup scene with background and music
     scene bg club_day
     with dissolve_scene_full
     play music t3
 
-
-
+    # Say statements
+    # <char name> "stuff to say"
     m "...[player]?"
 
-
+    # show characters and positions and stuff
     show monika 1 zorder 2 at t11
     m "Ah! What a nice surprise!"
 
-
-
+    # Character images are their name followed by number and letters
     show monika 1b zorder 2 at t11
     m "Welcome to the club!"
     m "The Modification Club."
