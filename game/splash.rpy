@@ -5,7 +5,7 @@
 init -100 python:
 
     for archive in ['audio','images','fonts']:
-        if not archive in config.archives:
+        if archive not in config.archives:
             
             renpy.error("DDLC archive files not found in /game folder. Check installation and try again.")
 
@@ -22,23 +22,6 @@ init python:
     "Please support Doki Doki Literature Club."
     "Monika is watching you code."
     ]
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 image splash_warning = ParameterizedText(style="splash_text", xalign=0.5, yalign=0.5)
@@ -225,17 +208,27 @@ image tos2 = "bg/warning2.png"
 
 init python:
     if not persistent.do_not_delete:
-        if persistent.playthrough <= 2:
-            try: renpy.file("../characters/monika.chr")
-            except: open(config.basedir + "/characters/monika.chr", "wb").write(renpy.file("monika.chr").read())
-        if persistent.playthrough <= 1 or persistent.playthrough == 4:
-            try: renpy.file("../characters/natsuki.chr")
-            except: open(config.basedir + "/characters/natsuki.chr", "wb").write(renpy.file("natsuki.chr").read())
-            try: renpy.file("../characters/yuri.chr")
-            except: open(config.basedir + "/characters/yuri.chr", "wb").write(renpy.file("yuri.chr").read())
-        if persistent.playthrough == 0 or persistent.playthrough == 4:
-            try: renpy.file("../characters/sayori.chr")
-            except: open(config.basedir + "/characters/sayori.chr", "wb").write(renpy.file("sayori.chr").read())
+
+        import os
+        try:
+            if not os.access(config.basedir + "/characters/", os.F_OK):
+                os.mkdir(config.basedir + "/characters")
+
+            if persistent.playthrough <= 2:
+                try: renpy.file("../characters/monika.chr")
+                except: open(config.basedir + "/characters/monika.chr", "wb").write(renpy.file("monika.chr").read())
+            if persistent.playthrough <= 1 or persistent.playthrough == 4:
+                try: renpy.file("../characters/natsuki.chr")
+                except: open(config.basedir + "/characters/natsuki.chr", "wb").write(renpy.file("natsuki.chr").read())
+                try: renpy.file("../characters/yuri.chr")
+                except: open(config.basedir + "/characters/yuri.chr", "wb").write(renpy.file("yuri.chr").read())
+            if persistent.playthrough == 0 or persistent.playthrough == 4:
+                try: renpy.file("../characters/sayori.chr")
+                except: open(config.basedir + "/characters/sayori.chr", "wb").write(renpy.file("sayori.chr").read())
+
+        except:
+            pass
+
 
 label splashscreen:
 
