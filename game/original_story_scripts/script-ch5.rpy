@@ -160,7 +160,7 @@ label ch5_main:
     "I flip to Sayori's poem."
     "It's different from the one she practiced."
     "It's one that I haven't read before..."
-    call showpoem(poem_s3, music=False)
+    call showpoem(poem_s3, music=False) from _call_showpoem_7
     mc "Ah--"
     "What is this...?"
     "Reading the poem, I get a pit in my stomach."

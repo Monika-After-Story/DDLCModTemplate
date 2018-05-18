@@ -159,7 +159,7 @@ label ch30_noskip:
     if persistent.current_monikatopic != 0:
         m "Now, where was I...?"
         pause 4.0
-        call expression "ch30_" + str(persistent.current_monikatopic)
+        call expression "ch30_" + str(persistent.current_monikatopic) from _call_expression_7
     jump ch30_loop
     return
 
@@ -324,7 +324,7 @@ label ch30_main:
     m "Don't you?"
     m "I wonder if that part of the game still works..."
     m "I guess there's only one way to find out, right?"
-    call poem
+    call poem from _call_poem
     scene black
     show mask_2
     show mask_3
@@ -350,7 +350,7 @@ label ch30_postpoem:
     m "But, you know..."
     m "The poem I wrote...is also for you."
     m "Will you please read it?"
-    call showpoem(poem_m4, music=False)
+    call showpoem(poem_m4, music=False) from _call_showpoem_8
     m "I hope you enjoyed it..."
     m "I always put all my heart into the poems that I write."
     m "The truth is, all the poems I've written have been about my realization..."
@@ -369,7 +369,7 @@ label ch30_postpoem:
     m "Where do I start...?"
     $ stream_list = ["obs32.exe", "obs64.exe", "obs.exe", "xsplit.core.exe"]
     if list(set(process_list).intersection(stream_list)):
-        call ch30_stream
+        call ch30_stream from _call_ch30_stream
     m "If it takes me some time to collect my thoughts, then I'm sorry."
     m "But I'll always have something new to talk about."
     m "In the meantime, we can just look into each other's eyes~"
@@ -546,7 +546,7 @@ label ch30_endb:
     pause 1.5
     m "Please hurry and help me."
     $ consolehistory = []
-    call updateconsole("renpy.file(\"characters/monika.chr\")", "monika.chr does not exist.")
+    call updateconsole("renpy.file(\"characters/monika.chr\")", "monika.chr does not exist.") from _call_updateconsole_15
     m "HELP ME!!!"
     show m_rectstatic
     show m_rectstatic2
@@ -596,9 +596,9 @@ label ch30_endb:
 
 
     pause 3.0
-    call updateconsole("renpy.file(\"characters/monika.chr\")", "monika.chr does not exist.")
-    call updateconsole("renpy.file(\"characters/monika.chr\")", "monika.chr does not exist.")
-    call hideconsole
+    call updateconsole("renpy.file(\"characters/monika.chr\")", "monika.chr does not exist.") from _call_updateconsole_16
+    call updateconsole("renpy.file(\"characters/monika.chr\")", "monika.chr does not exist.") from _call_updateconsole_17
+    call hideconsole from _call_hideconsole_2
     hide noise onlayer front
     hide glitch_color onlayer front
     m "Did you do this to me, [player]?"
@@ -737,9 +737,9 @@ label ch30_autoload:
     play music m1
     window auto
     if persistent.monika_reload <= 4:
-        call expression "ch30_reload_" + str(persistent.monika_reload)
+        call expression "ch30_reload_" + str(persistent.monika_reload) from _call_expression_8
     else:
-        call ch30_reload_4
+        call ch30_reload_4 from _call_ch30_reload_4
     $ persistent.monika_reload += 1
     if not persistent.tried_skip:
         $ config.allow_skipping = True
@@ -748,7 +748,7 @@ label ch30_autoload:
     if persistent.current_monikatopic != 0:
         m "Now, where was I...?"
         pause 4.0
-        call expression "ch30_" + str(persistent.current_monikatopic)
+        call expression "ch30_" + str(persistent.current_monikatopic) from _call_expression_9
     jump ch30_loop
 
 
@@ -838,7 +838,7 @@ label ch30_loop:
         persistent.monikatopics.remove(persistent.current_monikatopic)
     # Save, call topic, and loop
     # If user quits and restarts mid-topic, the topic starts over again
-    call expression "ch30_" + str(persistent.current_monikatopic)
+    call expression "ch30_" + str(persistent.current_monikatopic) from _call_expression_10
     jump ch30_loop
 
 

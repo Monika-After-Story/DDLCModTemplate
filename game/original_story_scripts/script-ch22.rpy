@@ -274,7 +274,7 @@ label ch22_main:
     show yuri 3a at i11
     with wipeleft
     $ nextscene = "yuri_exclusive2_" + str(eval("y_appeal")) + "_ch22"
-    call expression nextscene
+    call expression nextscene from _call_expression_11
 
     return
 
@@ -284,7 +284,7 @@ label ch22_end:
     with wipeleft_scene
     call screen confirm("You have unlocked a special poem.\nWould you like to read it?", Return(True), Return(False))
     if _return:
-        call expression "poem_special_" + str(persistent.special_poems[1])
+        call expression "poem_special_" + str(persistent.special_poems[1]) from _call_expression_12
         scene black with Dissolve(1.0)
     else:
         pass

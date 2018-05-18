@@ -274,8 +274,8 @@ label ch4_main:
     "I think Sayori is right."
     "I shouldn't be worrying too much, and we're definitely going to have a great time tomorrow."
     "I should just focus on what's ahead of me!"
-    call expression "ch4_exclusive_" + ch4_scene
-    call ch4_end
+    call expression "ch4_exclusive_" + ch4_scene from _call_expression_2
+    call ch4_end from _call_ch4_end
 
     return
 
@@ -1288,11 +1288,11 @@ label ch4_end:
         "I love you.":
             $ sayori_confess = True
             hide black with dissolve_cg
-            call ch4_end_yes
+            call ch4_end_yes from _call_ch4_end_yes
         "You'll always be my dearest friend.":
             $ sayori_confess = False
             hide black with dissolve_cg
-            call ch4_end_no
+            call ch4_end_no from _call_ch4_end_no
 
     return
 

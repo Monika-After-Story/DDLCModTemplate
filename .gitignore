@@ -14,3 +14,4 @@ project.json
 traceback.txt
 game/firstrun
 characters/*.chr
+*.swp

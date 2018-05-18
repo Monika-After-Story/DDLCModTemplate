@@ -3,7 +3,7 @@ label ch21_y_end:
 
 label ch22_y_end:
     stop music fadeout 2.0
-    call showpoem(poem_y22, music=False, paper="images/bg/poem_y1.jpg", img="yuri 2s")
+    call showpoem(poem_y22, music=False, paper="images/bg/poem_y1.jpg", img="yuri 2s") from _call_showpoem
     y 2q "Ahaha..."
     y "It doesn't really matter what it's about."
     y "My mind has been a little hyperactive lately, so I had to take it out on your pen."
@@ -24,7 +24,7 @@ label ch23_y_end:
     show darkred zorder 5:
         alpha 0
         linear 2.0 alpha 1.0
-    call showpoem(poem_y23, track="bgm/5_yuri2.ogg", revert_music=False, paper="images/bg/poem_y2.jpg", img="yuri eyes", where=truecenter)
+    call showpoem(poem_y23, track="bgm/5_yuri2.ogg", revert_music=False, paper="images/bg/poem_y2.jpg", img="yuri eyes", where=truecenter) from _call_showpoem_1
     y "Do you like it??"
     y "I wrote it for you!"
     $ gtext = glitchtext(80)
@@ -55,7 +55,7 @@ label ch22_n_end:
     if n_appeal >= 2:
         jump ch22_n_end2
     else:
-        call showpoem(poem_n2)
+        call showpoem(poem_n2) from _call_showpoem_2
         n 2a "Not bad, right?"
         mc "It's quite a bit longer than yesterday's."
         n 2w "Yesterday's was way too short..."
@@ -81,7 +81,7 @@ label ch22_n_end:
         n 42c "Whatever... We're done sharing, so you can leave now."
     return
 label ch22_n_end2:
-    call showpoem(poem_n2b, revert_music=False)
+    call showpoem(poem_n2b, revert_music=False) from _call_showpoem_3
     $ style.say_dialogue = style.edited
     n 1g "[player]..."
     n "Why didn't you come read with me today?"
@@ -156,7 +156,7 @@ label ch22_n_end2:
 label ch23_n_end:
     $ natsuki_23 = True
     $ style.say_dialogue = style.normal
-    call showpoem(poem_n23, revert_music=False)
+    call showpoem(poem_n23, revert_music=False) from _call_showpoem_4
     $ renpy.music.stop(channel="music_poem", fadeout=2.0)
     $ style.say_dialogue = style.edited
     show screen tear(8, offtimeMult=1, ontimeMult=10)
@@ -195,10 +195,10 @@ label ch23_n_end:
     return
 
 label ch21_m_end:
-    call showpoem(poem_m21)
+    call showpoem(poem_m21) from _call_showpoem_5
     jump ch1_m_end2
 label ch22_m_end:
-    call showpoem(poem_m22, revert_music=False)
+    call showpoem(poem_m22, revert_music=False) from _call_showpoem_6
     $ currentpos = get_pos(channel="music_poem")
     $ audio.t5c = "<from " + str(currentpos) + " loop 4.444>bgm/5.ogg"
     stop music_poem fadeout 2.0
@@ -595,7 +595,7 @@ label ch21_m_start:
     "I hand Monika my poem."
     m 2a "...Mhm!"
     $ nextscene = "m2_" + poemwinner[0] + "_" + str(eval(poemwinner[0][0] + "_appeal"))
-    call expression nextscene
+    call expression nextscene from _call_expression_3
 
     m 1a "Anyway, do you want to read my poem now?"
     m 1e "Don't worry, I'm not very good..."
@@ -623,7 +623,7 @@ label ch22_m_start:
         m "..."
         m "...Alright!"
     $ nextscene = "m2_yuri_" + str(eval("y_appeal"))
-    call expression nextscene
+    call expression nextscene from _call_expression_4
 
     m 1a "But anyway..."
     m "You want to read my poem now?"
@@ -632,7 +632,7 @@ label ch22_m_start:
 
 label ch23_m_start:
     $ nextscene = "m2_yuri_" + str(eval("y_appeal"))
-    call expression nextscene
+    call expression nextscene from _call_expression_5
     if y_appeal < 3:
         m 1a "Anyway..."
         if y_gave:

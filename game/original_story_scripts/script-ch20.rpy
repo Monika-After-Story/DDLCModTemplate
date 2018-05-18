@@ -492,7 +492,7 @@ label ch20_main2:
 
     call screen confirm("You have unlocked a special poem.\nWould you like to read it?", Return(True), Return(False))
     if _return:
-        call expression "poem_special_" + str(persistent.special_poems[0])
+        call expression "poem_special_" + str(persistent.special_poems[0]) from _call_expression_6
     else:
         pass
 

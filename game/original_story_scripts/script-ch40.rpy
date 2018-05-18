@@ -420,9 +420,9 @@ label ch40_main:
     s 1a "There's actually something else."
     $ if all(clear for clear in persistent.clear): persistent.clearall = True
     if persistent.clearall:
-        call ch40_clearall
+        call ch40_clearall from _call_ch40_clearall
     else:
-        call ch40_clearnormal
+        call ch40_clearnormal from _call_ch40_clearnormal
     window hide(None)
     window auto
     $ quick_menu = False

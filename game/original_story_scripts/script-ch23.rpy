@@ -199,7 +199,7 @@ label ch23_main:
     scene bg club_day2
     show yuri 3 at t11 zorder 2
     with wipeleft_scene
-    call yuri_exclusive2_2_ch22
+    call yuri_exclusive2_2_ch22 from _call_yuri_exclusive2_2_ch22
 
     return
 
@@ -211,7 +211,7 @@ label ch23_end:
     with wipeleft_scene
     call screen confirm("", Return(True), Return(True))
     if _return:
-        call expression "poem_special_" + str(persistent.special_poems[2])
+        call expression "poem_special_" + str(persistent.special_poems[2]) from _call_expression_25
         scene black with Dissolve(1.0)
     else:
         pass
@@ -623,10 +623,10 @@ label yuri_kill_3:
     m 2e "I'll make it up to you, okay?"
     m "Just gimme a sec..."
     $ consolehistory = []
-    call updateconsole("os.remove(\"characters/yuri.chr\")", "yuri.chr deleted successfully.")
+    call updateconsole("os.remove(\"characters/yuri.chr\")", "yuri.chr deleted successfully.") from _call_updateconsole_18
     $ delete_character("yuri")
     pause 1.0
-    call updateconsole("os.remove(\"characters/natsuki.chr\")", "natsuki.chr deleted successfully.")
+    call updateconsole("os.remove(\"characters/natsuki.chr\")", "natsuki.chr deleted successfully.") from _call_updateconsole_19
     $ delete_character("natsuki")
     pause 1.0
     m 2a "I'm almost done."

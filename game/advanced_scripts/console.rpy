@@ -36,7 +36,7 @@ label updateconsole(text="", history=""):
     $ pause(len(text) / 30.0 + 0.5)
     hide ctext
     show console_text "_" as ctext zorder 100
-    call updateconsolehistory(history)
+    call updateconsolehistory(history) from _call_updateconsolehistory
     pause 0.5
     return
 
@@ -56,7 +56,7 @@ label updateconsole_old(text="", history=""):
     show console_text "_" as ctext zorder 100
     label updateconsole_loop:
         $ currenttext = text[:textcount]
-        call drawconsole(drawtext=currenttext)
+        call drawconsole(drawtext=currenttext) from _call_drawconsole
         $ pause_duration = 0.08 - (datetime.datetime.now() - starttime).microseconds / 1000.0 / 1000.0
         $ starttime = datetime.datetime.now()
         if pause_duration > 0:
@@ -68,7 +68,7 @@ label updateconsole_old(text="", history=""):
     pause 0.5
     hide ctext
     show console_text "_" as ctext zorder 100
-    call updateconsolehistory(history)
+    call updateconsolehistory(history) from _call_updateconsolehistory_1
     pause 0.5
     return
 

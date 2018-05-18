@@ -1,36 +1,38 @@
-##This is an example scene
-##It teaches you a little about making mods, and is also a code example itself!
 
-#Each section needs a label, this is how we will call the scene in or parts of the script
+
+
+
 label example_chapter:
     stop music fadeout 2.0
 
-    #This set's up the scene with a background and music
+
     scene bg club_day
     with dissolve_scene_full
     play music t3
 
-    # Most of the story will be told using "Say" statements
-    # They take the form of a short nickname, follow by their statement in quotes.
+
+
     m "...[player]?"
 
-    #You will also want to show characters of other images
-    show monika 1 at t11 zorder 2
+
+    show monika 1 zorder 2 at t11
     m "Ah! What a nice surprise!"
 
-    #Character images are their name followed by a number and letters
-    #The trailing letter is generally the facial expression
-    show monika 1b at t11 zorder 2
+
+
+    show monika 1b zorder 2 at t11
     m "Welcome to the club!"
     m "The Modification Club."
 
-    #The number is the pose
-    show monika 3 at t11 zorder 2
-    m "I started this club after I had some difficulties changing code in Doki Doki Literature Club."
 
-    #Faces and poses can be changed inline if you are not changing positions of the character(s).
-    #For face reference, view the image files of the character you are trying to manipulate,
-    #and choose the face image letter that most accurately displays the emotion you are trying to convey.
+    show monika 3 zorder 2 at t11
+    m " I started this club after I had some difficulties changing code in Doki Doki Literature Club."
+
+
+
+
+
+
 
     m 3l "It turns out that bad coding can really hurt people."
     m 3j "That's why I wanted to make this club to teach people how to mod responsibly!"
@@ -64,7 +66,7 @@ label example_chapter:
     m 4b "Start by opening up your /game folder"
     m 4c "You'll notice there aren't a lot of files in there."
     m 4a "Most of the data we'll be using is coming from DDLC."
-    m "Including all of the images and audio the game will be using."
+    m "Including all of the user interface and system coding."
     m 4k "All you need to bring are the stories you want to tell!"
     m 4c "Of course, if you really want to dig deep and change how the game works..."
     m 4b "That's possible too."
@@ -75,29 +77,29 @@ label example_chapter:
 
 
 
-    default knows_python=False
-    default knows_renpy=False
+    default knows_python = False
+    default knows_renpy = False
 
-    #Note: the choice function does not allow inline changes in the first line.
+
     menu:
-
         m "How experienced are you with coding?"
         "I'm an experienced coder":
-            $experience_level = 2
+
+            $ experience_level = 2
             m 5 "Really? That's very impressive!"
-            show monika 1m at t11 zorder 2
+            show monika 1m zorder 2 at t11
             with Dissolve(0.3)
             m 1m "I'm new to this, myself, so maybe I'll end up learning more from you, instead!"
         "I've coded before":
-            $experience_level = 1
+            $ experience_level = 1
             m 5 "That's good."
-            show monika 1j at t11 zorder 2
+            show monika 1j zorder 2 at t11
             with Dissolve(0.3)
             m 1j "Building a mod for DDLC should feel very natural, then!"
         "New to coding":
-            $experience_level = 0
+            $ experience_level = 0
             m 5 "Really? This should be fun then!"
-            show monika 1m at t11 zorder 2
+            show monika 1m zorder 2 at t11
             with Dissolve(0.3)
             m 1m "I'm pretty new to this myself..."
             m 1n "So it's a little a weird for me to be someone's teacher."
@@ -107,12 +109,12 @@ label example_chapter:
         m 2a "Since you've coded before, you might like to know that this game was built using Renpy."
         m "It's a very popular platform for making visual novels."
 
-        show monika 1a at t11 zorder 2
+        show monika 1a zorder 2 at t11
 
         menu:
             m "Have you used Renpy before?"
             "Yes.":
-                $knows_renpy = True
+                $ knows_renpy = True
                 m 1b "Sounds like you're ahead of the game, then."
             "No.":
                 m 1e "Well, don't worry about that."
@@ -122,13 +124,13 @@ label example_chapter:
         m 3c "Renpy is actually built with Python..."
         m 3j "So the sky's the limit for modding if you know how to use it!"
 
-        show monika 1a at t11 zorder 2
+        show monika 1a zorder 2 at t11
         menu:
             m "Are you familiar with python?"
             "Yes.":
-                $knows_python = True
+                $ knows_python = True
                 if not knows_renpy:
-                    m 1a"That might help you pick up Renpy a little quicker, then."
+                    m 1a "That might help you pick up Renpy a little quicker, then."
                     m 3a "But there are some things that makes Renpy's python a bit different."
                     m 3j "I'll try to call them out when they come up."
                 else:
@@ -152,22 +154,30 @@ label example_chapter:
     menu:
         m "So, which do you plan on making?"
         "Basic.":
-            $advanced = False
+            $ advanced = False
             m 5 "Starting off with something simple?"
-            show monika 3b at t11 zorder 2
+            show monika 3b zorder 2 at t11
             with Dissolve(0.3)
             m 3b "I think that's a good way to go."
             m 3a "Making a simple script is a lot like writing a play."
-            m 1a"But the actors are us characters, and we'll always do just what you direct from us..."
+            m 1a "But the actors are us characters, and we'll always do just what you direct from us..."
             m 1m "..for better or worse."
         "Advanced.":
-            $advanced = True
+            $ advanced = True
             m 5 "Trying for something a little more complicated?"
-            show monika 1e at t11 zorder 2
+            show monika 1e zorder 2 at t11
             with Dissolve(0.3)
             m 1e "Well, I'll try to share all the tools I have with you."
             m 1k "Hopefully you'll find what you need to make your perfect game!"
 
-    m 2b "Have fun building your mod!"
+    m 2b "Now that I know more about you and your project, we're really ready to get started!"
+    m "I've prepared a few lessons to help get you started!"
+    m 2a "And when we're done, you'll have made your first mod."
+
+
+    $ persistent.playthrough = 1
+
+    jump tutorial_selection
 
     return
+# Decompiled by unrpyc: https://github.com/CensoredUsername/unrpyc

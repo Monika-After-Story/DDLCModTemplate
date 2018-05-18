@@ -1395,15 +1395,3 @@ default sayori_confess = True
 
 # We read Natsuki's confession poem in chapter 23.
 default natsuki_23 = None
-
-# Open a multi-game persistent file to share with other mods
-init 1 python:
-    mp = MultiPersistent("ddlc_mods")
-
-    # This persistent simply tracks which mods have been played
-    if mp.played is None:
-        mp.played = {}
-    mp.played[config.name] = True
-
-    #Be sure to save the multipersistent after any changes
-    mp.save()
