@@ -23,10 +23,7 @@ label start:
     $ config.allow_skipping = True
 
 
-    if persistent.playthrough == 0:
-
-        call example_chapter from _call_example_chapter
-
+    call example_chapter from _call_example_chapter
     return
 
 label endgame(pause_length=4.0):

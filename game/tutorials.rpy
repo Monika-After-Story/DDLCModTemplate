@@ -6,16 +6,19 @@
 
 init python:
 
-    items = [(_("Introduction"),"example_chapter")
-        ,(_("Route Part 1, How To Make A Mod"),"tutorial_route_p1")
-        ,(_("Route Part 2, Music"),"tutorial_route_p2")
-        ,(_("Route Part 3, Scene"),"tutorial_route_p3")
-        ,(_("Route Part 4, Dialogue"),"tutorial_route_p4")
-        ,(_("Route Part 5, Menu"),"tutorial_route_p5")
-        ,(_("Route Part 6, Logic Statement"),"tutorial_route_p6")
-        ,(_("Route Part 7, Sprite"),"tutorial_route_p7")
-        ,(_("Route Part 8, Position"),"tutorial_route_p8")
-        ,(_("Route Part 9, Ending"),"tutorial_route_p9")]
+    items = [
+        (_("Introduction"),"example_chapter"),
+        (_("Route Part 1, How To Make A Mod"),"tutorial_route_p1"),
+        (_("Route Part 2, Music"),"tutorial_route_p2"),
+        (_("Route Part 3, Scene"),"tutorial_route_p3"),
+        (_("Route Part 4, Dialogue"),"tutorial_route_p4"),
+        (_("Route Part 5, Menu"),"tutorial_route_p5"),
+        (_("Route Part 6, Logic Statement"),"tutorial_route_p6"),
+        (_("Route Part 7, Sprite"),"tutorial_route_p7"),
+        (_("Route Part 8, Position"),"tutorial_route_p8"),
+        (_("Route Part 9, Ending"),"tutorial_route_p9")
+        (_("Advanced Stuff"),"tutorial_route_adv")
+    ]
 
 
 define adj = ui.adjustment()
@@ -657,4 +660,34 @@ label tutorial_route_p9:
     m 1e "Bye."
 
     return
-# Decompiled by unrpyc: https://github.com/CensoredUsername/unrpyc
+
+label tutorial_route_adv:
+    # advanced scripts just because
+    python:
+        adv_items = [
+            ("Navigation Buttons", "tutorial_route_adv_hkb"),
+            ("Poemgame", "tutorial_route_adv_poemgame")
+        ]
+
+    m 5a "So you want to learn the {i}advanced{/i} stuff?"
+    m 3a "Alright!"
+
+label tutorial_route_adv_repeat:
+
+    $ m("What do you want to kno?", interact=False)
+
+    call screen tutorial_choice(adv_items)
+
+    if _return == False:
+        jump tutorial_selection
+
+    call expression _return
+
+    jump tutorial_route_adv_repeat
+
+
+label tutorial_route_adv_hkb:
+    # TODO button stuff
+
+label tutorial_route_adv_poemgame:
+    # TODO poemgame stuff

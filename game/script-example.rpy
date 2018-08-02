@@ -175,7 +175,7 @@ label example_chapter:
     m 2a "And when we're done, you'll have made your first mod."
 
 
-    $ persistent.playthrough = 1
+#    $ persistent.playthrough = 1
 
     jump tutorial_selection
 
