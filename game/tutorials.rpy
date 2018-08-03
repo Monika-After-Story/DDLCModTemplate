@@ -16,7 +16,7 @@ init python:
         (_("Route Part 6, Logic Statement"),"tutorial_route_p6"),
         (_("Route Part 7, Sprite"),"tutorial_route_p7"),
         (_("Route Part 8, Position"),"tutorial_route_p8"),
-        (_("Route Part 9, Ending"),"tutorial_route_p9")
+        (_("Route Part 9, Ending"),"tutorial_route_p9"),
         (_("Advanced Stuff"),"tutorial_route_adv")
     ]
 
@@ -89,20 +89,21 @@ label tutorial_selection:
     with dissolve_scene_full
     play music t3
 
-
+label tutorial_selection_menu:
 
     show monika 3a at tcommon(950)
-
+    window show
     $ m(_("How can I help you?"), interact=False)
 
     call screen tutorial_choice(items)
+    window auto
 
-    if _return is False:
+    if _return == False:
         jump end_tutorial
 
     call expression _return from _call_expression
 
-    jump tutorial_selection
+    jump tutorial_selection_menu
 
 
 
@@ -674,12 +675,17 @@ label tutorial_route_adv:
 
 label tutorial_route_adv_repeat:
 
-    $ m("What do you want to kno?", interact=False)
+    show monika 3a at tcommon(950)
+    window show
+    $ renpy.say(m, "What do you want to know?", interact=False)
 
     call screen tutorial_choice(adv_items)
+    window auto
 
     if _return == False:
-        jump tutorial_selection
+        return
+
+    show monika at t11
 
     call expression _return
 
@@ -687,7 +693,388 @@ label tutorial_route_adv_repeat:
 
 
 label tutorial_route_adv_hkb:
-    # TODO button stuff
+    m 3a "Alright, let me show you the navigation buttons."
+    $ mas_HKBRaiseShield()
+    $ HKBShowButtons()
+    m "These buttons appear in the bottom left of the screen."
+    m "To make them appear, add '$ HKBShowButtons()' to the script."
+    m 1n "Right now, they are disabled."
+    m "To enable them, add '$ mas_HKBDropShield()' to the script."
+    m "I'll go ahead and do that now..."
+    $ mas_HKBDropShield()
+    m 2a "Now you can click them!{w} When you're done, click 'Continue' to continue."
+    menu:
+        "Continue":
+            pass
+
+    m "To disable the buttons but leave them on screen, add '$ mas_HKBRaiseShield()' to the script."
+    $ mas_HKBRaiseShield()
+    m 2b "And finally, to hide the buttons, add '$ HKBHideButtons()'."
+    $ HKBHideButtons()
+
+    $ navdir = config.basedir + "/game/advanced_scripts/zz_hotkey_buttons.rpy"
+    m "The source code for the navigation buttons is in '[navdir]'."
+    m "To change what the buttons do, edit the 'action' part of the textbuttons in the source code."
+    m "Currently, all the buttons call a python function using 'Function', but you can change that to a variety of Screen Actions including 'Jump' and 'Call'."
+    m "For more information on that, check the renpy documentation on Screen Actions."
+
+    m 1c "One last thing,{w} these navigation buttons were created by developers from the Monika After Story team."
+    m 5a "But, you are free to use this version of `zz_hotkey_buttons.rpy` in your mods."
+
+    m 1a "Okay! Thanks for listening!"
+
+    return
+
 
 label tutorial_route_adv_poemgame:
-    # TODO poemgame stuff
+    m 3a "Alright, let's look at the specially-modified poemgame developed by the Monika After Story team."
+    m "This version of the poemgame allows you to do the following:"
+    m "1. Add me to the poemgame, provided you have a list of words for me."
+    m "2. Change which dokis are in the poemgame."
+    m "3. Change music during the poemgame."
+    m "4. Gather / save the words that users select."
+    m "5. Save the individual character scores for the words users select."
+    m "6. Add / remove glitches that were used in the base poemgame."
+    m "7. Change the odds of those glitches."
+    m "8. Change number of words you can pick."
+    m "9. Change the words that are selectable."
+    m "10. Change poem background."
+    m "And other smaller adjustments."
+
+    m "Additionally, this version of poemgame includes a special screen that can be used to generate textbutton grids of varying rows and columns."
+    m "I'll showcase that later."
+
+    $ navdir = config.basedir + "/game/advanced_scripts/zz_poemgame.rpy"
+    m "You can find the source code in '[navdir]'."
+
+    m 2o "Before I get into this, I must say that this file is {b}not{/b} for the faint of heart.{w} The code in here is pretty complex and difficult to customize."
+    m "That means that if you want to do something that isn't covered by the features I listed above, you're better off customizing `script-poemgame` yourself."
+    m "But if this turns out to be helpful for you, you are free to use this version of `zz_poemgame.rpy` in your mod."
+
+    m "That being said..."
+    menu:
+        m "Do you still want to hear about the MAS version of poemgame?"
+        "Yes":
+            pass
+        "No":
+            jump tutorial_route_adv_poemgame_txgrid
+    
+
+label tutorial_route_adv_poemgame_pgexp:
+    python:
+        mas_wordlist = MASPoemWordList(mas_poemwords)
+
+    m 5a "Yay!"
+
+    m 3a "So the modified poemgame starts at the label 'mas_poem_minigame'."
+    m 3n "If you have the source code open, you might notice the {i}massive{/i} comment right above that label."
+    m 3a "This comment explains all the possible adjustable parameters you can pass into this label to configure it."
+    m "Since this is terribly complex to do, the MAS team also added 3 helper labels based on the poemgame in different Acts."
+    m "For Act 1: 'mas_poem_minigame_actone'."
+    m "Act 2: 'mas_poem_minigame_acttwo'."
+    m "And Act 3: 'mas_poem_minigame_actthree'."
+    m "These are also pretty configurable, but only have a subset of the options available to the main poemgame label."
+
+    m 2a "Let's go through how the game looks when you call these labels."
+    m "For the sake of time, I'll limit the word selection to only 5 words per poemgame."
+
+    m "Alright, lets start with a slightly modified Act 1."
+    m "I'll be in this game, and I'll collect the points scored for each doki."
+    stop music fadeout 1.0
+    call mas_poem_minigame_actone(show_monika=True, poem_wordlist=mas_wordlist, total_words=5, trans_fast=True, show_poemhelp=False)
+    scene bg club_day with dissolve_scene_full
+    play music t3 fadein 1.0
+
+    $ words = _return
+    show monika 1a at t11
+    m "Hi there!"
+    m "These are your point totals:"
+    python:
+        for k,v in words.iteritems():
+            m(k + " received " + str(v) + " point(s) from your choices.")
+
+    m "Now let's do Act 2 but with higher chances of the glitchy word scare and no music."
+    m "I'll also gather the words you select."
+    stop music fadeout 1.0
+    call mas_poem_minigame_acttwo(show_monika=True, poem_wordlist=mas_wordlist, total_words=5, music_filename=None, gather_words=True, glitch_wordscare=(True, 5), trans_fast=True, one_counter=False, show_poemhelp=False)
+
+    scene bg club_day with dissolve_scene_full
+    play music t3 fadein 1.0
+
+    $ words = _return["words"]
+    show monika 1a at t11
+    m "Hi there!"
+    m "These are the words you selected:"
+    python:
+        for word in words:
+            m(word.word)
+
+    m "Okay, time for my favorite Act, but with a twist!"
+    m "I won't glitch any of the words and I'll hop for all your selections."
+    m "I'll also keep the friendly music we have currently playing on during the game."
+    call mas_poem_minigame_actthree(glitch_words=None, hop_monika=True, music_filename="BACK", trans_fast=True, total_words=5)
+    scene bg club_day with dissolve_scene_full
+
+    show monika 5a at t11
+    m "That was fun!"
+
+    m 3a "Let's do one more poemgame call. This time, I'll ask you for some parameters."
+    $ pg_args = dict()
+
+    m "First..."
+    menu:
+        m "Should we collect your word choices?"
+        "Yes":
+            $ pg_args["gather_words"] = True
+        "No":
+            pass
+
+    m "Okay..."
+    menu:
+        m "Should we visibly glitch the words?"
+        "Glitch the words.":
+            m "Sure!"
+
+            call tutorial_route_adv_poemgame_getnum("What are the odds that a space appears instead of a letter? (1 out of x)")
+            $ space_odds = _return
+
+            if space_odds <= 0:
+                m 3n "I'll just say 5, then."
+                show monika 3a
+                $ space_odds = 5
+
+            call tutorial_route_adv_poemgame_getnum("What are the odds that a nonunicode character appears instead of a letter? (1 out of x)")
+            $ nonuni_odds = _return
+
+            if nonuni_odds <= 0:
+                m 3n "I'll just say 5, then."
+                show monika 3a
+                $ nonuni_odds = 5
+
+            $ pg_args["glitch_words"] = (True, space_odds, nonuni_odds)
+
+        "No":
+            pass
+
+    m "Okay..."
+    menu:
+        m "Should we use the poemgame music?"
+        "Yes":
+            pass
+        "No":
+            $ pg_args["music_filename"] = "BACK"
+
+    m "Okay..."
+    menu:
+        m "Should I be visible?"
+        "Yes":
+            m 3j "Yay!"
+
+        "No":
+            m 3o "Aww..."
+            $ pg_args["show_monika"] = False
+
+    show monika 3a
+    m "Okay..."
+    menu:
+        m "Should Sayori be visible?"
+        "Yes":
+            $ pg_args["show_sayori"] = True
+        "No":
+            pass
+
+    m "Okay..."
+    menu:
+        m "Should Natsuki be visible?"
+        "Yes":
+            $ pg_args["show_natsuki"] = True
+        "No":
+            pass
+
+    m "Okay..."
+    menu:
+        m "Should Yuri be visible?"
+        "Yes":
+            menu:
+                m "...Should she have sleeves rolled up?"
+                "Yes":
+                    $ pg_args["show_yuri_cut"] = True
+                "No":
+                    pass
+            $ pg_args["show_yuri"] = True
+        "No":
+            pass
+
+    m "Okay..."
+    menu:
+        m "Should we make the word counter show 1's instead of regular numbers?"
+        "Yes":
+            $ pg_args["one_counter"] = True
+        "No":
+            pass
+
+    m "Okay, last one."
+    call tutorial_route_adv_poemgame_getnum("How many words should we select?")
+    $ count = _return
+
+    if count <= 0:
+        m 3n "I'll just pick 14 then."
+        $ count = 14
+    elif count > 50:
+        m 3n "That's a lot of words. Let's just pick 50."
+        $ count = 50
+
+    $ pg_args["total_words"] = count
+
+    m 3a "Alright! Please note that we only went through some of the possible configuration parameters. There are more then what I asked you, but I'm only doing some of them to save time."
+
+    m "Now let's see what we created!"
+    $ pg_args["flow"] = store.mas_poemgame_consts.STOCK_MODE
+    $ pg_args["poem_wordlist"] = mas_wordlist
+    $ pg_args["show_poemhelp"] = False
+
+    if "music_filename" not in pg_args:
+        stop music fadeout 1.0
+
+    call mas_poem_minigame(**pg_args)
+    $ results = _return
+
+    scene bg club_day with dissolve_scene_full
+
+    if "music_filename" not in pg_args:
+        play music t3 fadein 1.0
+
+    show monika 5a at t11
+
+    m "Alright!"
+
+    if "gather_words" in pg_args:
+        m "These are the words you selected:"
+        $ words = results.pop("words")
+        python:
+            for word in words:
+                m(word.word)
+        pass # syntax highlighting
+
+    m "These are your point totals:"
+    python:
+        for k,v in results.iteritems():
+            m(k + " received " + str(v) + " point(s) from your choices.")
+    pass
+
+label tutorial_route_adv_poemgame_pg_end:
+    m 2a "Alright, I hope that helps you get a feel for how the MAS poemgame implementation works."
+    m "Remember to read the documentation in the source code carefully. There's a lot of parameter formatting to make the poemgame work correctly."
+    m "And you can always use one of the act-based labels without params if you just want something that works out of the box."
+
+    m 1a "Now..."
+    jump tutorial_route_adv_poemgame_txgrid
+
+
+label tutorial_route_adv_poemgame_getnum(msg):
+    python:
+        sel_num = renpy.input(
+            "[msg]",
+            allow="0123456789",
+            length=2
+        )
+        if len(sel_num) <= 0:
+            sel_num = 0
+        else:
+            sel_num = int(sel_num)
+
+    return sel_num
+
+
+label tutorial_route_adv_poemgame_txgrid:
+    
+    menu:
+        "Do you want to hear about the textbutton grid?"
+        "Yes":
+            pass
+        "No":
+            m "Alright. Thanks for listening!"
+            return
+
+    m 1a "Alright!"
+    m "The textbutton grid is a special screen that can be used to generate textbutton grids of varying rows and columns."
+    m "It's basically the part of poemgame that displays a list of words and allows the user to select one."
+    m "To launch the screen, add 'call screen mas_pg_textbutton_grid(...)' to your script."
+    m "You will need to pass in several parameters in order to show the grid correctly."
+
+    m 5a "Let's build those parameters together!"
+    m 2a "First..."
+    call tutorial_route_adv_poemgame_getnum("How many words should we show?")
+    $ word_count = _return
+
+    if word_count < 1:
+        m 2n "[player]..."
+        m "Let's just pick 10 words."
+        $ word_count = 10
+
+    m 2a "Now let's pick those words."
+
+    python:
+        word_list = list()
+        for count in range(0, word_count):
+            _word = renpy.input(
+                "Enter in word " + str(count+1) + ":",
+                allow="1234567890-qwertyuiopasdfghjklzxcvbnm",
+                length=20
+            )
+            word_list.append((_word, _word))
+
+    m "Now..."
+    call tutorial_route_adv_poemgame_getnum("How many rows should we show?")
+    $ row_count = _return
+
+    if row_count < 1:
+        m 3n "I'll just pick 6 rows."
+        $ row_count = 6
+
+    m 2a "And finally..."
+    call tutorial_route_adv_poemgame_getnum("How many columns should we show?")
+    $ col_count = _return
+
+    if col_count <1:
+        m 3h "Okay, 3 columns, then."
+        $ col_count = 3
+
+    show monika at t22
+    m "Okay, I'm going to make this cover the left half of the screen by giving it an x position of 5, a y position of 5, a width of 600, and a height of 700."
+    $ size_tuple = (5, 5, 600, 700)
+
+    m "And a somewhat pink background image."
+    $ bg_image = Solid("#ffe6f4bb", xsize=600, ysize=700)
+
+    python:
+        in_args = {
+            "words": word_list,
+            "row_info": (row_count, None),
+            "col_info": (col_count, None),
+            "xywh": size_tuple,
+            "bg_image": bg_image,
+            "_zorder": 200,
+            "is_modal": True
+        }
+
+    m 5a "Now let's see what we got!"
+    call screen mas_pg_textbutton_grid(**in_args)
+
+    show monika at t11
+
+    m "You selected '[_return]'!"
+
+    m 1n "Hopefully that looked okay. It's easy to pick a combination of rows and columns and words that break the grid."
+    
+    m 1a "But if you need to make a simple textbutton grid, this should work fine!"
+
+    m "For the technical details on how to call this screen and setup the paramters, check the source code for this set of dialogue and the screen itself."
+    m "This set of dialogue is under the label 'tutorial_route_adv_poemgame_txgrid' in 'tutorials'."
+    m "The screen is called 'mas_pg_textbutton_grid' and is located in 'zz_poemgame'."
+
+    m "Okay! I hope that helps! Thanks for listening."
+
+    return
+
+

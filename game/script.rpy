@@ -23,7 +23,11 @@ label start:
     $ config.allow_skipping = True
 
 
-    call example_chapter from _call_example_chapter
+    if persistent.example_seen:
+        call tutorial_selection
+    else:
+        call example_chapter from _call_example_chapter
+
     return
 
 label endgame(pause_length=4.0):

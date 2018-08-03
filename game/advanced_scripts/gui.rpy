@@ -429,6 +429,9 @@ init python:
         gui.text_xpos = 90
         gui.text_width = 1100
 
+        # text alignment
+        gui.text_xalign = 0.5
+
         ## Change the size and spacing of items in the game menu.
         gui.choice_button_width = 1240
 

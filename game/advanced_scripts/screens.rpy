@@ -259,9 +259,12 @@ screen input(prompt):
     window:
 
         vbox:
-            xpos gui.text_xpos
-            xanchor 0.5
-            ypos gui.text_ypos
+#            xpos gui.text_xpos
+#            xanchor 0.5
+#            ypos gui.text_ypos
+            xalign 0.5
+            yalign 0.5
+            spacing 30
 
             text prompt style "input_prompt"
             input id "input"

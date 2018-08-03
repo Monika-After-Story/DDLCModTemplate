@@ -174,8 +174,7 @@ label example_chapter:
     m "I've prepared a few lessons to help get you started!"
     m 2a "And when we're done, you'll have made your first mod."
 
-
-#    $ persistent.playthrough = 1
+    $ persistent.example_seen = True
 
     jump tutorial_selection
 
