@@ -171,6 +171,9 @@ init python:
 
     # stuff not in archive
     build.classify('README.html',build.name)
+    
+    # Doki Doki Mod Manager metadata file
+    build.classify('ddmm-mod.json',build.name)
 
     # mark as documentation
     build.documentation('README.html')
