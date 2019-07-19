@@ -121,7 +121,7 @@ init python:
 
 init python:
 
-    # the following functions take file pattersn:
+    # the following functions take file pattern:
     # file patterns are case-insensitive and matched against the path relative to the 
     # base directory, with and without a leading /. If multiple patterns match
     # the first is used.
@@ -131,7 +131,7 @@ init python:
     # ** matches all characters, including directory separator
     #
     # EXAMPLES
-    # *.txt - - matches txt files in base directory
+    # *.txt - matches txt files in base directory
     # game/**.ogg - mathces ogg files in game directory or subdirs of game
     # **.psd - matches psd files anywhere in project
     #

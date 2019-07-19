@@ -8,7 +8,7 @@
 init 10 python:
     pass
 
-## LAte overrides
+## Late overrides
 ## These overrides happen aftre prety much everything else in startup.
 ## Use these to change displayables and other late definitions in renpy.
 init 501 python:
