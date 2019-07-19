@@ -24,7 +24,7 @@ init -10 python:
 
 ## Super early overrides
 ## These get called before any of the init blocks are read, before the
-## persistent data is read. Basically right after RenPy loads itself but 
+## persistent data is read. Basically right after RenPy loads itself but
 ## before the game / mod is loaded.
 ## You almost never will need this
 python early:

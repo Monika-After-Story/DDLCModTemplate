@@ -99,8 +99,8 @@ init python:
     if len(renpy.loadsave.location.locations) > 1: del(renpy.loadsave.location.locations[1])
     renpy.game.preferences.pad_enabled = False
     def replace_text(s):
-        s = s.replace('--', u'\u2014') 
-        s = s.replace(' - ', u'\u2014') 
+        s = s.replace('--', u'\u2014')
+        s = s.replace(' - ', u'\u2014')
         return s
     config.replace_text = replace_text
 
@@ -122,7 +122,7 @@ init python:
 init python:
 
     # the following functions take file pattern:
-    # file patterns are case-insensitive and matched against the path relative to the 
+    # file patterns are case-insensitive and matched against the path relative to the
     # base directory, with and without a leading /. If multiple patterns match
     # the first is used.
     #
@@ -139,19 +139,19 @@ init python:
     #
 
     # packaged ZIP for distibution
-    build.package(build.directory_name + "Mod",'zip',build.name,description='DDLC Compatible Mod')
+    build.package(build.directory_name + "Mod", 'zip', build.name, description='DDLC Compatible Mod')
 
     # archives to create
-    build.archive("scripts",build.name)
-    build.archive("mod_assets",build.name)
-    build.archive("submods",build.name)
+    build.archive("scripts", build.name)
+    build.archive("mod_assets", build.name)
+    build.archive("submods", build.name)
 
     # folder / files to put in archives
-    build.classify("game/mod_assets/**","mod_assets")
-    build.classify("game/submods/**","submods")
-    build.classify('game/**.rpyc',"scripts")
-    build.classify('game/advanced_scripts/**',"scripts")
-    build.classify('game/original_story_scripts/**',"scripts")
+    build.classify("game/mod_assets/**", "mod_assets")
+    build.classify("game/submods/**", "submods")
+    build.classify('game/**.rpyc', "scripts")
+    build.classify('game/advanced_scripts/**', "scripts")
+    build.classify('game/original_story_scripts/**', "scripts")
 
     # stuff to ignore
     build.classify('**~', None)
@@ -167,13 +167,13 @@ init python:
     build.classify('script-regex.txt', None)
     build.classify('/game/10', None)
     build.classify('/game/cache/*.*', None)
-    build.classify('**.rpa',None)
+    build.classify('**.rpa', None)
 
     # stuff not in archive
-    build.classify('README.html',build.name)
-    
+    build.classify('README.html', build.name)
+
     # Doki Doki Mod Manager metadata file
-    build.classify('ddmm-mod.json',build.name)
+    build.classify('ddmm-mod.json', build.name)
 
     # mark as documentation
     build.documentation('README.html')
