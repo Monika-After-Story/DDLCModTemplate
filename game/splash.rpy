@@ -123,7 +123,7 @@ image menu_particles:
     2.481
     xpos 224
     ypos 104
-    ParticleBurst("gui/menu_particle.png", explodeTime=0, numParticles=20, particleTime=2.0, particleXSpeed=6, particleYSpeed=4).sm
+    ParticleBurst("gui/menu_particle.png", explodeTime=0, numParticles=40, particleTime=2.0, particleXSpeed=3, particleYSpeed=3).sm
     particle_fadeout
 
 transform particle_fadeout:
@@ -200,32 +200,23 @@ image tos = "bg/warning.png"
 image tos2 = "bg/warning2.png"
 
 
-init python:
-    if not persistent.do_not_delete:
-
-        import os
-        try:
-            if not os.access(config.basedir + "/characters/", os.F_OK):
-                os.mkdir(config.basedir + "/characters")
-
-            if persistent.playthrough <= 2:
-                try: renpy.file("../characters/monika.chr")
-                except: open(config.basedir + "/characters/monika.chr", "wb").write(renpy.file("monika.chr").read())
-            if persistent.playthrough <= 1 or persistent.playthrough == 4:
-                try: renpy.file("../characters/natsuki.chr")
-                except: open(config.basedir + "/characters/natsuki.chr", "wb").write(renpy.file("natsuki.chr").read())
-                try: renpy.file("../characters/yuri.chr")
-                except: open(config.basedir + "/characters/yuri.chr", "wb").write(renpy.file("yuri.chr").read())
-            if persistent.playthrough == 0 or persistent.playthrough == 4:
-                try: renpy.file("../characters/sayori.chr")
-                except: open(config.basedir + "/characters/sayori.chr", "wb").write(renpy.file("sayori.chr").read())
-
-        except:
-            pass
-
-
 label splashscreen:
 
+    python:
+        process_list = []
+        currentuser = ""
+        if renpy.windows:
+            try:
+                process_list = subprocess.check_output("wmic process get Description", shell=True).lower().replace("\r", "").replace(" ", "").split("\n")
+            except:
+                pass
+            try:
+                for name in ('LOGNAME', 'USER', 'LNAME', 'USERNAME'):
+                    user = os.environ.get(name)
+                    if user:
+                        currentuser = user
+            except:
+                pass
 
     python:
         firstrun = ""
@@ -235,7 +226,7 @@ label splashscreen:
             with open(config.basedir + "/game/firstrun", "wb") as f:
                 pass
     if not firstrun:
-        if persistent.first_run and not persistent.do_not_delete:
+        if persistent.first_run and (config.version == persistent.oldversion or persistent.autoload == "postcredits_loop"):
             $ quick_menu = False
             scene black
             menu:
@@ -248,24 +239,31 @@ label splashscreen:
                         renpy.persistent.should_save_persistent = False
                         renpy.utter_restart()
                 "No, continue where I left off.":
-                    pass
+                    $ restore_relevant_characters()
 
         python:
             if not firstrun:
-                with open(config.basedir + "/game/firstrun", "w") as f:
-                    f.write("1")
-            filepath = renpy.file("firstrun").name
-            open(filepath, "a").close()
+                try:
+                    with open(config.basedir + "/game/firstrun", "w") as f:
+                        f.write("1")
+                except:
+                    renpy.jump("readonly")
 
+    if config.version != persistent.oldversion:
+        $ restore_relevant_characters()
+        $ persistent.oldversion = config.version
+        $ renpy.save_persistent()
 
     default persistent.first_run = False
     if not persistent.first_run:
+        python:
+            restore_all_characters()
         $ quick_menu = False
         scene white
-        pause 0.5
+        $ pause(0.5)
         scene tos
         with Dissolve(1.0)
-        pause 1.0
+        $ pause(1.0)
 
         "[config.name] is a Doki Doki Literature Club fan mod that is not affiliated with Team Salvato."
         "It is designed to be played only after the official game has been completed, and contains spoilers for the official game."
@@ -278,7 +276,7 @@ label splashscreen:
                 pass
         scene tos2
         with Dissolve(1.5)
-        pause 1.0
+        $ pause(1.0)
 
 
         scene white
@@ -287,9 +285,27 @@ label splashscreen:
         $ persistent.first_run = True
 
     python:
+        s_kill_early = None
+        if persistent.playthrough == 0:
+            try: renpy.file("../characters/sayori.chr")
+            except: s_kill_early = True
+        if not s_kill_early:
+            if persistent.playthrough <= 2 and persistent.playthrough != 0:
+                try: renpy.file("../characters/monika.chr")
+                except: open(config.basedir + "/characters/monika.chr", "wb").write(renpy.file("monika.chr").read())
+            if persistent.playthrough <= 1 or persistent.playthrough == 4:
+                try: renpy.file("../characters/natsuki.chr")
+                except: open(config.basedir + "/characters/natsuki.chr", "wb").write(renpy.file("natsuki.chr").read())
+                try: renpy.file("../characters/yuri.chr")
+                except: open(config.basedir + "/characters/yuri.chr", "wb").write(renpy.file("yuri.chr").read())
+            if persistent.playthrough == 4:
+                try: renpy.file("../characters/sayori.chr")
+                except: open(config.basedir + "/characters/sayori.chr", "wb").write(renpy.file("sayori.chr").read())
+
+    python:
         basedir = config.basedir.replace('\\', '/')
 
-    if persistent.autoload and not _restart:
+    if persistent.autoload:
         jump autoload
 
     $ config.allow_skipping = False
@@ -299,24 +315,22 @@ label splashscreen:
     $ splash_message = splash_message_default
     $ config.main_menu_music = audio.t1
     $ renpy.music.play(config.main_menu_music)
+    $ starttime = datetime.datetime.now()
     show intro with Dissolve(0.5, alpha=True)
-    pause 2.5
-    hide intro with Dissolve(0.5, alpha=True)
-
+    $ pause(3.0 - (datetime.datetime.now() - starttime).total_seconds())
+    hide intro with Dissolve(max(0, 3.5 - (datetime.datetime.now() - starttime).total_seconds()), alpha=True)
     if persistent.playthrough == 2 and renpy.random.randint(0, 3) == 0:
         $ splash_message = renpy.random.choice(splash_messages)
-    show splash_warning "[splash_message]" with Dissolve(0.5, alpha=True)
-    pause 2.0
-    hide splash_warning with Dissolve(0.5, alpha=True)
+    show splash_warning "[splash_message]" with Dissolve(max(0, 4.0 - (datetime.datetime.now() - starttime).total_seconds()), alpha=True)
+    $ pause(6.0 - (datetime.datetime.now() - starttime).total_seconds())
+    hide splash_warning with Dissolve(max(0, 6.5 - (datetime.datetime.now() - starttime).total_seconds()), alpha=True)
+    $ pause(6.5 - (datetime.datetime.now() - starttime).total_seconds())
     $ config.allow_skipping = True
     return
 
-label warningscreen:
-    hide intro
-    show warning
-    pause 3.0
-
 label after_load:
+    if persistent.playthrough == 0:
+        $ restore_all_characters()
     $ config.allow_skipping = allow_skipping
     $ _dismiss_pause = config.developer
     $ persistent.ghost_menu = False
@@ -352,7 +366,8 @@ label autoload:
 
 
 
-    $ renpy.pop_call()
+    if renpy.get_return_stack():
+        $ renpy.pop_call()
     jump expression persistent.autoload
 
 label before_main_menu:
@@ -363,4 +378,12 @@ label quit:
 
     # stuff that happens when the game closes
 
+    return
+
+
+label readonly:
+    scene black
+    "The game cannot be run because you are trying to run it from a read-only location."
+    "Please copy the DDLC application to your desktop or other accessible location and try again."
+    $ renpy.quit()
     return

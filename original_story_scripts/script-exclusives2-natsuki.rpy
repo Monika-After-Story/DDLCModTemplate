@@ -10,7 +10,7 @@ init python:
 
             for i in range(self.numRects):
                 self.add(self.displayable)
-           
+
         def add(self, d):
             s = self.sm.create(d)
             s.x = (random.random() - 0.5) * self.areaWidth * 2
@@ -18,7 +18,7 @@ init python:
             s.width = random.random() * self.areaWidth / 2
             s.height = random.random() * self.areaHeight / 2
             self.rects.append(s)
-            
+
         def update(self, st):
             for s in self.rects:
                 s.x = (random.random() - 0.5) * self.areaWidth * 2
@@ -74,7 +74,7 @@ label natsuki_exclusive2_1:
     "I approach her, in case she needs a hand."
     play music t6 fadeout 1
     scene bg closet
-    show natsuki 4r at t11 zorder 2
+    show natsuki 4r zorder 2 at t11
     with wipeleft_scene
     $ style.say_dialogue = style.normal
     mc "You looking for something in there?"
@@ -130,13 +130,13 @@ label natsuki_exclusive2_1:
     "It's...exceedingly \"moe\"."
     n 4b "Don't just stand there!"
     mc "Uwa--"
-    show natsuki at thide zorder 1
+    show natsuki zorder 1 at thide
     hide natsuki
     "Natsuki grabs my arm and pulls me out of the closet."
     "She then takes a seat against the wall, beneath the windowsills."
     "She pats on the ground next to her, signaling me to sit there."
     show bg club_day
-    show natsuki 2a at t11 zorder 2
+    show natsuki 2a zorder 2 at t11
     with wipeleft
     mc "Wouldn't chairs be more comfortable...?"
     "I take my seat."
@@ -167,6 +167,7 @@ label natsuki_exclusive2_1:
     "Typical slice-of-life affair."
     "I kind of grew out of these, since it's rare for the writing to be entertaining enough to make up for the lack of plot."
     $ persistent.clear[0] = True
+    $ renpy.save_persistent()
     scene n_cg1_bg
     show n_cg1_base
     with dissolve_cg
@@ -243,7 +244,7 @@ label natsuki_exclusive2_1:
     "........."
     "Time passes."
     hide n_cg1_exp3
-    show n_cg1_exp4 at cgfade behind black
+    show n_cg1_exp4 behind black at cgfade
     "Natsuki is strangely quiet now."
     "I glance over at her."
     hide black with dissolve_cg
@@ -276,27 +277,27 @@ label natsuki_exclusive2_1:
     window hide(None)
     window auto
     scene bg club_day
-    show monika 1r at t11 zorder 2
+    show monika 1r zorder 2 at t11
     m "Oh jeez..."
     m 1d "Natsuki, are you okay?"
-    show monika at t21 zorder 2
-    show natsuki 12b at f22 zorder 3
+    show monika zorder 2 at t21
+    show natsuki 12b zorder 3 at f22
     n "..."
-    show natsuki at t22 zorder 2
-    show monika at f21 zorder 3
+    show natsuki zorder 2 at t22
+    show monika zorder 3 at f21
     m 1a "Here..."
-    show monika at t21 zorder 2
+    show monika zorder 2 at t21
     "Monika reaches into her bag and pulls out some kind of protein bar."
     "She throws it in Natsuki's direction."
     "Natsuki's eyes suddenly light up again."
     "She snatches the bar from the floor and immediately tears off the wrapper."
-    show natsuki at f22 zorder 3
+    show natsuki zorder 3 at f22
     n 1s "I told you not to give mmph..."
-    show natsuki at t22 zorder 2
+    show natsuki zorder 2 at t22
     "She doesn't even finish her sentence before stuffing it into her mouth."
-    show natsuki at thide zorder 1
+    show natsuki zorder 1 at thide
     hide natsuki
-    show monika 3b at t11 zorder 2
+    show monika 3b zorder 2 at t11
     m "Don't worry, [player]."
     m "She's fine."
     m "It just happens every now and then."

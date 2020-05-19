@@ -7,7 +7,7 @@ label yuri_exclusive_1:
     "It looks like the same book that she lent to me..."
     "More than that, she seems to be on the first few pages."
     play music t6 fadeout 1.0
-    show yuri 4a at t11 zorder 2
+    show yuri 4a zorder 2 at t11
     y "Ah..."
     "Crap--"
     "I think she noticed me looking at her..."
@@ -110,7 +110,7 @@ label yuri_exclusive_1:
     mc "I see..."
     mc "Well, just tell me if I end up distracting you or anything."
     y "A-Alright..."
-    show yuri at thide zorder 1
+    show yuri zorder 1 at thide
     hide yuri
     "I open the book and start the prologue."
     "I soon understand what Yuri means about reading in company."
@@ -121,7 +121,7 @@ label yuri_exclusive_1:
     "I realize that she's not actually looking at her own book."
     "I glance over."
     "It looks like she's reading from my book instead--"
-    show yuri 3n at t11 zorder 2
+    show yuri 3n zorder 2 at t11
     y "S-Sorry!"
     y "I was just--!"
     mc "Yuri, you really apologize a lot, don't you?"
@@ -140,6 +140,7 @@ label yuri_exclusive_1:
     mc "Ah, I guess that makes it kind of difficult to turn the page..."
     y "Here..."
     $ persistent.clear[2] = True
+    $ renpy.save_persistent()
     scene y_cg1_base with dissolve_cg
     "Yuri takes her left arm and holds the left side of the book between her thumb and forefinger."
     mc "Ah..."
@@ -187,7 +188,7 @@ label yuri_exclusive_1:
     mc "But they're kind of reminiscent of some of your mannerisms."
     y "I-I see..."
     scene bg club_day
-    show yuri 2t at i11 zorder 2
+    show yuri 2t zorder 2 at i11
     with dissolve_cg
     "Yuri remains silent for a moment."
     y "But [player]..."
@@ -206,24 +207,24 @@ label yuri_exclusive_1:
     m "Okay, everyone!"
     show yuri 3n at h11
     y "...!"
-    show monika at f31 zorder 3
+    show monika zorder 3 at f31
     m "I think it's about time we share today's poems with each other."
     m "We might not have enough time if we wait too long."
-    show monika at t31 zorder 2
-    show yuri at f11 zorder 3
+    show monika zorder 2 at t31
+    show yuri zorder 3 at f11
     y 3w "Ah..."
     "Yuri exhales, spared from finishing her thought."
-    show yuri at t11 zorder 2
-    show monika at f31 zorder 3
+    show yuri zorder 2 at t11
+    show monika zorder 3 at f31
     m 1 "Is that alright, Yuri?"
     m "You look kind of down..."
     m "I'm sorry if you haven't been looking forward to this..."
-    show monika at t31 zorder 2
-    show yuri at f11 zorder 3
+    show monika zorder 2 at t31
+    show yuri zorder 3 at f11
     y 3v "Ah, it's not..."
     y "...It's fine."
-    show yuri at t11 zorder 2
-    show monika at thide zorder 1
+    show yuri zorder 2 at t11
+    show monika zorder 1 at thide
     hide monika
     "Yuri releases her hand from the book, causing it to close on top of my thumb."
     mc "Alright..."
@@ -237,7 +238,7 @@ label yuri_exclusive_1:
     y 2a "That's good reasoning."
     y "In that case, feel free to finish the first two chapters in your own time."
     mc "Alright!"
-    show yuri at thide zorder 1
+    show yuri zorder 1 at thide
     hide yuri
     "I stand up."
     "I make a mental note of where I left off in the book, then slip it back into my bag."
@@ -249,7 +250,7 @@ label yuri_exclusive_2:
     scene bg club_day
     with wipeleft_scene
     mc "Hey, Yuri."
-    show yuri 2f at t11 zorder 2
+    show yuri 2f zorder 2 at t11
     y "Eh?"
     mc "Ah..."
     "I suddenly notice that Yuri is reading a different book from the one we've been reading together."
@@ -267,22 +268,22 @@ label yuri_exclusive_2_ch3:
     y 1c "Thanks very much."
     y 1a "If there's one thing that can make my reading time here any better, it's a nice cup of tea."
     y "Not to mention for yourself, as well."
-    show yuri at thide zorder 1
+    show yuri zorder 1 at thide
     hide yuri
     "Yuri stands up and makes her way to the closet."
     "I follow and watch as she retrieves a small water pitcher from the shelf - the kind with a filter inside."
-    show yuri 1f at t11 zorder 2
+    show yuri 1f zorder 2 at t11
     y "Can you hold this for a second?"
     mc "Sure..."
     "Yuri hands me the water pitcher and also fetches an electric kettle."
     y "I'm going to plug this in at the teacher's desk, and then we'll go get some water."
-    show yuri at thide zorder 1
+    show yuri zorder 1 at thide
     hide yuri
     "She walks past me and sets the kettle down on the teacher's desk."
     "I simply watch her movements."
     "To my surprise, the way she moves really contrasts her speaking mannerisms."
     "Especially because of her long legs, Yuri appears elegant and methodical."
-    show yuri 1f at t11 zorder 2
+    show yuri 1f zorder 2 at t11
     y "Okay, may I have the water pitcher?"
     y 1a "Thanks. I'll be right back."
     mc "Ah, I might as well walk with you..."
@@ -296,33 +297,34 @@ label yuri_exclusive_2_ch3:
     mc "We're just...Yuri was going to make some tea, so..."
     "I suddenly realize how weird it sounds to explain this to Monika."
     mc "We're just filling the water pitcher..."
-    show monika at f31 zorder 3
+    show monika zorder 3 at f31
     m "Ah, okay!"
     m 4j "Sorry, I was just a bit curious..."
     m "That's kind of a one-person job, isn't it?"
-    show monika 4a at t31 zorder 2
+    show monika 4a zorder 2 at t31
     mc "That's--"
-    show yuri at f11 zorder 3
+    show yuri zorder 3 at f11
     y 1k "Monika, please mind your own business for once."
     y "Or do you want to tell me there's something wrong with helping involve [player] in club activities?"
-    show yuri at t11 zorder 2
-    show monika at f31 zorder 3
+    show yuri zorder 2 at t11
+    show monika zorder 3 at f31
     m 1g "E-Eh...?"
-    show monika at t31 zorder 2
+    show monika zorder 2 at t31
     mc "--!"
     "My mouth gapes."
-    show monika at f31 zorder 3
+    show monika zorder 3 at f31
     m 5a "I..."
     m "I suppose there's nothing wrong with that..."
-    show monika at t31 zorder 2
-    show yuri at f11 zorder 3
+    show monika zorder 2 at t31
+    show yuri zorder 3 at f11
     y 2l "Hmph..."
     y "Then let's go, [player]."
-    show yuri at t11 zorder 2
+    show yuri zorder 2 at t11
     mc "Ah..."
     "Yuri quickly exits the room, and I follow."
+    stop music fadeout 1.0
     scene bg corridor
-    show yuri 4c at t11 zorder 2
+    show yuri 4c zorder 2 at t11
     with wipeleft_scene
     "Once in the hallway, she suddenly puts her forehead against the wall."
     y "I spoke without thinking..."
@@ -336,7 +338,7 @@ label yuri_exclusive_2_ch3:
     mc "I think...you did the right thing!"
     mc "I wasn't expecting it, but..."
     mc "It's also not right for Monika to judge people like that."
-    play music t9 fadeout 1.0
+    play music t9
     y 4a "[player]..."
     y "How come even when I do something bad..."
     y "You're being nice to me?"
@@ -366,13 +368,13 @@ label yuri_exclusive_2_ch3:
     y 3u "Ah-- Yeah..."
     y "Shall we go?"
     mc "Yeah."
-    show yuri at thide zorder 1
+    show yuri zorder 1 at thide
     hide yuri
     "Yuri and I walk to the nearest water fountain."
     "Once we fill up the water pitcher, we return to the classroom."
     play music t6 fadeout 1.0
     scene bg club_day
-    show yuri 1a at t11 zorder 2
+    show yuri 1a zorder 2 at t11
     with wipeleft_scene
     y "[player], do you like oolong tea?"
     mc "Ah, yeah."
@@ -387,11 +389,11 @@ label yuri_exclusive_2_ch3:
     y 2m "Huhu."
     y 2a "In that case, you'll only be even more impressed."
     mc "Ah...perhaps I will!"
-    show yuri at thide zorder 1
+    show yuri zorder 1 at thide
     hide yuri
     "Yuri fetches the teapot and begins measuring the tea leaves."
     "To my surprise, she even starts humming a little to herself."
-    show yuri 1c at t11 zorder 2
+    show yuri 1c zorder 2 at t11
     mc "You must be in a good mood now..."
     y 1a "Is that so?"
     y "I was letting it show..."
@@ -429,7 +431,7 @@ label yuri_exclusive_2_ch3:
     y "So that's why we should sit on the floor."
     mc "Fair enough."
     mc "I'll go ahead and get the book."
-    show yuri at thide zorder 1
+    show yuri zorder 1 at thide
     hide yuri
     "I retrieve the book from my bag."
     mc "Ah, I have some chocolate as well..."
@@ -439,7 +441,7 @@ label yuri_exclusive_2_ch3:
     "As if in sync, we assume the same reading position as last time, each holding one half of the book."
     "Except this time..."
     "Our bodies are even closer to each other."
-    show yuri 2h at t11 zorder 2
+    show yuri 2h zorder 2 at t11
     y "I can't see too well..."
     mc "--!"
     show yuri 2e at d11
@@ -473,6 +475,7 @@ label yuri_exclusive_2_ch3:
     mc "Are you sure...?"
     y "Of course."
     $ persistent.clear[3] = True
+    $ renpy.save_persistent()
     scene y_cg2_bg
     show y_cg2_base
     show y_cg2_details
@@ -548,28 +551,28 @@ label yuri_exclusive_2_ch3:
     scene bg club_day
     window show(None)
     window auto
-    show monika 4b at l31 zorder 2
+    show monika 4b zorder 2 at l31
     m "Okay, everyone!"
     mc "Uwa--"
-    show yuri 3p at t11 zorder 2
+    show yuri 3p zorder 2 at t11
     y "A-Ah!"
     play music t3
     "Yuri jolts back."
     show yuri 3n
-    show monika at f31 zorder 3
+    show monika zorder 3 at f31
     m "It's time to share poems!"
     m "[player], you can help Yuri put away the tea stuff, right?"
-    show monika at t31 zorder 2
+    show monika zorder 2 at t31
     mc "Y-Yeah...of course."
-    show monika at f31 zorder 3
+    show monika zorder 3 at f31
     m "Okay, thanks!"
-    show monika at thide zorder 1
+    show monika zorder 1 at thide
     hide monika
     "The spell is abruptly broken."
     y 4c "I'll..."
     y "I'll take care of the cups..."
     mc "Yeah..."
-    show yuri at thide zorder 1
+    show yuri zorder 1 at thide
     hide yuri
     "Yuri picks up the teacups from the floor."
     "I pick up the bag of chocolates."

@@ -37,13 +37,13 @@ label updateconsole(text="", history=""):
     hide ctext
     show console_text "_" as ctext zorder 100
     call updateconsolehistory(history) from _call_updateconsolehistory
-    pause 0.5
+    $ pause(0.5)
     return
 
 #This function clears the console history
 label updateconsole_clearall(text="", history=""):
     $ pause(len(text) / 30.0 + 0.5)
-    pause 0.5
+    $ pause(0.5)
     return
 
 #Seems to be an unused alternative console function
@@ -60,16 +60,16 @@ label updateconsole_old(text="", history=""):
         $ pause_duration = 0.08 - (datetime.datetime.now() - starttime).microseconds / 1000.0 / 1000.0
         $ starttime = datetime.datetime.now()
         if pause_duration > 0:
-            $ renpy.pause(pause_duration / 2)
+            $ pause(pause_duration / 2)
         $ textcount += 1
         if textcount <= textlength:
             jump updateconsole_loop
 
-    pause 0.5
+    $ pause(0.5)
     hide ctext
     show console_text "_" as ctext zorder 100
-    call updateconsolehistory(history) from _call_updateconsolehistory_1
-    pause 0.5
+    call updateconsolehistory (history) from _call_updateconsolehistory_1
+    $ pause(0.5)
     return
 
     label drawconsole(drawtext=""):

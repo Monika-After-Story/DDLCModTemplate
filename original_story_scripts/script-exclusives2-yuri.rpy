@@ -7,7 +7,7 @@ label yuri_exclusive2_1:
     "It looks like the same book that she lent to me..."
     "More than that, she seems to be on the first few pages."
     play music t6 fadeout 1.0
-    show yuri 4a at t11 zorder 2
+    show yuri 4a zorder 2 at t11
     y "Ah..."
     "Crap--"
     "I think she noticed me looking at her..."
@@ -119,7 +119,7 @@ label yuri_exclusive2_1_ch22:
     mc "I see..."
     mc "Well, just tell me if I end up distracting you or anything."
     y "A-Alright..."
-    show yuri at thide zorder 1
+    show yuri zorder 1 at thide
     hide yuri
     "I open the book and start the prologue."
     "I soon understand what Yuri means about reading in company."
@@ -130,7 +130,7 @@ label yuri_exclusive2_1_ch22:
     "I realize that she's not actually looking at her own book."
     "I glance over."
     "It looks like she's reading from my book instead--"
-    show yuri 3n at t11 zorder 2
+    show yuri 3n zorder 2 at t11
     y "S-Sorry!"
     $ style.say_dialogue = style.normal
     y "I was just--!{nw}"
@@ -155,6 +155,7 @@ label yuri_exclusive2_1_ch22:
     mc "Ah, I guess that makes it kind of difficult to turn the page..."
     y "Here..."
     $ persistent.clear[2] = True
+    $ renpy.save_persistent()
     scene y_cg1_base with dissolve_cg
     "Yuri takes her left arm and holds the left side of the book between her thumb and forefinger."
     mc "Ah..."
@@ -232,7 +233,7 @@ label yuri_exclusive2_1_ch22:
     with dissolve_cg
     "Yuri stands up and practically rushes out of the classroom."
     mc "What on Earth was that about...?"
-    show monika 1d at t11 zorder 2
+    show monika 1d zorder 2 at t11
     m "[player]?"
     m "Did something happen just now?"
     mc "Eh?"
@@ -264,7 +265,7 @@ label yuri_exclusive2_2:
     scene bg club_day
     with wipeleft_scene
     mc "Hey, Yuri."
-    show yuri 2f at t11 zorder 2
+    show yuri 2f zorder 2 at t11
     y "Eh?"
     mc "Ah..."
     "I suddenly notice that Yuri is reading a different book from the one we've been reading together."
@@ -282,32 +283,32 @@ label yuri_exclusive2_2_ch22:
     y 1c "Thanks very much."
     y 1a "If there's one thing that can make my reading time here any better, it's a nice cup of tea."
     y "Not to mention for yourself, as well."
-    show yuri at thide zorder 1
+    show yuri zorder 1 at thide
     hide yuri
     "Yuri stands up and makes her way to the closet."
     "I follow and watch as she retrieves a small water pitcher from the shelf - the kind with a filter inside."
-    show yuri 1f at t11 zorder 2
+    show yuri 1f zorder 2 at t11
     y "Can you hold this for a second?"
     mc "Sure..."
     "Yuri hands me the water pitcher and also fetches an electric kettle."
     y "I'm going to plug this in at the teacher's desk, and then I'll go get some water."
-    show yuri at thide zorder 1
+    show yuri zorder 1 at thide
     hide yuri
     "She walks past me and sets the kettle down on the teacher's desk."
     "I simply watch her movements."
     "To my surprise, the way she moves really contrasts her speaking mannerisms."
     "Especially because of her long legs, Yuri appears elegant and methodical."
-    show yuri 1f at t11 zorder 2
+    show yuri 1f zorder 2 at t11
     y "Okay, may I have the water pitcher?"
     y 1a "Thanks. I'll be right back."
     mc "Ah, I might as well walk with you..."
     y 1q "T-That's okay!"
     y "You stay here..."
     y "It won't take long."
-    show yuri at thide zorder 1
+    show yuri zorder 1 at thide
     hide yuri
     "Pitcher in hand, Yuri hurries out of the classroom."
-    show monika 2i at t11 zorder 2
+    show monika 2i zorder 2 at t11
     m "Ah..."
     m "Did Yuri leave you again?"
     mc "No, it's not like that this time."
@@ -343,54 +344,56 @@ label yuri_exclusive2_2_ch22:
     "I reach the corner and peer around it."
     mc "Yuri...?"
     $ y_name = "Yuri"
-    show yuri cuts at t11 zorder 2
+    show yuri cuts zorder 2 at t11
     y "Kya--!"
 
     $ currentpos = 45.264 - (get_pos() / 2.0)
     $ audio.t6r = "<from " + str(currentpos) + " to 39.817 loop 0>bgm/6r.ogg"
+    $ quick_menu = False
     play music t6r
-    show yuri at thide zorder 1
+    show yuri zorder 1 at thide
     hide yuri
-    show noise at noise_alpha zorder 100
-    show vignette at vignetteflicker(-2.030) zorder 100
+    show noise zorder 100 at noise_alpha
+    show vignette zorder 100 at vignetteflicker(-2.030)
     show layer master at rewind
     $ y_name = "???"
-    mc "{cps=*3}Yuri...?{/cps}{nw}"
-    "{cps=*3}I reach the corner and peer around it.{/cps}{nw}"
-    "{cps=*3}Are they in pain...?{/cps}{nw}"
-    "{cps=*3}A sharp inhale, like someone is sucking the air through their teeth.{/cps}{nw}"
-    y "{cps=*3}Khhhhh--{/cps}{nw}"
-    "{cps=*3}It sounds like breathing.{/cps}{nw}"
-    "{cps=*3}It's coming from around the corner...{/cps}{nw}"
-    "{cps=*3}...What's that noise?{/cps}{nw}"
-    y "{cps=*3}....Haah.....haah....{/cps}{nw}"
-    y "{cps=*3}Haah.....haah....{/cps}{nw}"
+    mc "{cps=150}Yuri...?{/cps}{nw}"
+    "{cps=150}I reach the corner and peer around it.{/cps}{nw}"
+    "{cps=150}Are they in pain...?{/cps}{nw}"
+    "{cps=150}A sharp inhale, like someone is sucking the air through their teeth.{/cps}{nw}"
+    y "{cps=150}Khhhhh--{/cps}{nw}"
+    "{cps=150}It sounds like breathing.{/cps}{nw}"
+    "{cps=150}It's coming from around the corner...{/cps}{nw}"
+    "{cps=150}...What's that noise?{/cps}{nw}"
+    y "{cps=150}....Haah.....haah....{/cps}{nw}"
+    y "{cps=150}Haah.....haah....{/cps}{nw}"
     $ y_name = "Yuri"
-    "{cps=*3}I start heading down the hallway.{/cps}{nw}"
-    "{cps=*3}The most logical place for Yuri to be would be the nearest water fountain...{/cps}{nw}"
-    mc "{cps=*3}Let's see...{/cps}{nw}"
+    "{cps=150}I start heading down the hallway.{/cps}{nw}"
+    "{cps=150}The most logical place for Yuri to be would be the nearest water fountain...{/cps}{nw}"
+    mc "{cps=150}Let's see...{/cps}{nw}"
     window hide(None)
     window auto
     scene bg club_day
-    show noise at noise_alpha zorder 100
-    show vignette at vignetteflicker(-2.030) zorder 100
+    show noise zorder 100 at noise_alpha
+    show vignette zorder 100 at vignetteflicker(-2.030)
     show layer master at rewind
-    "{cps=*3}I'm bored just waiting here, so I decide to go look for her.{/cps}{nw}"
-    "{cps=*3}Is something holding her up?{/cps}{nw}"
-    "{cps=*3}Yuri said it wouldn't take long...{/cps}{nw}"
-    "{cps=*3}Ten minutes pass.{/cps}{nw}"
-    "{cps=*3}...{/cps}{nw}"
+    "{cps=150}I'm bored just waiting here, so I decide to go look for her.{/cps}{nw}"
+    "{cps=150}Is something holding her up?{/cps}{nw}"
+    "{cps=150}Yuri said it wouldn't take long...{/cps}{nw}"
+    "{cps=150}Ten minutes pass.{/cps}{nw}"
+    "{cps=150}...{/cps}{nw}"
 
     $ del _history_list[-37:]
     if poemwinner[0] == "yuri" and chapter == 3:
         jump yuri_exclusive2_2_ch23
     $ currentpos = 90.528 - (get_pos() * 2.0)
     $ audio.t6r = "<from " + str(currentpos) + " loop 10.893>bgm/6.ogg"
+    $ quick_menu = True
     play music t6r
     hide noise
     hide vignette
     show layer master
-    show yuri 1a at t11 zorder 2
+    show yuri 1a zorder 2 at t11
     y "I'm back."
     y "Thanks for waiting patiently."
     y "[player], do you like oolong tea?"
@@ -406,11 +409,11 @@ label yuri_exclusive2_2_ch22:
     y 2m "Huhu."
     y 2a "In that case, you'll only be even more impressed."
     mc "Ah...perhaps I will!"
-    show yuri at thide zorder 1
+    show yuri zorder 1 at thide
     hide yuri
     "Yuri fetches the teapot and begins measuring the tea leaves."
     "To my surprise, she even starts humming a little to herself."
-    show yuri 1c at t11 zorder 2
+    show yuri 1c zorder 2 at t11
     mc "You must be in a good mood now..."
     y 1a "Is that so?"
     y "I was letting it show..."
@@ -449,7 +452,7 @@ label yuri_exclusive2_2_ch22:
     y "So that's why we should sit on the floor."
     mc "Fair enough."
     mc "I'll go ahead and get the book."
-    show yuri at thide zorder 1
+    show yuri zorder 1 at thide
     hide yuri
     "I retrieve the book from my bag."
     mc "Ah, I have some chocolate as well..."
@@ -459,7 +462,7 @@ label yuri_exclusive2_2_ch22:
     "As if in sync, we assume the same reading position as last time, each holding one half of the book."
     "Except this time..."
     "Our bodies are even closer to each other."
-    show yuri 2h at t11 zorder 2
+    show yuri 2h zorder 2 at t11
     y "I can't see too well..."
     mc "--!"
     show yuri 2e at d11
@@ -493,6 +496,7 @@ label yuri_exclusive2_2_ch22:
     mc "Are you sure...?"
     y "Of course."
     $ persistent.clear[3] = True
+    $ renpy.save_persistent()
     scene y_cg2_bg
     show y_cg2_base
     show y_cg2_details
@@ -530,7 +534,7 @@ label yuri_exclusive2_2_ch22:
     y "U-Um..."
     y "[player]..."
     mc "S-Sorry!"
-    mc "I guess I shouldn't have done that..." 
+    mc "I guess I shouldn't have done that..."
     stop music
     y "A-Ah..."
     "Yuri starts to breathe heavily."
@@ -540,7 +544,7 @@ label yuri_exclusive2_2_ch22:
     "Suddenly, Yuri forcefully grabs my arm and jerks me to my feet."
     "My teacup gets knocked over."
     scene bg closet
-    show yuri 2t at t11 zorder 2
+    show yuri 2t zorder 2 at t11
     with wipeleft
     y "[player]..."
     play sound closet_close
@@ -563,13 +567,13 @@ label yuri_exclusive2_2_ch22:
     y "...at you."
     hide yuri
     show yuri eyes
-    pause 3.0
+    $ pause(3.0)
     y "...Haah..."
-    pause 3.0
+    $ pause(3.0)
     y "...Haah..."
-    pause 3.0
+    $ pause(3.0)
     y "...Haah..."
-    pause 3.0
+    $ pause(3.0)
     play sound closet_open
     stop music
     show layer master
@@ -578,7 +582,7 @@ label yuri_exclusive2_2_ch22:
     with None
     show yuri 3n at t32 with None
     hide dark
-    show monika 3l at f31 zorder 3
+    show monika 3l zorder 3 at f31
     with wipeleft
     m "U-Um..."
     m "It's...time to share poems..."
@@ -589,14 +593,15 @@ label yuri_exclusive2_2_ch22:
     return
 
 label yuri_exclusive2_2_ch23:
+    $ config.skipping = False
     scene black
     with None
     $ audio.t6g = "<loop 10.893>bgm/6g.ogg"
     play music t6g
-    pause 4.62
+    $ pause(4.62)
     scene bg corridor
     show yuri eyes_base
-    pause 1.0
+    $ pause(1.0)
     show bg glitch:
         yoffset 480 ytile 2
         linear 0.25 yoffset 0
@@ -605,10 +610,11 @@ label yuri_exclusive2_2_ch23:
     $ gtext = glitchtext(80)
     $ currentpos = get_pos()
     play music g1
-    y "[gtext]{nw}"
+    y "{cps=70}[gtext]{nw}"
     stop music
     scene bg corridor
     show yuri 2n at i11
+    $ quick_menu = True
     y "Um..."
     y "Wait..."
     y 2o "How did I..."
@@ -641,7 +647,7 @@ label yuri_exclusive2_2_ch23:
 
     play music t9
     y "Everyone has a few unusual things about them."
-    y 1v "But expressing those things so soon after meeting someone is usually seen as inappropriate...or unlikeable."
+    y 1v "But expressing those things so soon after meeting someone is usually seen as inappropriate...or unlikable."
     y "At least, that's what I've discovered."
     y "When I was a bit younger, I think I would come on really strongly and get a little too intense..."
     y "It made people not want to be around me."
@@ -684,127 +690,127 @@ label yuri_exclusive2_2_ch23:
             alpha 0.0
             1.49
             repeat
-    pause 2.0
+    $ pause(2.0)
     $ ad = 40.0
     $ ac = 1.0
-    show monika 1 at malpha(ac / ad) onlayer front
+    show monika 1 onlayer front at malpha(ac / ad)
     y 1s "I just want to stay here."
     $ ac += 0
-    show monika 1 at malpha(ac / ad) onlayer front
+    show monika 1 onlayer front at malpha(ac / ad)
     y "Just the two of us."
     $ ac += 0
-    show monika 1 at malpha(ac / ad) onlayer front
+    show monika 1 onlayer front at malpha(ac / ad)
     y "We can stay here until the club ends."
     $ ac += 0
-    show monika 1 at malpha(ac / ad) onlayer front
+    show monika 1 onlayer front at malpha(ac / ad)
     y 1m "And then we'll have the clubroom all to ourselves."
     $ ac += 0.5
-    show monika 1 at malpha(ac / ad) onlayer front
+    show monika 1 onlayer front at malpha(ac / ad)
     y "Nobody to interfere with our reading time."
     $ ac += 0.5
-    show monika 1 at malpha(ac / ad) onlayer front
+    show monika 1 onlayer front at malpha(ac / ad)
     y 1y4 "Nobody to make me feel like stabbing myself in the throat."
     $ ac += 0.5
-    show monika 1 at malpha(ac / ad) onlayer front
+    show monika 1 onlayer front at malpha(ac / ad)
     y 1q "Ahaha..."
     $ ac += 0.5
-    show monika 1 at malpha(ac / ad) onlayer front
+    show monika 1 onlayer front at malpha(ac / ad)
     y "That was a joke!"
     $ ac += 0.5
-    show monika 1 at malpha(ac / ad) onlayer front
+    show monika 1 onlayer front at malpha(ac / ad)
     y "Just a joke."
     $ ac += 0.5
-    show monika 1 at malpha(ac / ad) onlayer front
+    show monika 1 onlayer front at malpha(ac / ad)
     y 1i "I do like knives, though..."
     $ ac += 0.5
-    show monika 1 at malpha(ac / ad) onlayer front
+    show monika 1 onlayer front at malpha(ac / ad)
     y "It sounds strange, but you wouldn't understand if you've never seen how beautiful they can be."
     $ ac += 0.5
-    show monika 1 at malpha(ac / ad) onlayer front
+    show monika 1 onlayer front at malpha(ac / ad)
     y 1f "I have an idea."
     $ ac += 1
-    show monika 1 at malpha(ac / ad) onlayer front
+    show monika 1 onlayer front at malpha(ac / ad)
     y "Why don't you come to my house sometime?"
     $ ac += 1
-    show monika 1 at malpha(ac / ad) onlayer front
+    show monika 1 onlayer front at malpha(ac / ad)
     y 1y6 "I can show you my collection."
     $ ac += 1
-    show monika 1 at malpha(ac / ad) onlayer front
+    show monika 1 onlayer front at malpha(ac / ad)
     y "I've gotten them all from various artisans."
     $ ac += 1
-    show monika 1 at malpha(ac / ad) onlayer front
+    show monika 1 onlayer front at malpha(ac / ad)
     y 1a "I make sure to give them all their fair share of use."
     $ ac += 1
-    show monika 1 at malpha(ac / ad) onlayer front
+    show monika 1 onlayer front at malpha(ac / ad)
     y 1m "I don't want them to get lonely or anything..."
     $ ac += 1
-    show monika 1 at malpha(ac / ad) onlayer front
+    show monika 1 onlayer front at malpha(ac / ad)
     y 1y6 "Nobody deserves to be lonely."
     $ ac += 1
-    show monika 1 at malpha(ac / ad) onlayer front
+    show monika 1 onlayer front at malpha(ac / ad)
     y 1y4 "Nobody."
     $ ac += 1
-    show monika 1 at malpha(ac / ad) onlayer front
+    show monika 1 onlayer front at malpha(ac / ad)
     y 1c "And that's why I'm so happy you joined the Literature Club, [player]."
     $ ac += 1
-    show monika 1 at malpha(ac / ad) onlayer front
+    show monika 1 onlayer front at malpha(ac / ad)
     y 1a "Now we don't need to be lonely anymore."
     $ ac += 1
-    show monika 1 at malpha(ac / ad) onlayer front
+    show monika 1 onlayer front at malpha(ac / ad)
     y "Because we have each other."
     $ ac += 1
-    show monika 1 at malpha(ac / ad) onlayer front
+    show monika 1 onlayer front at malpha(ac / ad)
     y "Every day."
     $ ac += 1
-    show monika 1 at malpha(ac / ad) onlayer front
+    show monika 1 onlayer front at malpha(ac / ad)
     y "That's all we need."
     $ ac += 1
-    show monika 1 at malpha(ac / ad) onlayer front
+    show monika 1 onlayer front at malpha(ac / ad)
     y 1y6 "You know what?"
     $ ac += 1
-    show monika 1 at malpha(ac / ad) onlayer front
+    show monika 1 onlayer front at malpha(ac / ad)
     y "Let's quit the Literature Club."
     $ ac += 1
-    show monika 1 at malpha(ac / ad) onlayer front
+    show monika 1 onlayer front at malpha(ac / ad)
     y "There's no need for us to be around Monika's slimy tongue anymore."
     $ ac += 1
-    show monika 1 at malpha(ac / ad) onlayer front
+    show monika 1 onlayer front at malpha(ac / ad)
     y 1y4 "Not to mention that other pathetic child."
     $ ac += 1
-    show monika 1 at malpha(ac / ad) onlayer front
+    show monika 1 onlayer front at malpha(ac / ad)
     y 1s "We can walk home together every day after school."
     $ ac += 1
-    show monika 1 at malpha(ac / ad) onlayer front
+    show monika 1 onlayer front at malpha(ac / ad)
     y "And read together."
     $ ac += 1
-    show monika 1 at malpha(ac / ad) onlayer front
+    show monika 1 onlayer front at malpha(ac / ad)
     y 1m "Eat together."
     $ ac += 1
-    show monika 1 at malpha(ac / ad) onlayer front
+    show monika 1 onlayer front at malpha(ac / ad)
     y "Sleep together."
     $ ac += 1
-    show monika 1 at malpha(ac / ad) onlayer front
+    show monika 1 onlayer front at malpha(ac / ad)
     y 1s "Doesn't that sound perfect?"
     $ ac += 2
-    show monika 1 at malpha(ac / ad) onlayer front
+    show monika 1 onlayer front at malpha(ac / ad)
     y "It's everything we could ever want."
     $ ac += 2
-    show monika 1 at malpha(ac / ad) onlayer front
+    show monika 1 onlayer front at malpha(ac / ad)
     y 1a "Isn't that why you joined the club in the first place?"
     $ ac += 2
-    show monika 1 at malpha(ac / ad) onlayer front
+    show monika 1 onlayer front at malpha(ac / ad)
     y "It's almost like it was fate."
     $ ac += 2
-    show monika 1 at malpha(ac / ad) onlayer front
+    show monika 1 onlayer front at malpha(ac / ad)
     y "Fate that we would meet each other."
     $ ac += 2
-    show monika 1 at malpha(ac / ad) onlayer front
+    show monika 1 onlayer front at malpha(ac / ad)
     y "And now we get the happy ending that I've patiently waited years for."
     $ ac += 2
-    show monika 1 at malpha(ac / ad) onlayer front
+    show monika 1 onlayer front at malpha(ac / ad)
     y "Will you do that with me, [player]?"
     $ ac += 2
-    show monika 1 at malpha(ac / ad) onlayer front
+    show monika 1 onlayer front at malpha(ac / ad)
     $ gtext = glitchtext(200)
     y "Will{space=60}[gtext]{nw}"
     hide monika onlayer front

@@ -2,7 +2,7 @@ label ch4_main:
     stop music fadeout 2.0
     scene bg residential_day
     with dissolve_scene_full
-    
+
     play music t6
 
     "It's already Sunday."
@@ -44,9 +44,9 @@ label ch4_main:
     scene bg sayori_bedroom with wipeleft
     mc "Sayori?"
     play music t10
-    show sayori 1ba  at t11 zorder 2
+    show sayori 1ba zorder 2 at t11
     s "Hi [player]~"
-    show sayori 1by 
+    show sayori 1by
     "I sit down in her room."
     "Sayori forces a smile, but it's easy to tell that she's different."
     "There's a minute of silence between us."
@@ -75,7 +75,7 @@ label ch4_main:
     mc "Ah, so it's just me and [ch4_name], then..."
     s 1ba "Yep~"
     "There's more silence between us."
-    show sayori 1bk 
+    show sayori 1bk
     "Sayori stares in a random direction."
     "Everything about her behavior is really uncharacteristic."
     "I finally get to the point."
@@ -100,7 +100,7 @@ label ch4_main:
     s "It just wants to torture me."
     s 4bq "Ehehe~"
     mc "Sayori!"
-    show sayori 4bb 
+    show sayori 4bb
     "I grab Sayori by the shoulders."
     mc "What on Earth are you saying?!"
     mc "Are you listening to yourself right now?"
@@ -228,7 +228,7 @@ label ch4_main:
     s "Your hugs are so warm..."
     s "...And that's really scary, too."
     scene bg sayori_bedroom
-    show sayori 1bv  at i11 zorder 2
+    show sayori 1bv zorder 2 at i11
     with dissolve_cg
     "Sayori lets me go."
     "As she does so, I let her go as well."
@@ -274,8 +274,8 @@ label ch4_main:
     "I think Sayori is right."
     "I shouldn't be worrying too much, and we're definitely going to have a great time tomorrow."
     "I should just focus on what's ahead of me!"
-    call expression "ch4_exclusive_" + ch4_scene from _call_expression_2
-    call ch4_end from _call_ch4_end
+    call expression "ch4_exclusive_" + ch4_scene
+    call ch4_end
 
     return
 
@@ -286,7 +286,7 @@ label ch4_exclusive_natsuki:
     "I spend only a few minutes back at home anxiously awaiting Natsuki's arrival."
     "Before I know it, she texts me to let me know she's outside the front door."
     "Without delay, I open the front door to let her in."
-    show natsuki 2bj at t11 zorder 2
+    show natsuki 2bj zorder 2 at t11
     mc "..."
     n "'Sup?"
     mc "...Hey."
@@ -296,7 +296,7 @@ label ch4_exclusive_natsuki:
     n "It's gonna be a long afternoon, so don't be weird just because you're not used to seeing me outside of school."
     n "Anyway, I'm coming in."
     scene bg kitchen
-    show natsuki 1bj at t11 zorder 2
+    show natsuki 1bj zorder 2 at t11
     with wipeleft
     mc "I see you brought a lot of stuff..."
     "Natsuki is carrying a large bag that is probably full of baking supplies."
@@ -383,7 +383,7 @@ label ch4_exclusive_natsuki:
     "Spoons, dirty bowls, flour, spilled fluid, and plastic bags are strewn about every countertop."
     "The mixer isn't big enough to make all the batter at once, so we've had to do it several times."
     "Meanwhile, Natsuki is babysitting all of my movements to make sure I don't mess up her precious baking."
-    show natsuki 2bk at t11 zorder 2
+    show natsuki 2bk zorder 2 at t11
     n "[player], where did you put the food coloring?"
     n "The batter's going in the oven soon, so I need to fill the trays."
     mc "I think it's still in the bag next to the table."
@@ -457,6 +457,7 @@ label ch4_exclusive_natsuki:
     "I grab her wrist with my hand before it reaches my face."
     "Natsuki tries to use her other hand to fight back, but I grab that one as well."
     $ persistent.clear[4] = True
+    $ renpy.save_persistent()
     scene n_cg3_base
     show n_cg3_exp1
     show n_cg3_cake
@@ -500,7 +501,7 @@ label ch4_exclusive_natsuki:
     "Natsuki rushes over to the oven."
     mc "Is something burning?"
     mc "I thought you didn't put the cupcakes in yet."
-    show natsuki 1bw at t11 zorder 2
+    show natsuki 1bw zorder 2 at t11
     n "{i}*Cough*{/i}"
     n "No wonder..."
     n 1bb "You left a dirty tray in here, dummy!"
@@ -520,7 +521,7 @@ label ch4_exclusive_natsuki:
     "Then, I reluctantly pick up the whisk and continue with the icing, like nothing ever happened."
 
     scene bg kitchen
-    show natsuki 4bz at t11 zorder 2
+    show natsuki 4bz zorder 2 at t11
     with wipeleft_scene
     n "Ahh, that smells so good!"
     "The cupcakes are ready to be pulled out of the oven."
@@ -572,7 +573,7 @@ label ch4_exclusive_natsuki:
 
     scene bg kitchen with wipeleft_scene
     "When we're finally finished, Natsuki puts them all side by side to admire our work."
-    show natsuki 4bl at t11 zorder 2
+    show natsuki 4bl zorder 2 at t11
     n "Look at how pretty they are together!"
     mc "Yeah, they are, aren't they?"
     n 1bm "Uu... I wish I could have one now!"
@@ -603,12 +604,12 @@ label ch4_exclusive_natsuki:
     n "I wish she would listen to me the way she listens to you."
     mc "Ah..."
     mc "Yeah."
-    show natsuki at thide zorder 1
+    show natsuki zorder 1 at thide
     hide natsuki
     "I again think back to the conversation I had with Sayori earlier today."
     "I felt so helpless."
     "Sayori always does listen to me, but at that point it felt like she couldn't listen to me at all."
-    show natsuki 4bl at t11 zorder 2
+    show natsuki 4bl zorder 2 at t11
     n "Okay, I'm all packed up."
     n "Good work today!"
     mc "You too."
@@ -619,7 +620,7 @@ label ch4_exclusive_natsuki:
     "It feels like the afternoon went by in a flash."
     "More than that..."
     "Did I even take the opportunity to get closer to her, like I wanted?"
-    show natsuki 1bh at t11 zorder 2
+    show natsuki 1bh zorder 2 at t11
     n "Well..."
     n "I guess I'll be off, then..."
     n 1bq "Thanks for all the help and everything..."
@@ -658,12 +659,12 @@ label ch4_exclusive_natsuki:
     n 1bh "I've felt it..."
     n "For a while now..."
     n 1bo "--!!"
-    show natsuki at t11 zorder 2
+    show natsuki zorder 2 at t11
     "Natsuki suddenly jumps back."
     n "S-Sayori?!"
     mc "Eh?!"
-    show natsuki at t22 zorder 2
-    show sayori 1bl  at f21 zorder 3
+    show natsuki zorder 2 at t22
+    show sayori 1bl zorder 3 at f21
     s "Ah..."
     s "H-Hi, [player]..."
     mc "Sayori--!"
@@ -671,18 +672,18 @@ label ch4_exclusive_natsuki:
     s 1bq "Ehehe~"
     s "It's okay, [player]."
     s 1ba "I just stopped by to say hi~"
-    show sayori at t21 zorder 2
-    show natsuki at f22 zorder 3
+    show sayori zorder 2 at t21
+    show natsuki zorder 3 at f22
     n 5bq "A-Ah..."
     n "Well..."
     n 5bw "Y-You should have come a little earlier!"
     n "I'm already on my way out, so..."
-    show natsuki at t22 zorder 2
-    show sayori at f21 zorder 3
+    show natsuki zorder 2 at t22
+    show sayori zorder 3 at f21
     s 1bh "Aw, really?"
     s "That's too bad..."
-    show sayori at t21 zorder 2
-    show natsuki at f22 zorder 3
+    show sayori zorder 2 at t21
+    show natsuki zorder 3 at f22
     n 2bq "Yeah, well..."
     n "I'll still see you at the festival tomorrow, so it's fine."
     n 2bb "Just don't eat any cupcakes before then!"
@@ -697,7 +698,7 @@ label ch4_exclusive_yuri:
     scene bg house with wipeleft_scene
     "As I approach my house, I see something that makes me feel a moment of panic."
     mc "Yuri--?"
-    show yuri 2bq at t11 zorder 2
+    show yuri 2bq zorder 2 at t11
     y "Ah..."
     y "Thank goodness..."
     mc "You're a little early..."
@@ -720,7 +721,7 @@ label ch4_exclusive_yuri:
     scene bg bedroom with wipeleft
     "I take Yuri to my room."
     "The first thing she does is glance around curiously, which makes me feel anxious."
-    show yuri 2bm at t11 zorder 2
+    show yuri 2bm zorder 2 at t11
     y "It's so clean..."
     mc "Ahaha..."
     mc "I cleaned it before you came over, so..."
@@ -817,12 +818,12 @@ label ch4_exclusive_yuri:
     y "Did you purchase the origami paper I asked you to get?"
     mc "Yeah, I have it over here..."
     y "We won't be using the paper for folding origami."
-    y "What I'd like to do is write a different kanji character on each paper."
+    y "What I'd like to do is write a different word on each paper."
     y "We'll need about a hundred of them."
     mc "Oh yeah?"
     mc "What will those be used for?"
     y 2bf "Well, I'm going to cut pieces of ribbon to hang from the doorway of the classroom."
-    y "Then, we can fasten the kanji paper onto the ribbons to create a doorway curtain."
+    y "Then, we can fasten the paper onto the ribbons to create a doorway curtain."
     y 2bm "Wouldn't that be beautiful?"
     y "It would also catch the eye of those passing by the room..."
     y 2ba "It may attract some to peek inside."
@@ -945,14 +946,14 @@ label ch4_exclusive_yuri:
     "The tension is quickly lifted."
     "We each resume our respective activities."
     "I watch Yuri's knife cut through the ribbon like it's nothing but air."
-    "Meanwhile, I continue to make progress on the kanji."
+    "Meanwhile, I continue to make progress on the paper."
 
     scene bg bedroom with wipeleft_scene
     "After we finish attaching the paper to the ribbons, we lay them all out side by side."
     "It looks better than I expected and will be very effective as a door curtain."
     mc "It looks great."
     mc "Good thinking coming up with this, Yuri."
-    show yuri 1bq at t11 zorder 2
+    show yuri 1bq zorder 2 at t11
     y "Ah, thanks..."
     y "It's just something I saw online, really."
     y 1ba "Are you ready to move onto the next task?"
@@ -975,7 +976,7 @@ label ch4_exclusive_yuri:
     "Taking Yuri's advice, I decide to use small plastic bathroom cups rather than full-sized glasses."
     "I put them on a plate to catch any paint that drips, then bring it back into my room."
     mc "Yuri?"
-    show yuri 1bd at t11 zorder 2
+    show yuri 1bd zorder 2 at t11
     y "Yes?"
     "I come in to see Yuri quickly unrolling her sleeve, pulling it back over her arm."
     mc "Ah, nothing..."
@@ -998,14 +999,14 @@ label ch4_exclusive_yuri:
     y "...It will be more fun to surprise you."
     "Yuri smiles at me."
     mc "If you say so..."
-    show yuri at thide zorder 1
+    show yuri zorder 1 at thide
     hide yuri
     "After rolling out the banner, Yuri and I kneel on opposite sides so we don't get in the way of each other."
     "Yuri uses a brush and adds a few dots of different colors across the banner to serve as a color guide when we paint."
     mc "This kind of reminds me of elementary school..."
     "Painting on a banner with watercolors feels a lot like the art class projects we had back then."
     "It's relaxing."
-    show yuri 2bt at t11 zorder 2
+    show yuri 2bt zorder 2 at t11
     y "Ah..."
     y "I'm sorry if this feels too childish...!"
     mc "No, I didn't mean that at all."
@@ -1043,11 +1044,12 @@ label ch4_exclusive_yuri:
     mc "Yeah, I accidentally got paint on you..."
     mc "Sorry, it's totally my fault!"
     mc "I'll get a towel right away."
-    show yuri at thide zorder 1
+    show yuri zorder 1 at thide
     hide yuri
     "I rush out and fetch a small towel, then I dampen it with hot water."
     "I return to my room and kneel back down in front of her."
     $ persistent.clear[5] = True
+    $ renpy.save_persistent()
     scene y_cg3_base with dissolve_cg
     mc "Here..."
     "I pat down Yuri's face and neck with the towel."
@@ -1091,9 +1093,9 @@ label ch4_exclusive_yuri:
 
     scene bedroom with wipeleft_scene
     mc "That should do it..."
-    "I finish filling the night sky with white dots that looks like stars."
+    "I finish filling the night sky with white dots that look like stars."
     "Looking at the banner as a whole, it's very pretty and natural-looking."
-    show yuri 1ba at t11 zorder 2
+    show yuri 1ba zorder 2 at t11
     y "I think it came out better than I expected."
     y "I'm really happy with the results."
     mc "Yeah, me too."
@@ -1142,7 +1144,7 @@ label ch4_exclusive_yuri:
 
     scene bg house with wipeleft_scene
     "Once Yuri packs up, I walk her out the front door."
-    show yuri 1ba at t11 zorder 2
+    show yuri 1ba zorder 2 at t11
     y "Thank you very much for having me today."
     mc "No problem, I'm glad I was able to help."
     mc "Just let me know if there's anything else you need me to bring tomorrow."
@@ -1170,11 +1172,11 @@ label ch4_exclusive_yuri:
     mc "Well..."
     "How am I supposed to respond to that?"
     "But I don't even get a chance to, as Yuri suddenly pulls back."
-    show yuri 3bn at t11 zorder 2
+    show yuri 3bn zorder 2 at t11
     y "S-Sayori--?"
     mc "Eh?!"
-    show sayori 1bl  at f21 zorder 3
-    show yuri at t22 zorder 2
+    show sayori 1bl zorder 3 at f21
+    show yuri zorder 2 at t22
     s "Ah..."
     s "H-Hi, [player]..."
     mc "Sayori--!"
@@ -1182,27 +1184,27 @@ label ch4_exclusive_yuri:
     s 1bq "Ehehe~"
     s "It's okay, [player]."
     s 1ba "I just stopped by to say hi~"
-    show sayori at t21 zorder 2
-    show yuri at f22 zorder 3
+    show sayori zorder 2 at t21
+    show yuri zorder 3 at f22
     y 3bq "U-Um..."
     y "Well, it's nice to see you..."
     y 3bv "I'm sorry, but I'm already on my way to leave!"
-    show yuri at t22 zorder 2
-    show sayori at f21 zorder 3
+    show yuri zorder 2 at t22
+    show sayori zorder 3 at f21
     s 1bh "Aw, really?"
     s "That's too bad..."
-    show sayori at t21 zorder 2
-    show yuri at f22 zorder 3
+    show sayori zorder 2 at t21
+    show yuri zorder 3 at f22
     y 2bt "I'm sorry..."
     y "But we'll all be together at the festival tomorrow, so..."
     y "So that's fine, right?"
-    show yuri at t22 zorder 2
-    show sayori at f21 zorder 3
+    show yuri zorder 2 at t22
+    show sayori zorder 3 at f21
     s 4bq "Of course!"
     "Sayori beams."
-    show sayori 4ba 
-    show sayori at t21 zorder 2
-    show yuri at f22 zorder 3
+    show sayori 4ba
+    show sayori zorder 2 at t21
+    show yuri zorder 3 at f22
     y 4bc "Y-Yeah, so..."
     y "I'll see you tomorrow!"
     show yuri at lhide
@@ -1215,7 +1217,7 @@ label ch4_exclusive_yuri:
 
 label ch4_end:
     play music t10 fadeout 2.0
-    show sayori 1ba  at t11 zorder 2
+    show sayori 1ba zorder 2 at t11
     mc "Sayori--"
     mc "I thought you didn't want to come over today!"
     s 2bl "Ahaha, well..."
@@ -1284,15 +1286,15 @@ label ch4_end:
 
     menu:
         mc "Sayori..."
-
         "I love you.":
+
             $ sayori_confess = True
             hide black with dissolve_cg
-            call ch4_end_yes from _call_ch4_end_yes
+            call ch4_end_yes
         "You'll always be my dearest friend.":
             $ sayori_confess = False
             hide black with dissolve_cg
-            call ch4_end_no from _call_ch4_end_no
+            call ch4_end_no
 
     return
 
@@ -1312,6 +1314,7 @@ label ch4_end_yes:
     mc "Then I know we'll both be happy."
     s "[player]..."
     $ persistent.clear[8] = True
+    $ renpy.save_persistent()
     scene s_cg3 with dissolve_cg
     "Suddenly, Sayori wraps her arms tightly around me."
     s "[player]..."
@@ -1339,7 +1342,7 @@ label ch4_end_yes:
     s "O-Okay..."
     s "I...trust you..."
     scene bg house
-    show sayori 1bv  at i11 zorder 2
+    show sayori 1bv zorder 2 at i11
     with dissolve_cg
     "Sayori and I slowly release each other."
     mc "So..."
@@ -1368,7 +1371,7 @@ label ch4_end_yes:
     mc "...Yeah."
     mc "I do."
     mc "That's my promise."
-    show sayori at thide zorder 1
+    show sayori zorder 1 at thide
     hide sayori
     "I say that, but in reality, I've never felt more uncertain when it comes to Sayori."
     "I know that I love her, and she loves me."
@@ -1416,14 +1419,14 @@ label ch4_end_no:
     s 4bv "I'll trust you with anything..."
     s "Anything at all..."
     s "So..."
-    show sayori at thide zorder 1
+    show sayori zorder 1 at thide
     hide sayori
     "Sayori's smile finally breaks."
     "All of a sudden, she turns around and drops to her knees."
     s "{i}AAAAAaaaaAAAAAAAAHH!!!!{/i}"
     "Clutching her head with both hands, she screams as loudly as she can."
     "I'm so shocked that I don't know how to react."
-    show sayori 4bt  at t11 zorder 2
+    show sayori 4bt zorder 2 at t11
     s "..."
     show sayori at lhide
     hide sayori

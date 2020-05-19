@@ -290,8 +290,8 @@ image s_kill_bg_zoom:
         xalign 0.2 yalign 0.3 zoom 2.0
     dizzy(0.25, 1.0)
 
-transform dizzy(m, t):
-    subpixel True
+transform dizzy(m, t, subpixel=True):
+    subpixel subpixels
     parallel:
         xoffset 0
         ease 0.75 * t xoffset 10 * m

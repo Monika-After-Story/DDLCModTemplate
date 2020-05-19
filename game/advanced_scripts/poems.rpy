@@ -486,7 +486,7 @@ Bright, beautiful colors
 Flashing, expanding, piercing
 Red, green, blue
 An endless
-cacophany
+cacophony
 Of meaningless
 noise
 
@@ -513,7 +513,7 @@ Bright, bea t ful c l rs
 Flash ng, exp nd ng, piercing
 Red, green, blue
 An  ndless
-CACOPHANY
+CACOPHONY
 Of meaningless
 noise
 
@@ -595,7 +595,7 @@ Not all good times must come to an end."""
     )
 
 #These are the images used to show a poem
-image paper =  "images/bg/poem.jpg"
+image paper = "images/bg/poem.jpg"
 
 #This is the glitchy paper
 image paper_glitch = LiveComposite((1280, 720), (0, 0), "paper_glitch1", (0, 0), "paper_glitch2")
@@ -628,23 +628,23 @@ screen poem(currentpoem, paper="paper"):
         child_size (710, None) #Subwindow size for showing text
         mousewheel True #make scrollable
         draggable True
-        vbox:
-            null height 40
-            #Text style is determine by the author
-            if currentpoem.author == "yuri":
-                if currentpoem.yuri_2:
-                    text "[currentpoem.title]\n\n[currentpoem.text]" style "yuri_text"
-                elif currentpoem.yuri_3:
-                    text "[currentpoem.title]\n\n[currentpoem.text]" style "yuri_text_3"
-                else:
-                    text "[currentpoem.title]\n\n[currentpoem.text]" style "yuri_text"
-            elif currentpoem.author == "sayori":
-                text "[currentpoem.title]\n\n[currentpoem.text]" style "sayori_text"
-            elif currentpoem.author == "natsuki":
-                text "[currentpoem.title]\n\n[currentpoem.text]" style "natsuki_text"
-            elif currentpoem.author == "monika":
-                text "[currentpoem.title]\n\n[currentpoem.text]" style "monika_text"
-            null height 100
+        has vbox
+        null height 40
+        #Text style is determine by the author
+        if currentpoem.author == "yuri":
+            if currentpoem.yuri_2:
+                text "[currentpoem.title]\n\n[currentpoem.text]" style "yuri_text"
+            elif currentpoem.yuri_3:
+                text "[currentpoem.title]\n\n[currentpoem.text]" style "yuri_text_3"
+            else:
+                text "[currentpoem.title]\n\n[currentpoem.text]" style "yuri_text"
+        elif currentpoem.author == "sayori":
+            text "[currentpoem.title]\n\n[currentpoem.text]" style "sayori_text"
+        elif currentpoem.author == "natsuki":
+            text "[currentpoem.title]\n\n[currentpoem.text]" style "natsuki_text"
+        elif currentpoem.author == "monika":
+            text "[currentpoem.title]\n\n[currentpoem.text]" style "monika_text"
+        null height 100
     vbar value YScrollValue(viewport="vp") style "poem_vbar"
 
     #use quick_menu
@@ -731,14 +731,19 @@ label showpoem(poem=None, music=True, track=None, revert_music=True, img=None, w
         stop music fadeout 2.0
         $ renpy.music.play(audio.t5b, channel="music_poem", fadein=2.0, tight=True)
     window hide
+    $ renpy.game.preferences.afm_enable = False
 
     #Show the background paper
     if paper:
         show screen poem(poem, paper=paper)
-        with Dissolve(1)
     else:
         show screen poem(poem)
-        with Dissolve(1)
+    if not persistent.first_poem:
+        $ persistent.first_poem = True
+        $ renpy.save_persistent()
+        show expression "gui/poem_dismiss.png" as poem_dismiss:
+            xpos 1050 ypos 590
+    with Dissolve(1)
     $ pause()
 
     #Show an optional character in the background
@@ -746,6 +751,7 @@ label showpoem(poem=None, music=True, track=None, revert_music=True, img=None, w
         $ renpy.hide(poem.author)
         $ renpy.show(img, at_list=[where])
     hide screen poem
+    hide poem_dismiss
     with Dissolve(.5)
     window auto
     #After the poem is done, switch back to regular version of Okay, Everyone!
