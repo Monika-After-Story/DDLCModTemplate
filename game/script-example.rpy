@@ -44,7 +44,7 @@ label example_chapter:
         m 2b "Looks like you're ahead of me on that one."
         m "Way to take the initiative!"
     else:
-        m 2b "You can find the source for it online at {a=https://github.com/therationalpi/DDLCModTemplate}https://github.com/therationalpi/DDLCModTemplate{/a}"
+        m 2b "You can find the source for it online at {a=https://github.com/therationalpi/DDLCModTemplate}github.com/therationalpi/DDLCModTemplate{/a}"
         m "If you haven't already, of course."
 
     m 1a "Then you need to add files from DDLC."
@@ -56,7 +56,7 @@ label example_chapter:
         m 1b "Kind of like what you did to make this demo work!"
 
     m 1a "Finally, you're going to want to download the Ren'Py SDK."
-    m 2a "That's at {a=https://www.renpy.org/latest.html}https://www.renpy.org/latest.html{/a}"
+    m 2a "That's at {a=https://www.renpy.org/latest.html}www.renpy.org/latest.html{/a}"
     if config.developer:
         m 2j "I promise I'll get to the good stuff now."
     else:
