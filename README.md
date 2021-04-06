@@ -1,3 +1,7 @@
+# This is not maintained regularly
+
+See [version 2](https://github.com/GanstaKingofSA/DDLCModTemplate2.0) for the latest features and renpy 7+/android support.
+
 # Welcome to the Modification Club!
 
 The DDLC Mod Template is an easy way to get started building your own game mods for Doki Doki Literature Club that adhere to [Team Salvato's IP Guidelines](http://teamsalvato.com/ip-guidelines/) for fan mods.
