@@ -37,7 +37,7 @@ init python:
         def render(self, width, height, st, at):
             render = renpy.Render(self.width, self.height)
             if st >= self.delay:
-              render.blit(self.srf, (0, 0))
+                render.blit(self.srf, (0, 0))
             return render
 
     #Hide all windows, revealing the background
@@ -188,7 +188,7 @@ init python:
 #splash.rpy:
 #ParticleBurst("gui/menu_particle.png", explodeTime=0, numParticles=20, particleTime=2.0, particleXSpeed=6, particleYSpeed=4).sm
     class ParticleBurst(object):
-        def __init__(self, theDisplayable, explodeTime=0, numParticles=20, particleTime = 0.500, particleXSpeed = 3, particleYSpeed = 3):
+        def __init__(self, theDisplayable, explodeTime=0, numParticles=20, particleTime = 0.500, particleXSpeed = 3, particleYSpeed = 5):
             self.sm = SpriteManager(update=self.update)
             # A list of (sprite, starting-x, speed).
             self.stars = [ ]
@@ -198,7 +198,7 @@ init python:
             self.particleTime = particleTime #How long do the partcles last
             self.particleXSpeed = particleXSpeed #Average particle speed
             self.particleYSpeed = particleYSpeed
-            self.gravity = 3 #How fast do paricles fall
+            self.gravity = 240 #How fast do paricles fall
             self.timePassed = 0
 
             for i in range(self.numParticles):
@@ -206,10 +206,12 @@ init python:
 
         def add(self, d, speed):
             s = self.sm.create(d)
-            ySpeed = (random.random() - 0.5) * self.particleYSpeed
-            xSpeed = (random.random() - 0.5) * self.particleXSpeed
-            s.x += xSpeed * 40
-            s.y += ySpeed * 40
+            speed = random.random()
+            angle = random.random() * 3.14159 * 2
+            xSpeed = speed * math.cos(angle) * self.particleXSpeed
+            ySpeed = speed * math.sin(angle) * self.particleYSpeed - 1
+            s.x = xSpeed * 24
+            s.y = ySpeed * 24
             pTime = self.particleTime
             self.stars.append((s, ySpeed, xSpeed, pTime))
 
@@ -217,8 +219,8 @@ init python:
             sindex=0
             for s, ySpeed, xSpeed, particleTime in self.stars:
                 if (st < particleTime):
-                    s.x += xSpeed
-                    s.y += (ySpeed + (self.gravity * st))
+                    s.x = xSpeed * 120 * (st + .20)
+                    s.y = (ySpeed * 120 * (st + .20) + (self.gravity * st * st))
                 else:
                     s.destroy()
                     self.stars.pop(sindex)

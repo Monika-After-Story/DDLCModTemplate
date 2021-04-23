@@ -14,14 +14,15 @@ label poemresponse_start:
         if not renpy.music.get_playing():
             play music t5
     label poemresponse_start2:
+        $ skip_poem = False
         if persistent.playthrough == 2:
             $ pt = "2"
         else:
             $ pt = ""
         if poemsread == 0:
-            $ menutext = "Whom should I show my poem to first?"
+            $ menutext = "Who should I show my poem to first?"
         else:
-            $ menutext = "Whom should I show my poem to next?"
+            $ menutext = "Who should I show my poem to next?"
 
         menu:
             "[menutext]"
@@ -64,7 +65,7 @@ label poemresponse_start:
 
 label poemresponse_sayori:
     scene bg club_day
-    show sayori 1a at t11 zorder 2
+    show sayori 1a zorder 2 at t11
     with wipeleft_scene
     $ poemopinion = "med"
     if s_poemappeal[chapter - 1] < 0:
@@ -80,7 +81,7 @@ label poemresponse_sayori:
 
 label poemresponse_natsuki:
     scene bg club_day
-    show natsuki 1c at t11 zorder 2
+    show natsuki 1c zorder 2 at t11
     with wipeleft_scene
     $ poemopinion = "med"
     if n_poemappeal[chapter - 1] < 0:
@@ -96,7 +97,7 @@ label poemresponse_natsuki:
 
 label poemresponse_yuri:
     scene bg club_day
-    show yuri 1a at t11 zorder 2
+    show yuri 1a zorder 2 at t11
     with wipeleft_scene
     $ poemopinion = "med"
     if y_poemappeal[chapter - 1] < 0:
@@ -112,7 +113,7 @@ label poemresponse_yuri:
 
 label poemresponse_monika:
     scene bg club_day
-    show monika 1a at t11 zorder 2
+    show monika 1a zorder 2 at t11
     with wipeleft_scene
     if m_poemappeal[chapter - 1] < 0:
         $ poemopinion = "bad"
@@ -250,22 +251,27 @@ label ch2_y_end:
         "For just a moment, her timidness seems to disappear."
     return
 label ch3_y_end:
+    $ y_read3 = True
     if y_appeal >= 3:
         jump ch3_y_end_special
     call showpoem(poem_y3, img="yuri 2v") from _call_showpoem_11
     y "Um..."
     y "I'm aware that the beach is kind of an inane thing to write about."
     y "But I did my best to take a metaphorical approach to it."
-    if not n_readpoem or n_appeal >= 3:
+    if not n_read3 or n_appeal >= 3:
         mc "You say that like you didn't even want to write about it..."
         y 2e "Oh, you haven't heard...?"
         y 2h "After yesterday, Natsuki and I...well..."
         y "It was...amusing that we wrote about something similar in such different ways."
         y "So, Natsuki wanted us to write about the same topic as each other again."
         if n_readpoem:
-            mc "I see..."
-            "Something tells me the poem Natsuki showed me isn't the one she plans on sharing with everyone else..."
-            "Of course, I choose not to mention that to Yuri."
+            if not n_read3:
+                mc "I see..."
+                "Natsuki didn't even let me read her poem, so I don't have much to contribute."
+            else:
+                mc "I see..."
+                "Something tells me the poem Natsuki showed me isn't the one she plans on sharing with everyone else..."
+                "Of course, I choose not to mention that to Yuri."
     else:
         mc "Yeah, Natsuki already told me about it."
         y 3t "S-She did...?"
@@ -293,7 +299,7 @@ label ch3_y_end_special:
     mc "Ah--no, of course not."
     mc "I just...don't really know how I should respond."
     "Despite Yuri's poems usually being cryptic, it wasn't hard to figure out what this one was about."
-    if n_readpoem:
+    if n_read3:
         "Also, this clearly isn't the poem that Natsuki said she wrote about..."
         "...Meaning I'm probably the only one she's showing this to."
     y 2v "I-I don't know if I'll be able to explain this one..."
@@ -442,6 +448,7 @@ label ch2_n_end:
         n "I'm gonna write a good one for tomorrow, too, so look forward to it."
     return
 label ch3_n_end:
+    $ n_read3 = True
     if n_appeal >= 3:
         jump ch3_n_end_special
     call showpoem(poem_n3) from _call_showpoem_15
@@ -449,16 +456,20 @@ label ch3_n_end:
     n "I felt like I kept writing about negative things, so I wanted to write something with a nice message for once."
     n 2z "Besides...the beach is awesome!"
     n 2j "Kinda hard to write anything negative about the beach."
-    if not y_readpoem or y_appeal >= 3:
+    if not y_read3 or y_appeal >= 3:
         mc "So you decided to write about the beach first, and then came up with the message later?"
         n 2c "Yeah, well..."
         n "It's only because of what happened yesterday."
         n 5q "I mean, after Yuri and I realized we kind of wrote about the same thing..."
         n "She wanted to pick a topic and have us both write about it, or whatever."
         if y_readpoem:
-            mc "I see..."
-            "Something tells me the poem Yuri showed me isn't the one she plans on sharing with everyone else..."
-            "Of course, I choose not to mention that to Natsuki."
+            if not y_read3:
+                mc "I see..."
+                "I don't really have much to contribute here, since I didn't actually read Yuri's poem..."
+            else:
+                mc "I see..."
+                "Something tells me the poem Yuri showed me isn't the one she plans on sharing with everyone else..."
+                "Of course, I choose not to mention that to Natsuki."
     else:
         mc "Well, Yuri's take on it was a little more solemn."
         n 5h "Well, that's--"
@@ -480,7 +491,7 @@ label ch3_n_end_special:
     n 1u "I won't...get mad."
     mc "No, it's not that I don't like it...!"
     mc "It was just...a little surprising to read."
-    if y_readpoem:
+    if y_read3:
         "This clearly isn't the poem that Yuri told me she had written..."
         "...Meaning I'm probably the only one she's showing this to."
     mc "Er...I guess I'm not used to hearing such nice things coming from you..."
@@ -700,9 +711,9 @@ label ch1_n_bad:
     if persistent.playthrough == 2 and renpy.random.randint(0, 2) == 0:
         $ currentpos = get_pos()
         stop music
-        pause 2.0
+        $ pause(2.0)
         play sound "sfx/stab.ogg"
-        show n_blackeyes at i11 zorder 3
+        show n_blackeyes zorder 3 at i11
         show n_eye zorder 3:
             subpixel True
             pos (660,250) xanchor 0.5 yanchor 0.5 zoom 0.8
@@ -727,7 +738,7 @@ label ch1_n_bad:
             pos (645,255)
         show blood as blood2 zorder 3:
             pos (575,260)
-        pause 0.75
+        $ pause(0.75)
         hide n_blackeyes
         hide n_eye
         hide n_eye2
@@ -845,7 +856,7 @@ label ch2_n_bad:
             "At least Natsuki wasn't really the girl I was trying to impress in the first place..."
             $ skip_poem = True
             return
-    
+
     #Liked the last poem but not this one
     else:
         n 1k "...Hm."
@@ -982,7 +993,7 @@ label ch2_n_good:
             show natsuki at lhide
             hide natsuki
             "Red-faced, Natsuki quickly walks out of the room."
-            show monika 1d at t11 zorder 2
+            show monika 1d zorder 2 at t11
             m "Hey, [player]..."
             m "Did you do something to Natsuki?"
             m "I just saw her rush out like that..."
@@ -999,6 +1010,7 @@ label ch2_n_good:
                 m "At first I just thought you liked her writing style..."
                 m "But you wrote this {i}for{/i} Natsuki, didn't you?"
             else:
+                $ n_poemearly = True
                 "She reads through it, her smile not fading from her face."
                 m 2a "I see."
                 m "You wrote this for Natsuki, didn't you?"
@@ -1015,76 +1027,73 @@ label ch2_n_good:
             m 1a "How do you think Natsuki feels about you?"
             m "Oh, you don't need to answer that."
             m "It was just something for you to think about."
-            show monika at t22 zorder 2
+            show monika zorder 2 at t22
             show natsuki 4e at l21
             n "Hey!"
             "Natsuki comes up and snatches the poem out of Monika's hands."
             "Neither of us had noticed her reenter the classroom."
-            show natsuki at f21 zorder 3
+            show natsuki zorder 3 at f21
             n "Did you read this, Monika?"
-            show natsuki at t21 zorder 2
-            show monika at f22 zorder 3
+            show natsuki zorder 2 at t21
+            show monika zorder 3 at f22
             m 1j "Of course! I liked it!"
-            show monika 1a at t22 zorder 2
-            show natsuki at f21 zorder 3
+            show monika 1a zorder 2 at t22
+            show natsuki zorder 3 at f21
             n 1r "Ugh..."
             n "You should really stop reading things that aren't for you, you know."
             n "You have a bad habit of doing that."
-            show natsuki at t21 zorder 2
-            show monika at f22 zorder 3
+            show natsuki zorder 2 at t21
+            show monika zorder 3 at f22
             m 1d "Eh?"
             m "But [player] wrote this poem."
             m 1a "And we're supposed to share with everyone, right?"
-            show monika at t22 zorder 2
-            show natsuki at f21 zorder 3
+            show monika zorder 2 at t22
+            show natsuki zorder 3 at f21
             n 1x "Uu--"
             "Natsuki freezes."
             "She apparently forgot that my poem is technically for everyone to read."
             n 42c "Okay, well, I think [player] is done sharing this poem with everyone."
             n "It's not like anyone would want to read this anyway."
             n 4h "In fact, I'm just going to hold onto this."
-            show natsuki at t21 zorder 2
-            show monika at f22 zorder 3
+            show natsuki zorder 2 at t21
+            show monika zorder 3 at f22
             m 5 "If you insist~"
-            show monika at t22 zorder 2
-            show natsuki at f21 zorder 3
+            show monika zorder 2 at t22
+            show natsuki zorder 3 at f21
             n 1i "What?"
             n "Why are you looking at me like that??"
-            show natsuki at t21 zorder 2
-            show monika at f22 zorder 3
+            show natsuki zorder 2 at t21
+            show monika zorder 3 at f22
             m "Like what?"
-            show monika at t22 zorder 2
-            show natsuki at f21 zorder 3
+            show monika zorder 2 at t22
+            show natsuki zorder 3 at f21
             n 12b "Ugh..."
             n "Never mind."
-            if not m_readpoem:
-                $ poemsread += 1
-                $ m_readpoem = True
-            if poemsread >= 3:
+            if s_readpoem and y_readpoem:
                 "Well, I guess Natsuki has my poem now."
                 "Not that I really planned on keeping it."
             else:
                 $ unfairto = "Sayori"
                 if s_readpoem:
                     $ unfairto = "Yuri"
-                show natsuki at t21 zorder 2
+                show natsuki zorder 2 at t21
                 mc "Ah, Natsuki..."
                 mc "I'll give you the poem, but that's still not very fair to [unfairto]..."
                 mc "...She hasn't gotten to read it yet."
-                show natsuki at f21 zorder 3
+                show natsuki zorder 3 at f21
                 n 2q "So what?"
-                show natsuki at t21 zorder 2
-                show monika at f22 zorder 3
+                show natsuki zorder 2 at t21
+                show monika zorder 3 at f22
                 m 2a "Well... I guess [player] is right, Natsuki..."
                 m "It's not fair if you don't let everyone finish reading it."
-                show monika at t22 zorder 2
-                show natsuki at f21 zorder 3
+                show monika zorder 2 at t22
+                show natsuki zorder 3 at f21
                 n "..."
                 n 2h "...Fine."
                 "Natsuki returns my poem."
                 n "It's not like she's going to like it, though."
-            show monika at thide zorder 1
-            show natsuki at t11 zorder 2
+            show monika zorder 1 at thide
+            show natsuki zorder 2 at t11
             hide monika
             n 2h "Anyway, read my poem now."
             n 4h "And no, I won't let you keep it."
@@ -1183,10 +1192,10 @@ label ch3_n_med:
         jump ch3_n_shared
 
 label ch3_n_good:
-    #Didn't like the last two poems
+
     if n_poemappeal[0] < 0 and n_poemappeal[1] < 0:
         jump ch3_n_bad12_shared
-    #Loved the last two
+
     elif n_poemappeal[0] > 0 and n_poemappeal[1] > 0:
         n 1l "Let's see, let's see!"
         mc "You're certainly enthusiastic today."
@@ -1275,12 +1284,12 @@ label ch3_n_good:
         n "I don't want you to...look at my face right now."
         mc "Okay, I will."
         return
-    #Other combinations
-    #Liked one of the previous poems, plus this one
+
+
     elif n_poemappeal[0] > 0 or n_poemappeal[1] > 0:
         jump ch2_n_good_sharedwithch3
-    #This is the first poem she really liked
     else:
+
         n "..."
         n 2k "...Finally!"
         mc "Eh?"
@@ -1454,7 +1463,7 @@ label ch2_s_bad:
         return
 
 label ch2_s_med:
-    #This one is better than the last one
+
     if s_poemappeal[0] < 0:
         s "..."
         s 4x "Ooh!"
@@ -1473,7 +1482,7 @@ label ch2_s_med:
             mc "Yeah, maybe..."
             mc "Honestly, I don't even know what kind of writing you like in the first place."
             jump ch2_s_shared
-    #This one is the same as the last one
+
     elif s_poemappeal[0] == 0:
         s "..."
         s 4x "Ooh!"
@@ -1487,8 +1496,8 @@ label ch2_s_med:
         s "Ehehe~"
         mc "That's not very helpful, you know..."
         jump ch2_s_med_shared
-    #This one is not as good as the last one
     else:
+
         s "..."
         s 4x "Ooh!"
         s "I like this one, [player]!"
@@ -1510,7 +1519,7 @@ label ch2_s_med:
         jump ch2_s_med_shared
 
 label ch2_s_good:
-    #This one is better than the last one
+
     if s_poemappeal[0] < 1:
         s 1n "..."
         s "...Oh my goodness!"
@@ -1547,8 +1556,8 @@ label ch2_s_good:
         mc "You're so weird, Sayori..."
         s 4l "Ehehe..."
         jump ch2_s_med_shared
-    #Loved both poems
     else:
+
         s "..."
         s 1d "[player]..."
         s "I really love your poems."
@@ -1863,7 +1872,7 @@ label ch1_y_good:
 
 
 label ch2_y_bad:
-    #Dislikes both poems
+
     if y_poemappeal[0] < 0:
         y "..."
         y 2h "Um..."
@@ -1902,8 +1911,8 @@ label ch2_y_bad:
         "If she wants to be left alone, then I have no choice but to abide to that request."
         $ skip_poem = True
         return
-    #Liked the last one more
     else:
+
         y 2a "Ah, is it my turn?"
         y "Let's see how it compares to yesterday's..."
         y "Mm..."
@@ -1948,7 +1957,7 @@ label ch2_y_bad:
             return
 
 label ch2_y_med:
-    #likes this one more than yesterday's, or the same amount
+
     if y_poemappeal[0] <= 0:
         y 1a "Let's see what you've written for today."
         y "..."
@@ -1963,9 +1972,9 @@ label ch2_y_med:
         y "I'm just happy to help inspire fellow writers..."
         y "I know you're new to this, so don't worry so much if it seems like you can't get your poem to feel perfect."
         jump ch2_y_shared
-
-    #likes this one less
     else:
+
+
         y 1a "Let's see what you've written for today."
         y "..."
         y "Mm..."
@@ -1977,7 +1986,7 @@ label ch2_y_med:
         jump ch2_y_shared
 
 label ch2_y_good:
-    #likes this one more than yesterday
+
     if y_poemappeal[0] < 1:
         y 1a "Let's see what you've written for today."
         y "..."
@@ -1991,7 +2000,7 @@ label ch2_y_good:
             mc "Maybe that's why..."
             mc "You did a good job explaining."
             mc "I really wanted to try giving it more imagery."
-            show yuri 4b at t11 zorder 2
+            show yuri 4b zorder 2 at t11
             "Yuri visibly swallows."
             "Even her hands appear sweaty."
             y "I'm not...used to this..."
@@ -2026,8 +2035,8 @@ label ch2_y_good:
             y 3t "I do!"
             y "If it's with you..."
             return
-    #likes both poems a lot
     else:
+
         y 1a "Let's see what you've written for today."
         y "..."
         y 2e "......"
@@ -2194,7 +2203,7 @@ label ch3_y_good:
         mc "Yeah, I guess so..."
         mc "You did a good job explaining."
         mc "I really wanted to try giving it more feeling."
-        show yuri 4b at t11 zorder 2
+        show yuri 4b zorder 2 at t11
         "Yuri visibly swallows."
         "Even her hands appear sweaty."
         play music t9 fadeout 1.0
@@ -2341,7 +2350,7 @@ label ch1_m_start:
     "I hand Monika my poem."
     m 2a "...Mhm!"
     $ nextscene = "m_" + poemwinner[0] + "_" + str(eval(poemwinner[0][0] + "_appeal"))
-    call expression nextscene from _call_expression_22
+    call expression nextscene
 
     mc "I'm sure I'll end up trying different things a lot."
     mc "It could take a while before I feel comfortable doing this."
@@ -2366,27 +2375,37 @@ label ch1_m_start:
 
 label ch2_m_start:
     m 1b "Hi again, [player]!"
-    m "How's the writing going?"
-    mc "Alright, I guess..."
-    m 2k "I'll take that."
-    m 2b "As long as it's not going bad!"
-    m 2a "I'm happy that you're applying yourself."
-    m "Maybe soon you'll come up with a masterpiece!"
-    mc "Ahaha, I wouldn't count on that..."
-    m 2a "You never know!"
-    m "Want to share what you wrote for today?"
-    mc "Sure... Here you go."
-    "I give my poem to Monika."
-    m "..."
-    m "...Alright!"
-    $ nextscene = "m_" + poemwinner[1] + "_" + str(eval(poemwinner[1][0] + "_appeal"))
-    call expression nextscene from _call_expression_23
+    if n_poemearly:
+        $ n_poemearly = False
+        m "That was kind of silly with Natsuki earlier, wasn't it?"
+        m 1j "I'm glad the two of you have been getting along so well."
+        mc "..."
+        "That's one way of putting it..."
+        m 2a "Anyway, I already read your poem, but you can go ahead and read mine now."
+        m 1a "I like the way this one turned out, so I hope you do too~"
+        return
+    else:
+        m "How's the writing going?"
+        mc "Alright, I guess..."
+        m 2k "I'll take that."
+        m 2b "As long as it's not going bad!"
+        m 2a "I'm happy that you're applying yourself."
+        m "Maybe soon you'll come up with a masterpiece!"
+        mc "Ahaha, I wouldn't count on that..."
+        m 2a "You never know!"
+        m "Want to share what you wrote for today?"
+        mc "Sure... Here you go."
+        "I give my poem to Monika."
+        m "..."
+        m "...Alright!"
+        $ nextscene = "m_" + poemwinner[1] + "_" + str(eval(poemwinner[1][0] + "_appeal"))
+        call expression nextscene
 
-    m 1a "But anyway..."
-    m "You want to read my poem now?"
-    m "I like the way this one turned out, so I hope you do too~"
-    mc "Alright, let's take a look."
-    return
+        m 1a "But anyway..."
+        m "You want to read my poem now?"
+        m "I like the way this one turned out, so I hope you do too~"
+        mc "Alright, let's take a look."
+        return
 
 label ch3_m_start:
     m 2a "Hi [player]~"
@@ -2398,18 +2417,23 @@ label ch3_m_start:
     m "But whatever you do, I'm sure it'll turn out great."
     m "It would also make me happy to see."
     m 2k "Ahaha!"
-    m 1a "Anyway, let's take a look at today's poem!"
-    mc "Sure..."
-    "I let Monika take the poem I'm holding in my hands."
-    m "..."
-    $ nextscene = "m_" + poemwinner[2] + "_" + str(eval(poemwinner[2][0] + "_appeal"))
-    call expression nextscene from _call_expression_24
+    if n_poemearly:
+        $ n_poemearly = False
+        m 1a "Anyway, I already read your poem, but you can go ahead and read mine now."
+        return
+    else:
+        m 1a "Anyway, let's take a look at today's poem!"
+        mc "Sure..."
+        "I let Monika take the poem I'm holding in my hands."
+        m "..."
+        $ nextscene = "m_" + poemwinner[2] + "_" + str(eval(poemwinner[2][0] + "_appeal"))
+        call expression nextscene
 
-    m 1a "Anyway...!"
-    m "I'll share my poem with you now, alright?"
-    mc "Er..."
-    mc "Alright..."
-    return
+        m 1a "Anyway...!"
+        m "I'll share my poem with you now, alright?"
+        mc "Er..."
+        mc "Alright..."
+        return
 
 
 

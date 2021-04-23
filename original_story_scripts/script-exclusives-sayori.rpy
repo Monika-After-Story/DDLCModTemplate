@@ -11,9 +11,9 @@ label sayori_exclusive_1:
     "...But I'm feeling a little too tired to read."
     "I could probably fall asleep right now."
     "I close my eyes and end up listening in on Sayori's conversation with Monika."
-    show sayori 1g at t21 zorder 2
+    show sayori 1g zorder 2 at t21
     s "We're probably gonna seem really lame compared to all the other clubs, though..."
-    show monika 2r at f22 zorder 3
+    show monika 2r zorder 3 at f22
     m "Hmm..."
     m 2b "Well, we can't give up."
     m "The festival is our chance to show everyone what literature is all about!"
@@ -21,15 +21,15 @@ label sayori_exclusive_1:
     m "But it's not like that at all, you know?"
     m 2a "We just need a way of showing that to everyone..."
     m "Something that speaks to their creative minds."
-    show monika at t22 zorder 2
-    show sayori at f21 zorder 3
+    show monika zorder 2 at t22
+    show sayori zorder 3 at f21
     s 1i "Mmmmmmmmmmm....."
     s "That doesn't solve the problem, though!"
-    show sayori at t21 zorder 2
-    show monika at f22 zorder 3
+    show sayori zorder 2 at t21
+    show monika zorder 3 at f22
     m 2d "Eh? What do you mean?"
-    show monika at t22 zorder 2
-    show sayori at f21 zorder 3
+    show monika zorder 2 at t22
+    show sayori zorder 3 at f21
     s 1c "Even if we come up with the most fun thing ever..."
     s "Nobody will come in the first place if it's a literature event."
     s "So it's more important to figure out how to get people to show up in the first place, you know?"
@@ -37,43 +37,43 @@ label sayori_exclusive_1:
     "...What's this?"
     "Sayori is taking this really seriously."
     "It's rare to hear her deliberating like this."
-    show sayori at t21 zorder 2
-    show monika at f22 zorder 3
+    show sayori zorder 2 at t21
+    show monika zorder 3 at f22
     m 2a "Huh, that's a good point..."
     m "In that case, do you think food will do the trick?"
-    show monika at t22 zorder 2
-    show sayori at f21 zorder 3
+    show monika zorder 2 at t22
+    show sayori zorder 3 at f21
     s 1n "W-What kind?!"
-    show sayori at t21 zorder 2
-    show monika at f22 zorder 3
+    show sayori zorder 2 at t21
+    show monika zorder 3 at f22
     m 2b "Ah... Well, I guess we could--"
-    show monika at t22 zorder 2
-    show sayori 4r at f21 zorder 3
+    show monika zorder 2 at t22
+    show sayori 4r zorder 3 at f21
     s "Cupcakes!"
-    show sayori at t21 zorder 2
-    show monika 1k at f22 zorder 3
+    show sayori zorder 2 at t21
+    show monika 1k zorder 3 at f22
     m "Ahaha. Good thinking."
     m 1a "Natsuki would love to do that."
-    show monika at t22 zorder 2
-    show sayori at f21 zorder 3
+    show monika zorder 2 at t22
+    show sayori zorder 3 at f21
     s 4x "Ah! You're right!"
     s "Natsuki makes the best cupcakes!"
     s "That works out perfectly~"
-    show sayori at t21 zorder 2
-    show monika at f22 zorder 3
+    show sayori zorder 2 at t21
+    show monika zorder 3 at f22
     m 1d "That wasn't why you suggested it...?"
-    show monika at t22 zorder 2
-    show sayori at f21 zorder 3
+    show monika zorder 2 at t22
+    show sayori zorder 3 at f21
     s 4q "Cupcakes speak to my creative tummy~"
-    show sayori at t21 zorder 2
-    show monika at f22 zorder 3
+    show sayori zorder 2 at t21
+    show monika zorder 3 at f22
     m 1l "..."
     m "Cupcakes it is, then."
-    show monika at t22 zorder 2
-    show sayori at f21 zorder 3
+    show monika zorder 2 at t22
+    show sayori zorder 3 at f21
     s 1g "I'm hungry..."
-    show sayori at t21 zorder 2
-    show monika at f22 zorder 3
+    show sayori zorder 2 at t21
+    show monika zorder 3 at f22
     m 1a "Anyway, we still need to work out the details of the event itself..."
     scene black
     with close_eyes
@@ -90,7 +90,7 @@ label sayori_exclusive_1:
     mc "Uwaa--!"
     "I open my eyes to find Sayori's face filling my vision."
     "I nearly fall out of my chair."
-    show sayori at t11 zorder 2
+    show sayori zorder 2 at t11
     s 4q "Ehehe, sorry~"
     s 4i "Wait!"
     s 1j "Actually, I'm not sorry at all!"
@@ -147,13 +147,14 @@ label sayori_exclusive_1:
     mc "And you don't even keep your blazer buttoned up."
     mc "Seriously, Sayori..."
     mc "Why do you think you don't have a boyfriend yet?"
-    show sayori 1h at t11 zorder 2
+    show sayori 1h zorder 2 at t11
     s "Eh??"
     s "That's {i}super{/i} mean!"
     mc "Sorry, but you'll thank me later..."
     "I start to button her blazer from the bottom."
     mc "Once you see how much better it looks, you'll change your mind."
     $ persistent.clear[6] = True
+    $ renpy.save_persistent()
     scene s_cg1
     with dissolve_cg
     s "Ehehe~"
@@ -191,7 +192,7 @@ label sayori_exclusive_1:
     s "It's not worth it at all!"
     "Sayori hastily unbuttons her blazer once more."
     scene bg club_day
-    show sayori 1q at i11 zorder 2
+    show sayori 1q zorder 2 at i11
     with dissolve_cg
     s "Phew!"
     s "That's so much better~"
@@ -218,7 +219,7 @@ label sayori_exclusive_1:
     mc "You're doing it again, Sayori..."
     s 1h "Aw, but I was joking that time!"
     mc "Man, it's impossible to tell with you sometimes."
-    show monika 3b at l31 behind sayori
+    show monika 3b behind sayori at l31
     m "Okay, everyone!"
     mc "Eh?"
     "Monika suddenly calls out."
@@ -228,7 +229,7 @@ label sayori_exclusive_1:
     s 4x "[player], I can't wait to read yours!"
     mc "Yeah, same..."
     "I fail to sound enthusiastic, but Sayori still trots away to retrieve her poem."
-    show sayori at thide behind monika
+    show sayori behind monika at thide
     return
 
 label sayori_exclusive_2:
@@ -240,7 +241,7 @@ label sayori_exclusive_2:
         play music t2
     s "[player], [player]!"
     "Sayori suddenly comes up to me."
-    show sayori 1x at t11 zorder 2
+    show sayori 1x zorder 2 at t11
     s "I'm gonna go get some supplies from another classroom."
     s "Want to come with me?"
     mc "Supplies?"
@@ -252,26 +253,26 @@ label sayori_exclusive_2:
     mc "Sure, I'll go with you."
     s 4q "Yaay~"
     s 4x "Okay Monika, we'll be back soon!"
-    show sayori at t22 zorder 2
-    show monika 1a at f21 zorder 3
+    show sayori zorder 2 at t22
+    show monika 1a zorder 3 at f21
     m "Ah, are you going with [player] to get the supplies?"
     m "There's no need to trouble yourself."
     m "I'd be happy to go with him."
-    show monika at t21 zorder 2
+    show monika zorder 2 at t21
     show sayori 1h at s22
     s "Aw, but I wanted to go!"
     s "It's so much fun exploring empty classrooms and stuff!"
-    show monika at f21 zorder 3
+    show monika zorder 3 at f21
     m 2j "Hehe, okay, okay."
     m 2a "It was just a suggestion."
     m "See if you can find poster paper too, okay?"
-    show monika at t21 zorder 2
-    show sayori at f22 zorder 3
+    show monika zorder 2 at t21
+    show sayori zorder 3 at f22
     s 1r "Okaay~!"
     s 1a "Ready, [player]?"
     mc "Yep, let's go."
     scene bg corridor
-    show sayori 4a at t11 zorder 2
+    show sayori 4a zorder 2 at t11
     with wipeleft_scene
     "Sayori and I exit the clubroom."
     "I follow behind as Sayori hums and skips around the hallway."
@@ -320,7 +321,7 @@ label sayori_exclusive_2:
     s "I'm working super hard on this, you know!"
     mc "Ah, I know, I know!"
     mc "I just meant that it's a pretty unordinary contrast to your cute self."
-    show sayori 4s at t11 zorder 2
+    show sayori 4s zorder 2 at t11
     s "Ahaha! Don't say that, it's embarrassing!"
     s 4y "But I guess that means I'm doing a good job~"
     mc "Yeah, I guess so..."
@@ -330,7 +331,7 @@ label sayori_exclusive_2:
     "Sayori spins herself around in the hallway again."
     s 1x "Hey, [player], this classroom over here is empty!"
     s "Let's begin the mission!"
-    show sayori at thide zorder 1
+    show sayori zorder 1 at thide
     hide sayori
     mc "The mission, eh...?"
     "It's been a long time since I've spent time with Sayori like this."
@@ -343,7 +344,7 @@ label sayori_exclusive_2:
     with wipeleft_scene
     "The two of us enter the classroom."
     "Sayori heads straight to the closet, and I follow."
-    show sayori 1b at t11 zorder 2
+    show sayori 1b zorder 2 at t11
     s "Let's see what we have in here..."
     s 4x "...Crayons!!"
     "Sayori pulls a box full of crayons off the shelf."
@@ -379,6 +380,7 @@ label sayori_exclusive_2:
     s 4g "But it hurts..."
     mc "Just do it for a second."
     $ persistent.clear[7] = True
+    $ renpy.save_persistent()
     scene s_cg2_base1
     show s_cg2_exp2
     with dissolve_cg
@@ -420,7 +422,7 @@ label sayori_exclusive_2:
     "She has one palm on her forehead and is using the other hand to clumsily scoop crayons back into the box."
     s "At least they were already in the wrong spots before I spilled them..."
     mc "Sayori, here."
-    show s_cg2_base2 at cgfade behind s_cg2_exp2
+    show s_cg2_base2 behind s_cg2_exp2 at cgfade
     "I hand Sayori the bottle of apple juice."
     show s_cg2_exp2 at cgfade
     hide s_cg2_exp2
@@ -501,7 +503,7 @@ label sayori_exclusive_2:
     s "Not if I hide it under my bangs~"
     play music t8 fadeout 1.0
     scene bg class_day
-    show sayori 1a at i11 zorder 2
+    show sayori 1a zorder 2 at i11
     with dissolve_cg
     "Sayori hops to her feet."
     show sayori 4p at s11
@@ -517,54 +519,54 @@ label sayori_exclusive_2:
     "Sayori plays with her bangs to try to hide the bump, but without much success."
     "In a moment, we make it back to the clubroom."
     scene bg club_day
-    show sayori 1a at t21 zorder 2
-    show monika 1b at t22 zorder 2
+    show sayori 1a zorder 2 at t21
+    show monika 1b zorder 2 at t22
     with wipeleft_scene
-    show monika at f22 zorder 3
+    show monika zorder 3 at f22
     m "Ah, you're back!"
     m "Good timing, I was just about ready to start with sharing our poems."
     m 1d "Eh? Sayori, your forehead..."
-    show monika at t22 zorder 2
+    show monika zorder 2 at t22
     mc "She's fine, don't worry about--"
-    show sayori 4r at f21 zorder 3
+    show sayori 4r zorder 3 at f21
     s "I was playing with the crayons and smacked my forehead into the shelf!"
-    show sayori at t21 zorder 2
+    show sayori zorder 2 at t21
     mc "..."
-    show monika 3m at f22 zorder 3
+    show monika 3m zorder 3 at f22
     m "..."
     m 3l "...Well, anyway!"
     m 1a "Were you able to find everything we needed?"
-    show monika at t22 zorder 2
-    show sayori 1x at f21 zorder 3
+    show monika zorder 2 at t22
+    show sayori 1x zorder 3 at f21
     s "Uh-huh! I have it right--"
     s 1n "...Eh?"
     "Sayori frantically glances around herself."
-    show sayori 4m at hf21 zorder 3
+    show sayori 4m zorder 3 at hf21
     s "I...forgot all of the stuff!!"
-    show sayori at t21 zorder 2
+    show sayori zorder 2 at t21
     mc "Calm down, Sayori."
     mc "I have it all right here."
     mc "I found the poster paper, too."
     show sayori 4b
-    show monika 5a at f22 zorder 3
+    show monika 5a zorder 3 at f22
     m "Ahaha!"
     m "Sounds like you ended up doing all the work, [player]."
-    show monika at t22 zorder 2
+    show monika zorder 2 at t22
     mc "Ah, well, Sayori--"
     "I fail to come up with an excuse for Sayori."
-    show sayori 1q at f21 zorder 3
+    show sayori 1q zorder 3 at f21
     s "I made it an adventure!"
-    show sayori 1a at t21 zorder 2
+    show sayori 1a zorder 2 at t21
     mc "...Yeah, that."
-    show monika 1j at f22 zorder 3
+    show monika 1j zorder 3 at f22
     m "Ahaha, okay, okay."
     m 1a "In any case, good work!"
     m "I'll start working on the posters tonight."
-    show monika at t22 zorder 2
-    show sayori 4x at f21 zorder 3
+    show monika zorder 2 at t22
+    show sayori 4x zorder 3 at f21
     s "Me too!"
-    show monika at t11 zorder 2
-    show sayori at thide behind monika
+    show monika zorder 2 at t11
+    show sayori behind monika at thide
     hide sayori
     m 4b "...Okay, everyone!"
     m "Are you ready to share your poems?"

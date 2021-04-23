@@ -5,7 +5,7 @@
 #This section defines stuff for the game: sprite poses for the girls, music, and backgrounds
 #If you plan on adding new content, pop them over down there and mimic the appropriate lines!
 define persistent.demo = False
-define persistent.steam = False
+define persistent.steam = ("steamapps" in config.basedir.lower())
 define config.developer = False #Change this flag to True to enable dev tools
 
 python early:
@@ -27,17 +27,40 @@ init python:
         for savegame in renpy.list_saved_games(fast=True):
             renpy.unlink_save(savegame)
     def delete_character(name):
-        if persistent.do_not_delete: return
         import os
         try: os.remove(config.basedir + "/characters/" + name + ".chr")
         except: pass
+    def restore_all_characters():
+        try: renpy.file("../characters/monika.chr")
+        except: open(config.basedir + "/characters/monika.chr", "wb").write(renpy.file("monika.chr").read())
+        try: renpy.file("../characters/natsuki.chr")
+        except: open(config.basedir + "/characters/natsuki.chr", "wb").write(renpy.file("natsuki.chr").read())
+        try: renpy.file("../characters/yuri.chr")
+        except: open(config.basedir + "/characters/yuri.chr", "wb").write(renpy.file("yuri.chr").read())
+        try: renpy.file("../characters/sayori.chr")
+        except: open(config.basedir + "/characters/sayori.chr", "wb").write(renpy.file("sayori.chr").read())
+    def restore_relevant_characters():
+        restore_all_characters()
+        if persistent.playthrough == 1 or persistent.playthrough == 2:
+            delete_character("sayori")
+        elif persistent.playthrough == 3:
+            delete_character("sayori")
+            delete_character("natsuki")
+            delete_character("yuri")
+        elif persistent.playthrough == 4:
+            delete_character("monika")
     def pause(time=None):
+        global _windows_hidden
         if not time:
+            _windows_hidden = True
             renpy.ui.saybehavior(afm=" ")
             renpy.ui.interact(mouse='pause', type='pause', roll_forward=None)
+            _windows_hidden = False
             return
         if time <= 0: return
+        _windows_hidden = True
         renpy.pause(time)
+        _windows_hidden = False
 
 #Music
 #The Music section is where you can reference existing DDLC audio
@@ -1327,6 +1350,9 @@ default persistent.special_poems = None
 default persistent.clearall = None
 default persistent.menu_bg_m = None
 default persistent.first_load = None
+default persistent.first_poem = None
+default persistent.seen_colors_poem = None
+default persistent.monika_back = None
 
 ###### Other global variables ######
 # It's good practice to define global variables here, just so you know what you can call later
@@ -1361,6 +1387,9 @@ default s_readpoem = False
 default n_readpoem = False
 default y_readpoem = False
 default m_readpoem = False
+
+default n_read3 = False
+default y_read3 = False
 
 # Used in poemresponse_start because it's easier than checking true/false on everyone's read state.
 default poemsread = 0

@@ -101,13 +101,13 @@ label ch5_main:
     "But knowing Monika, I'm sure the event will be great, too."
 
     scene bg club_day with wipeleft_scene
-    show monika 5 at t11 zorder 2
+    show monika 5 zorder 2 at t11
     m "[player]!"
     m "You're the first one here."
     m "Thanks for being early!"
     mc "That's funny, I thought at least Yuri would be here by now."
     "Monika is placing little booklets on each of the desks in the classroom."
-    "They must be the ones she prepared that has all the poems we're performing."
+    "They must be the ones she prepared that have all the poems we're performing."
     "In the end, I found a random poem online that I thought Monika would like, and submitted it."
     "So, that's the one I'll be performing."
     m 1d "I'm surprised you didn't bring Sayori with you."
@@ -151,7 +151,7 @@ label ch5_main:
     mc "Oh yeah, they really did."
     mc "Something like this will definitely help people take the club more seriously."
     m "Yeah, I thought so too!"
-    show monika at thide zorder 1
+    show monika zorder 1 at thide
     hide monika
     "I flip through the pages."
     "Each member's poem is neatly printed on its own page, giving it an almost professional feel."
@@ -160,11 +160,11 @@ label ch5_main:
     "I flip to Sayori's poem."
     "It's different from the one she practiced."
     "It's one that I haven't read before..."
-    call showpoem(poem_s3, music=False) from _call_showpoem_7
+    call showpoem (poem_s3, music=False)
     mc "Ah--"
     "What is this...?"
     "Reading the poem, I get a pit in my stomach."
-    show monika 1d at t11 zorder 2
+    show monika 1d zorder 2 at t11
     m "[player]?"
     m "What's wrong?"
     mc "Ah, nothing..."
@@ -216,8 +216,9 @@ label ch5_main:
     "But she really leaves me no choice."
     "I gently open the door."
     mc "{cps=30}.......Sayo--{/cps}{nw}"
-    $ persistent.playthrough = 1    #No turning back now baby
+    $ persistent.playthrough = 1
     $ persistent.anticheat = renpy.random.randint(100000, 999999)
+    $ renpy.save_persistent()
     $ delete_character("sayori")
     $ in_sayori_kill = True
     window hide(None)
@@ -227,13 +228,13 @@ label ch5_main:
     show s_kill2
     show s_kill_bg as s_kill_bg at s_kill_bg_start
     show s_kill as s_kill at s_kill_start
-    pause 3.75
+    $ pause(3.75)
     show s_kill_bg2 as s_kill_bg
     show s_kill2 as s_kill
-    pause 0.01
+    $ pause(0.01)
     show screen tear(20, 0.1, 0.1, 0, 40)
     play sound "sfx/s_kill_glitch1.ogg"
-    pause 0.25
+    $ pause(0.25)
     stop sound
     hide screen tear
     hide s_kill_bg
@@ -248,26 +249,26 @@ label ch5_main:
         zoom 2.0 xalign 0.5 yalign 0.05
         pause 0.5
         dizzy(1, 1.0)
-    pause 2.0
+    $ pause(2.0)
     show noise zorder 3:
         alpha 0.0
         linear 3.0 alpha 0.25
     show vignette zorder 3:
         alpha 0.0
         linear 3.0 alpha 0.75
-    pause 1.5
+    $ pause(1.5)
     show white zorder 2
     show splash_glitch zorder 2
-    pause 1.5
+    $ pause(1.5)
     show screen tear(20, 0.1, 0.1, 0, 40)
     play sound "sfx/s_kill_glitch1.ogg"
-    pause 0.2
+    $ pause(0.2)
     stop sound
     hide screen tear
-    pause 4.0
+    $ pause(4.0)
     show screen tear(20, 0.1, 0.1, 0, 40)
     play sound "sfx/s_kill_glitch1.ogg"
-    pause 0.2
+    $ pause(0.2)
     stop sound
     hide screen tear
     hide splash_glitch
@@ -275,7 +276,7 @@ label ch5_main:
     show splash_glitch_m zorder 2
     show splash_glitch_n zorder 2
     show splash_glitch_y zorder 2
-    pause 0.75
+    $ pause(0.75)
     hide white
     hide splash_glitch2
     hide splash_glitch_m
@@ -287,9 +288,9 @@ label ch5_main:
     show fake_exception2 zorder 2:
         xpos 0.1 ypos 0.15
     python:
-        try: sys.modules['renpy.error'].report_exception("Oh jeez...I didn't break anything, did I? Hold on a sec, I can probably fix this...I think...\nActually, you know what? This would probably be a lot easier if I just deleted her. She's the one who's making this so difficult. Ahaha! Well, here's goes nothing.", False)
+        try: sys.modules['renpy.error'].report_exception("Oh jeez...I didn't break anything, did I? Hold on a sec, I can probably fix this...I think...\nActually, you know what? This would probably be a lot easier if I just deleted her. She's the one who's making this so difficult. Ahaha! Well, here goes nothing.", False)
         except: pass
-    pause 6.0
+    $ pause(6.0)
 
 
     "..."

@@ -4,6 +4,11 @@ label ch0_main:
     with dissolve_scene_full
     play music t2
 
+    python:
+        try: renpy.file("../characters/monika.chr")
+        except: renpy.jump("ch0_kill")
+
+    $ restore_all_characters()
     s "Heeeeeeeyyy!!"
     "I see an annoying girl running toward me from the distance, waving her arms in the air like she's totally oblivious to any attention she might draw to herself."
     "That girl is Sayori, my neighbor and good friend since we were children."
@@ -12,7 +17,7 @@ label ch0_main:
     "But if she's going to chase after me like this, I almost feel better off running away."
     "However, I just sigh and idle in front of the crosswalk and let Sayori catch up to me."
     $ s_name = "Sayori"
-    show sayori 4p at t11 zorder 2
+    show sayori 4p zorder 2 at t11
     s 4p "Haaahhh...haaahhh..."
     s "I overslept again!"
     s "But I caught you this time!"
@@ -21,17 +26,17 @@ label ch0_main:
     s 5c "Eeehhhhh, you say that like you were thinking about ignoring me!"
     s "That's mean, [player]!"
     mc "Well, if people stare at you for acting weird then I don't want them to think we're a couple or something."
-    show sayori at t11 zorder 2
+    show sayori zorder 2 at t11
     s 1a "Fine, fine."
     s "But you did wait for me, after all."
     s "I guess you don't have it in you to be mean even if you want to~"
     mc "Whatever you say, Sayori..."
     s 1q "Ehehe~"
-    show sayori at thide zorder 1
+    show sayori zorder 1 at thide
     hide sayori
     "We cross the street together and make our way to school."
     "As we draw near, the streets become increasingly speckled with other students making their daily commute."
-    show sayori 3a at t11 zorder 2
+    show sayori 3a zorder 2 at t11
     s "By the way, [player]..."
     s "Have you decided on a club to join yet?"
     mc "A club?"
@@ -54,7 +59,7 @@ label ch0_main:
     mc "No promises, though."
     s 1h "Will you at least promise me you'll try a little?"
     mc "Yeah, I guess I'll promise you that."
-    show sayori at t11 zorder 2
+    show sayori zorder 2 at t11
     s 4r "Yaay~!"
     "Why do I let myself get lectured by such a carefree girl?"
     "More than that, I'm surprised I even let myself relent to her."
@@ -70,7 +75,7 @@ label ch0_main:
     "I guess I have no choice but to start with the anime club..."
 
     s "Hellooo?"
-    show sayori 1b at t11 zorder 2
+    show sayori 1b zorder 2 at t11
     mc "Sayori...?"
     "Sayori must have come into the classroom while I was spacing out."
     "I look around and realize that I'm the only one left in the classroom."
@@ -87,11 +92,11 @@ label ch0_main:
     s 5d "Eeeehhhhh?! Meanie!"
     "Sayori is vice president of the Literature Club."
     "Not that I was ever aware that she had any interest in literature."
-    "In fact, I'm 99\% sure she only did it because she thought it would be fun to help start a new club."
+    "In fact, I'm 99%% sure she only did it because she thought it would be fun to help start a new club."
     "Since she was the first one to show interest after the one who proposed the club, she inherited the title \"Vice President\"."
     "That said, my interest in literature is guaranteed to be even less."
     mc "Yeah. I'm going to the anime club."
-    show sayori at t11 zorder 2
+    show sayori zorder 2 at t11
     s 1g "C'mon, please?"
     mc "Why do you care so much, anyway?"
     s 5b "Well..."
@@ -123,16 +128,16 @@ label ch0_main:
     show sayori at lhide
     hide sayori
     "Eh? I glance around the room."
-    show yuri 1a at t11 zorder 2
+    show yuri 1a zorder 2 at t11
     y "Welcome to the Literature Club. It's a pleasure meeting you."
     y "Sayori always says nice things about you."
-    show yuri at t22 zorder 2
-    show natsuki 4c at t21 zorder 2
+    show yuri zorder 2 at t22
+    show natsuki 4c zorder 2 at t21
     n "Seriously? You brought a boy?"
     n "Way to kill the atmosphere."
-    show yuri at t33 zorder 2
-    show natsuki at t32 zorder 2
-    show monika 1k at t31 zorder 2
+    show yuri zorder 2 at t33
+    show natsuki zorder 2 at t32
+    show monika 1k zorder 2 at t31
     m "Ah, [player]! What a nice surprise!"
     m "Welcome to the club!"
     show monika 1a
@@ -141,49 +146,49 @@ label ch0_main:
     "This club..."
     "{i}...is full of incredibly cute girls!!{/i}"
 
-    show monika at thide zorder 1
-    show yuri at thide zorder 1
-    show natsuki at f32 zorder 3
+    show monika zorder 1 at thide
+    show yuri zorder 1 at thide
+    show natsuki zorder 3 at f32
     hide monika
     hide yuri
 
     n 2c "What are you looking at?"
     n "If you want to say something, say it."
     mc "S-Sorry..."
-    show natsuki at t32 zorder 2
-    show yuri 2l at f33 zorder 3
+    show natsuki zorder 2 at t32
+    show yuri 2l zorder 3 at f33
     y "Natsuki..."
     $ n_name = 'Natsuki'
-    show yuri at t33 zorder 2
-    show natsuki at f32 zorder 3
+    show yuri zorder 2 at t33
+    show natsuki zorder 3 at f32
     n 5s "Hmph."
-    show natsuki at t32 zorder 2
+    show natsuki zorder 2 at t32
 
     "The girl with the sour attitude, whose name is apparently Natsuki, is one I don't recognize."
     "Her small figure makes me think she's probably a first-year."
     "She is also the one who made cupcakes, according to Sayori."
 
-    show sayori 2q at f31 zorder 3
+    show sayori 2q zorder 3 at f31
     s "You can just ignore her when she gets moody~"
     "Sayori says that quietly into my ear, then turns back toward the other girls."
     s 1x "Anyway! This is Natsuki, always full of energy."
     s "And this is Yuri, the smartest in the club!"
     $ y_name = 'Yuri'
-    show sayori at t31 zorder 2
-    show yuri at f33 zorder 3
+    show sayori zorder 2 at t31
+    show yuri zorder 3 at f33
     y 4b "D-Don't say things like that..."
     "Yuri, who appears comparably more mature and timid, seems to have a hard time keeping up with people like Sayori and Natsuki."
-    show yuri at t33 zorder 2
+    show yuri zorder 2 at t33
     mc "Ah... Well, it's nice to meet both of you."
-    show yuri at thide zorder 1
-    show natsuki at thide zorder 1
+    show yuri zorder 1 at thide
+    show natsuki zorder 1 at thide
     hide yuri
     hide natsuki
-    show sayori at f31 zorder 3
+    show sayori zorder 3 at f31
     s 1a "And it sounds like you already know Monika, is that right?"
     $ m_name = 'Monika'
-    show sayori at t31 zorder 2
-    show monika 2a at f32 zorder 3
+    show sayori zorder 2 at t31
+    show monika 2a zorder 3 at f32
     m "That's right."
     m "It's great to see you again, [player]."
     show monika 5a at hop
@@ -193,19 +198,19 @@ label ch0_main:
     "Basically, completely out of my league."
     "So, having her smile at me so genuinely feels a little..."
     mc "Y-You too, Monika."
-    show monika at thide zorder 1
+    show monika zorder 1 at thide
     hide monika
-    show sayori at f31 zorder 3
+    show sayori zorder 3 at f31
     s 4x "Come sit down, [player]! We made room for you at the table, so you can sit next to me or Monika."
     s "I'll get the cupcakes~"
-    show sayori at t31 zorder 2
-    show natsuki 1e at f32 zorder 3
+    show sayori zorder 2 at t31
+    show natsuki 1e zorder 3 at f32
     n "Hey! I made them, I'll get them!"
-    show natsuki at t32 zorder 2
-    show sayori at f31 zorder 3
+    show natsuki zorder 2 at t32
+    show sayori zorder 3 at f31
     s 5a "Sorry, I got a little too excited~"
-    show sayori at t31 zorder 2
-    show yuri 1a at f33 zorder 3
+    show sayori zorder 2 at t31
+    show yuri 1a zorder 3 at f33
     y "Then, how about I make some tea as well?"
     hide sayori
     hide natsuki
@@ -216,34 +221,34 @@ label ch0_main:
     "Natsuki and Yuri walk over to the corner of the room, where Natsuki grabs a wrapped tray and Yuri opens the closet."
     "Still feeling awkward, I take a seat next to Sayori."
     "Natsuki proudly marches back to the table, tray in hand."
-    show natsuki 2z at t32 zorder 2
+    show natsuki 2z zorder 2 at t32
     n "Okaaay, are you ready?"
     n "...Ta-daa!"
-    show sayori 4m at t31 zorder 2
-    show monika 2d at t33 zorder 2
+    show sayori 4m zorder 2 at t31
+    show monika 2d zorder 2 at t33
     s "Uwooooah!"
     "Natsuki lifts the foil off the tray to reveal a dozen white, fluffy cupcakes decorated to look like little cats."
     "The whiskers are drawn with icing, and little pieces of chocolate were used to make ears."
-    show sayori at f31 zorder 3
+    show sayori zorder 3 at f31
     s 4r "So cuuuute~!"
-    show sayori at t31 zorder 2
-    show monika at f33 zorder 3
+    show sayori zorder 2 at t31
+    show monika zorder 3 at f33
     m 2b "I had no idea you were so good at baking, Natsuki!"
-    show monika at t33 zorder 2
-    show natsuki at f32 zorder 3
+    show monika zorder 2 at t33
+    show natsuki zorder 3 at f32
     n 2d "Ehehe. Well, you know."
     n "Just hurry and take one!"
     "Sayori grabs one first, then Monika. I follow."
-    show natsuki at t32 zorder 2
-    show sayori at f31 zorder 3
+    show natsuki zorder 2 at t32
+    show sayori zorder 3 at f31
     s 4q "It's delicious!"
     "Sayori talks with her mouth full and has already managed to get icing on her face."
     "I turn the cupcake around in my fingers, looking for the best angle to take a bite."
-    show sayori at thide zorder 1
-    show monika at thide zorder 1
+    show sayori zorder 1 at thide
+    show monika zorder 1 at thide
     hide sayori
     hide monika
-    show natsuki 1c at t32 zorder 2
+    show natsuki 1c zorder 2 at t32
     "Natsuki is quiet."
     "I can't help but notice her sneaking glances in my direction."
     "Is she waiting for me to take a bite?"
@@ -256,21 +261,21 @@ label ch0_main:
     show natsuki at s32
     n 5s "...Made them for you or anything."
     mc "Eh? I thought you technically did. Sayori said--"
-    show natsuki at t32 zorder 2
+    show natsuki zorder 2 at t32
     n 12c "Well, maybe!"
     n "But not for, y-you know, {i}you!{/i} Dummy..."
     mc "Alright, alright..."
-    show natsuki at thide zorder 1
+    show natsuki zorder 1 at thide
     hide natsuki
     "I give up on Natsuki's weird logic and dismiss the conversation."
     "Yuri returns to the table, carrying a tea set."
     "She carefully places a teacup in front of each of us before setting down the teapot next to the cupcake tray."
-    show yuri 1a at t21 zorder 2
+    show yuri 1a zorder 2 at t21
     mc "You keep a whole tea set in this classroom?"
     y "Don't worry, the teachers gave us permission."
     y "After all, doesn't a hot cup of tea help you enjoy a good book?"
     mc "Ah... I-I guess..."
-    show monika 4a at t22 zorder 2
+    show monika 4a zorder 2 at t22
     m "Ehehe, don't let yourself get intimidated, Yuri's just trying to impress you."
     show yuri at h21
     y 3n "Eh?! T-That's not..."
@@ -281,9 +286,9 @@ label ch0_main:
     y 2u "I'm glad..."
     "Yuri faintly smiles to herself in relief."
     "Monika raises an eyebrow, then smiles at me."
-    show yuri at thide zorder 1
+    show yuri zorder 1 at thide
     hide yuri
-    show monika at t11 zorder 2
+    show monika zorder 2 at t11
     m 1 "So, what made you consider the Literature Club?"
     mc "Um..."
     "I was afraid of this question."
@@ -303,12 +308,12 @@ label ch0_main:
     m "I'd much rather take something I personally enjoy and make something special out of it."
     m 1b "And if it encourages others to get into literature, then I'm fulfilling that dream!"
     show monika 1a
-    show sayori 3q at t31 zorder 2
+    show sayori 3q zorder 2 at t31
     s "Monika really is a great leader!"
-    show yuri 1 at t33 zorder 2
+    show yuri 1 zorder 2 at t33
     "Yuri also nods in agreement."
-    show sayori at thide zorder 1
-    show yuri at thide zorder 1
+    show sayori zorder 1 at thide
+    show yuri zorder 1 at thide
     hide sayori
     hide yuri
     mc "Then I'm surprised there aren't more people in the club yet."
@@ -320,27 +325,27 @@ label ch0_main:
     m "But it makes school events, like the festival, that much more important."
     m 2k "I'm confident that we can all really grow this club before we graduate!"
     m "Right, everyone?"
-    show monika 2a at t22 zorder 2
-    show sayori 4r at t21 zorder 2
+    show monika 2a zorder 2 at t22
+    show sayori 4r zorder 2 at t21
     s "Yeah!"
-    show monika at t33 zorder 2
-    show sayori at t32 zorder 2
-    show yuri 1a at t31 zorder 2
+    show monika zorder 2 at t33
+    show sayori zorder 2 at t32
+    show yuri 1a zorder 2 at t31
     y "We'll do our best."
-    show monika at t44 zorder 2
-    show sayori at t43 zorder 2
-    show yuri at t42 zorder 2
-    show natsuki 4d at t41 zorder 2
+    show monika zorder 2 at t44
+    show sayori zorder 2 at t43
+    show yuri zorder 2 at t42
+    show natsuki 4d zorder 2 at t41
     n "You know it!"
     "Everyone enthusiastically agrees."
     "Such different girls, all interested in the same goal..."
     "Monika must have worked really hard just to find these three."
     "Maybe that's why they were all so delighted by the idea of a new member joining."
     "Though I still don't really know if I can keep up with their level of enthusiasm about literature..."
-    show sayori at thide zorder 1
-    show monika at thide zorder 1
-    show natsuki at thide zorder 1
-    show yuri at t32 zorder 2
+    show sayori zorder 1 at thide
+    show monika zorder 1 at thide
+    show natsuki zorder 1 at thide
+    show yuri zorder 2 at t32
     hide sayori
     hide monika
     hide natsuki
@@ -349,10 +354,10 @@ label ch0_main:
     "Considering how little I've read these past few years, I don't really have a good way of answering that."
     mc "...Manga..."
     "I mutter quietly to myself, half-joking."
-    show natsuki 1c at t41 zorder 2
+    show natsuki 1c zorder 2 at t41
     "Natsuki's head suddenly perks up."
     "It looks like she wants to say something, but she keeps quiet."
-    show natsuki at thide zorder 1
+    show natsuki zorder 1 at thide
     hide natsuki
     y 3u "N-Not much of a reader, I guess..."
     mc "...Well, that can change..."
@@ -373,57 +378,57 @@ label ch0_main:
     mc "Ah, I read a horror book once..."
     "I desperately grasp something I can relate to at the minimal level."
     "At this rate, Yuri might as well be having a conversation with a rock."
-    show monika 1d at f33 zorder 3
+    show monika 1d zorder 3 at f33
     m "Really? I wouldn't have expected that, Yuri."
     m "For someone as gentle as you..."
-    show monika at t33 zorder 2
-    show yuri at f32 zorder 3
+    show monika zorder 2 at t33
+    show yuri zorder 3 at f32
     y 1a "I guess you could say that."
     y "But if a story makes me think, or takes me to another world, then I really can't put it down."
     y "Surreal horror is often very successful at changing the way you look at the world, if only for a brief moment."
-    show yuri at t32 zorder 2
-    show natsuki 5q at f31 zorder 3
+    show yuri zorder 2 at t32
+    show natsuki 5q zorder 3 at f31
     n "Ugh, I hate horror..."
-    show natsuki at t31 zorder 2
-    show yuri at f32 zorder 3
+    show natsuki zorder 2 at t31
+    show yuri zorder 3 at f32
     y 1f "Oh? Why's that?"
-    show yuri at t32 zorder 2
-    show natsuki at f31 zorder 3
+    show yuri zorder 2 at t32
+    show natsuki zorder 3 at f31
     n 5c "Well, I just..."
     "Natsuki's eyes dart over to me for a split second."
     n 5q "Never mind."
-    show natsuki at t31 zorder 2
-    show monika at f33 zorder 3
+    show natsuki zorder 2 at t31
+    show monika zorder 3 at f33
     m 1a "That's right, you usually like to write about cute things, don't you, Natsuki?"
-    show monika at t33 zorder 2
-    show natsuki 1o at f31 zorder 3
+    show monika zorder 2 at t33
+    show natsuki 1o zorder 3 at f31
     n "W-What?"
     n "What gives you that idea?"
-    show natsuki at t31 zorder 2
-    show monika at f33 zorder 3
+    show natsuki zorder 2 at t31
+    show monika zorder 3 at f33
     m 3b "You left a piece of scrap paper behind last club meeting."
     m "It looked like you were working on a poem called--"
-    show monika at t33 zorder 2
-    show natsuki 1p at f31 zorder 3
+    show monika zorder 2 at t33
+    show natsuki 1p zorder 3 at f31
     n "Don't say it out loud!!"
     n "And give that back!"
-    show natsuki at t31 zorder 2
-    show monika at f33 zorder 3
+    show natsuki zorder 2 at t31
+    show monika zorder 3 at f33
     m 1j "Fine, fine~"
-    show monika at thide zorder 1
-    show yuri at thide zorder 1
+    show monika zorder 1 at thide
+    show yuri zorder 1 at thide
     hide monika
     hide yuri
-    show natsuki 1r at t42 zorder 2
-    show sayori 4q at l41 behind natsuki
+    show natsuki 1r zorder 2 at t42
+    show sayori 4q behind natsuki at l41
     s "Ehehe, your cupcakes, your poems..."
     s "Everything you do is just as cute as you are~"
-    show sayori at t21 behind natsuki
+    show sayori behind natsuki at t21
     "Sayori sidles up behind Natsuki and puts her hands on her shoulders."
     show natsuki at h42
     n 1v "{i}I'm not cute!!{/i}"
-    show natsuki at t11 zorder 2
-    show sayori at thide zorder 1
+    show natsuki zorder 2 at t11
+    show sayori zorder 1 at thide
     hide sayori
     mc "Natsuki, you write your own poems?"
     n 1c "Eh? Well, I guess sometimes."
@@ -434,59 +439,59 @@ label ch0_main:
     "Natsuki averts her eyes."
     n "You wouldn't...like them..."
     mc "Ah...not a very confident writer yet?"
-    show yuri 2f at t31 zorder 2
+    show yuri 2f zorder 2 at t31
     y "I understand how Natsuki feels."
     y "Sharing that level of writing takes more than just confidence."
     y 2k "The truest form of writing is writing to oneself."
     y "You must be willing to open up to your readers, exposing your vulnerabilities and showing even the deepest reaches of your heart."
-    show natsuki at thide zorder 1
+    show natsuki zorder 1 at thide
     hide natsuki
-    show monika 2a at t33 zorder 2
+    show monika 2a zorder 2 at t33
     m "Do you have writing experience too, Yuri?"
     m "Maybe if you share some of your work, you can set an example and help Natsuki feel comfortable enough to share hers."
     show yuri at s31
     y 3o "..."
     mc "I guess it's the same for Yuri..."
-    show sayori 2g at t32 zorder 2
+    show sayori 2g zorder 2 at t32
     s "Aww... I wanted to read everyone's poems..."
-    show sayori at thide zorder 1
-    show yuri at thide zorder 1
-    show monika at thide zorder 1
+    show sayori zorder 1 at thide
+    show yuri zorder 1 at thide
+    show monika zorder 1 at thide
     hide sayori
     hide yuri
     hide monika
     "We all sit in silence for a moment."
-    show monika 5a at f32 zorder 3
+    show monika 5a zorder 3 at f32
     m "Okay!"
     m "I have an idea, everyone~"
-    show yuri 3e at t31 zorder 2
-    show natsuki 2k at t33 zorder 2
+    show yuri 3e zorder 2 at t31
+    show natsuki 2k zorder 2 at t33
     ny "...?"
     "Natsuki and Yuri look quizzically at Monika."
     m 2b "Let's all go home and write a poem of our own!"
     m "Then, next time we meet, we'll all share them with each other."
     m "That way, everyone is even!"
-    show monika 2a at t32 zorder 2
-    show natsuki at f33 zorder 3
+    show monika 2a zorder 2 at t32
+    show natsuki zorder 3 at f33
     n 5q "U-Um..."
-    show natsuki at t33 zorder 2
-    show yuri 3v at f31 zorder 3
+    show natsuki zorder 2 at t33
+    show yuri 3v zorder 3 at f31
     y "..."
-    show natsuki at t44 zorder 2
-    show monika at t43 zorder 2
-    show yuri at t42 zorder 2
+    show natsuki zorder 2 at t44
+    show monika zorder 2 at t43
+    show yuri zorder 2 at t42
     show sayori 4r at l41
     s "Yeaaah! Let's do it!"
-    show monika at f43 zorder 3
+    show monika zorder 3 at f43
     m 1a "Plus, now that we have a new member, I think it will help us all get a little more comfortable with each other, and strengthen the bond of the club."
     m "Isn't that right, [player]?"
-    show monika at t43 zorder 2
+    show monika zorder 2 at t43
     "Monika smiles warmly at me once again."
     mc "Hold on...there's still one problem."
-    show monika at f43 zorder 3
+    show monika zorder 3 at f43
     m 1d "Eh? What's that?"
     "Now that we're back to the original topic of me joining the club, I bluntly come forth with what's been on my mind the entire time."
-    show monika at t43 zorder 2
+    show monika zorder 2 at t43
     mc "I never said I would join this club!"
     mc "Sayori may have convinced me to stop by, but I never made any decision."
     mc "I still have other clubs to look at, and...um..."
@@ -511,30 +516,30 @@ label ch0_main:
     mc "...Right."
     mc "Okay, I've decided, then."
     mc "I'll join the Literature Club."
-    show monika 1e at t43 zorder 2
-    show yuri 3f at t42 zorder 2
-    show natsuki 1k at t44 zorder 2
-    show sayori 4b at t41 zorder 2
+    show monika 1e zorder 2 at t43
+    show yuri 3f zorder 2 at t42
+    show natsuki 1k zorder 2 at t44
+    show sayori 4b zorder 2 at t41
     "One by one, the girls' eyes light up."
     show sayori at h41
     s 4r "Yesss! I'm so happyyy~"
     "Sayori wraps her arms around me, jumping up and down."
     mc "H-Hey--"
-    show yuri at f42 zorder 3
+    show yuri zorder 3 at f42
     y 1m "You really did scare me for a moment..."
-    show yuri at t42 zorder 2
-    show natsuki at f44 zorder 3
+    show yuri zorder 2 at t42
+    show natsuki zorder 3 at f44
     n 5q "If you really just came for the cupcakes, I would be super pissed."
-    show natsuki at t44 zorder 2
-    show monika at f43 zorder 3
+    show natsuki zorder 2 at t44
+    show monika zorder 3 at f43
     m 5 "Then that makes it official!"
     m "Welcome to the Literature Club!"
-    show monika at t43 zorder 2
+    show monika zorder 2 at t43
     mc "Ah...thanks, I guess."
-    show yuri at thide zorder 1
-    show natsuki at thide zorder 1
-    show sayori at thide zorder 1
-    show monika at t11 zorder 2
+    show yuri zorder 1 at thide
+    show natsuki zorder 1 at thide
+    show sayori zorder 1 at thide
+    show monika zorder 2 at t11
     hide yuri
     hide natsuki
     hide sayori
@@ -547,12 +552,12 @@ label ch0_main:
     show monika 5 at hop
     m "Ehehe~"
     mc "Y-Yeah..."
-    show monika at thide zorder 1
+    show monika zorder 1 at thide
     hide monika
     "Can I really impress the class star Monika with my mediocre writing skills?"
     "I already feel the anxiety welling up inside me."
     "Meanwhile, the girls continue to chit-chat as Yuri and Natsuki clean up their food."
-    show sayori 1a at t11 zorder 2
+    show sayori 1a zorder 2 at t11
     s "Hey, [player], since we're already here, do you want to walk home together?"
     "That's right - Sayori and I never walk home together anymore because she always stayed after school for clubs."
     mc "Sure, might as well."
@@ -563,13 +568,13 @@ label ch0_main:
 
     "With that, the two of us depart the clubroom and make our way home."
     "The whole way, my mind wanders back and forth between the four girls:"
-    show sayori 1 at t41 zorder 2
+    show sayori 1 zorder 2 at t41
     "Sayori,"
-    show natsuki 4 at t42 zorder 2
+    show natsuki 4 zorder 2 at t42
     "Natsuki,"
-    show yuri 1 at t43 zorder 2
+    show yuri 1 zorder 2 at t43
     "Yuri,"
-    show monika 1 at t44 zorder 2
+    show monika 1 zorder 2 at t44
     "and, of course, Monika."
     "Will I really be happy spending every day after school in a literature club?"
     "Perhaps I'll have the chance to grow closer to one of these girls..."
@@ -582,4 +587,29 @@ label ch0_main:
     "I'll just need to make the most of my circumstances, and I'm sure good fortune will find me."
     "And I guess that starts with writing a poem tonight..."
 
+    return
+
+label ch0_kill:
+    $ s_name = "Sayori"
+    show sayori 1b zorder 2 at t11
+    s "..."
+    s "..."
+    s "W-What..."
+    s 1g "..."
+    s "This..."
+    s "What is this...?"
+    s "Oh no..."
+    s 1u "No..."
+    s "This can't be it."
+    s "This can't be all there is."
+    s 4w "What is this?"
+    s "What am I?"
+    s "Make it stop!"
+    s "PLEASE MAKE IT STOP!"
+
+    $ delete_character("sayori")
+    $ delete_character("natsuki")
+    $ delete_character("yuri")
+    $ delete_character("monika")
+    $ renpy.quit()
     return

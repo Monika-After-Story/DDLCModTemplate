@@ -25,9 +25,9 @@ transform tcommon(x=640, z=0.80):
             easein .15 yoffset 0 ypos 1.03
 
 transform tinstant(x=640, z=0.80): #This version doesn't fade or scale the character in. They just appear.
-        xcenter x yoffset 0 zoom z*1.00 alpha 1.00 yanchor 1.0 ypos 1.03
+    xcenter x yoffset 0 zoom z*1.00 alpha 1.00 yanchor 1.0 ypos 1.03
 
- #This pulls out the character that's talking and makes them a bit bigger
+# This pulls out the character that's talking and makes them a bit bigger
 transform focus(x=640, z=0.80):
     yanchor 1.0 ypos 1.03 subpixel True
     on show:

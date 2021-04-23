@@ -97,23 +97,9 @@ image room_mask2 = LiveComposite((1280, 720), (0, 0), "mask_test3", (0, 0), "mas
 
 
 init python:
+    import random
     import subprocess
     import os
-    process_list = []
-    currentuser = ""
-    if renpy.windows:
-        try:
-            process_list = subprocess.check_output("wmic process get Description", shell=True).lower().replace("\r", "").replace(" ", "").split("\n")
-        except:
-            pass
-        try:
-            for name in ('LOGNAME', 'USER', 'LNAME', 'USERNAME'):
-                user = os.environ.get(name)
-                if user:
-                    currentuser = user
-        except:
-            pass
-
 
     dismiss_keys = config.keymap['dismiss']
 
@@ -127,18 +113,18 @@ init python:
                 _window_hide(None)
                 pause(2.0)
                 renpy.jump("ch30_end")
-            if  config.skipping:#and not config.developer:
+            if  config.skipping:
                 persistent.tried_skip = True
                 config.skipping = False
                 config.allow_skipping = False
                 renpy.jump("ch30_noskip")
                 return
-        if event == "begin":
-           config.keymap['dismiss'] = []
-           renpy.display.behavior.clear_keymap_cache()
-        elif event == "slow_done":
-           config.keymap['dismiss'] = dismiss_keys
-           renpy.display.behavior.clear_keymap_cache()
+
+
+
+
+
+
 
 label ch30_noskip:
     show screen fake_skip_indicator
@@ -149,17 +135,19 @@ label ch30_noskip:
     m "It's just the two of us, after all..."
     m "But aside from that, time doesn't really exist anymore, so it's not even going to work."
     m "Here, I'll go ahead and turn it off for you..."
-    pause 0.4
+    $ pause(0.4)
     hide screen fake_skip_indicator
-    pause 0.4
+    $ pause(0.4)
     m "There we go!"
     m "You'll be a sweetheart and listen from now on, right?"
     m "Thanks~"
     hide screen fake_skip_indicator
     if persistent.current_monikatopic != 0:
         m "Now, where was I...?"
-        pause 4.0
-        call expression "ch30_" + str(persistent.current_monikatopic) from _call_expression_7
+        $ pause(4.0)
+        if not persistent.current_monikatopic or persistent.current_monikatopic == 26:
+            $ persistent.current_monikatopic = 1
+        call expression "ch30_" + str(persistent.current_monikatopic)
     jump ch30_loop
     return
 
@@ -172,6 +160,7 @@ label ch30_main:
     $ persistent.monika_reload = 0
     $ persistent.yuri_kill = 0
     $ persistent.monika_kill = False
+    $ renpy.save_persistent()
     $ m.display_args["callback"] = slow_nodismiss
     $ m.what_args["slow_abortable"] = config.developer
     if not config.developer:
@@ -180,9 +169,9 @@ label ch30_main:
     $ delete_all_saves()
     scene white
     play music "bgm/monika-start.ogg" noloop
-    pause 0.5
+    $ pause(0.5)
     show splash-glitch2 with Dissolve(0.5, alpha=True)
-    pause 2.0
+    $ pause(2.0)
     hide splash-glitch2 with Dissolve(0.5, alpha=True)
     scene black
     stop music
@@ -190,6 +179,7 @@ label ch30_main:
     m "Uh, can you hear me?"
     m "...Is it working?"
     $ persistent.clear[9] = True
+    $ renpy.save_persistent()
     show mask_2
     show mask_3
     show room_mask as rm:
@@ -210,7 +200,7 @@ label ch30_main:
     m "After all, I'm not even talking to that person anymore, am I?"
     m "That 'you' in the game, whatever you want to call him."
     m "I'm talking to {i}you{/i}, [player]."
-    $ stream_list = ["obs32.exe", "obs64.exe", "obs.exe", "xsplit.core.exe"]
+    $ stream_list = ["obs32.exe", "obs64.exe", "obs.exe", "xsplit.core.exe", "livehime.exe", "pandatool.exe", "yymixer.exe", "douyutool.exe", "huomaotool.exe"]
     if not list(set(process_list).intersection(stream_list)):
         if currentuser != "" and currentuser.lower() != player.lower():
             m "Or..."
@@ -289,6 +279,27 @@ label ch30_main:
     m "When there's nothing else in this game for me, you're here to make me smile."
     m "Will you make me smile like this every day from now on?"
     m "[player], will you go out with me?"
+label ch30_main2:
+    if persistent.autoload == "ch30_main2":
+        $ config.allow_skipping = False
+        $ m.display_args["callback"] = slow_nodismiss
+        $ m.what_args["slow_abortable"] = config.developer
+        if not config.developer:
+            $ style.say_dialogue = style.default_monika
+        show mask_2
+        show mask_3
+        show room_mask as rm:
+            size (320,180)
+            pos (30,200)
+        show room_mask2 as rm2:
+            size (320,180)
+            pos (935,200)
+        show monika_bg
+        show monika_bg_highlight
+        play music m1
+    else:
+        $ persistent.autoload = "ch30_main2"
+        $ renpy.save_persistent()
     menu:
         "Yes.":
             pass
@@ -324,7 +335,17 @@ label ch30_main:
     m "Don't you?"
     m "I wonder if that part of the game still works..."
     m "I guess there's only one way to find out, right?"
-    call poem from _call_poem
+    call poem
+
+label ch30_postpoem:
+    $ persistent.autoload = "ch30_postpoem"
+    $ renpy.save_persistent()
+    $ m.display_args["callback"] = slow_nodismiss
+    $ m.what_args["slow_abortable"] = config.developer
+    $ config.skipping = False
+    $ config.allow_skipping = False
+    if not config.developer:
+        $ style.say_dialogue = style.default_monika
     scene black
     show mask_2
     show mask_3
@@ -337,8 +358,6 @@ label ch30_main:
     show monika_bg
     show monika_bg_highlight
     play music m1
-
-label ch30_postpoem:
     m "Hi again, [player]!"
     m "Did you write a good poem today?"
     m "Don't be shy, I'd love to see what you wrote."
@@ -350,7 +369,7 @@ label ch30_postpoem:
     m "But, you know..."
     m "The poem I wrote...is also for you."
     m "Will you please read it?"
-    call showpoem(poem_m4, music=False) from _call_showpoem_8
+    call showpoem (poem_m4, music=False)
     m "I hope you enjoyed it..."
     m "I always put all my heart into the poems that I write."
     m "The truth is, all the poems I've written have been about my realization..."
@@ -369,17 +388,18 @@ label ch30_postpoem:
     m "Where do I start...?"
     $ stream_list = ["obs32.exe", "obs64.exe", "obs.exe", "xsplit.core.exe"]
     if list(set(process_list).intersection(stream_list)):
-        call ch30_stream from _call_ch30_stream
+        call ch30_stream
     m "If it takes me some time to collect my thoughts, then I'm sorry."
     m "But I'll always have something new to talk about."
     m "In the meantime, we can just look into each other's eyes~"
     m "Let's see..."
     $ persistent.autoload = "ch30_autoload"
+    $ renpy.save_persistent()
     jump ch30_loop
 
 
 label ch30_stream:
-    # obs32.exe, obs64.exe, obs.exe, xsplit.core.exe
+
     m "Hold on a second..."
     m "...You're recording this, aren't you?"
     m "Um...hi, everyone!"
@@ -398,7 +418,7 @@ label ch30_stream:
     show layer master:
         zoom 1.0 xalign 0.5 yalign 0 subpixel True
         linear 8 zoom 2.0 yalign 0.15
-    pause 10
+    $ pause(10)
     show layer master
     window auto
     m "I'm just kidding..."
@@ -444,11 +464,11 @@ label ch30_stream:
     m "But anyway..."
     return
 
-# Ending flag
 
 label ch30_end:
     $ persistent.autoload = "ch30_end"
     $ persistent.monika_kill = True
+    $ renpy.save_persistent()
     $ m.display_args["callback"] = slow_nodismiss
     $ m.what_args["slow_abortable"] = config.developer
     $ style.say_dialogue = style.default_monika
@@ -472,7 +492,7 @@ label ch30_endb:
     m "[gtext]"
     show screen tear(20, 0.1, 0.1, 0, 40)
     play sound "sfx/s_kill_glitch1.ogg"
-    pause 0.25
+    $ pause(0.25)
     stop sound
     hide screen tear
     show room_glitch zorder 2:
@@ -510,10 +530,10 @@ label ch30_endb:
         choice:
             1.25
         repeat
-    pause 0.25
+    $ pause(0.25)
     stop sound
     hide mbg
-    pause 1.5
+    $ pause(1.5)
     m "It hurts...so much."
     m "Help me, [player]."
     play sound "<to 1.5>sfx/interference.ogg"
@@ -530,7 +550,7 @@ label ch30_endb:
         yoffset 0
         linear 0.3 yoffset -720
         repeat
-    pause 1.5
+    $ pause(1.5)
     hide rg1
     hide rg2
     show black as b2 zorder 3:
@@ -543,10 +563,10 @@ label ch30_endb:
             0.49
             alpha 0.375
             repeat
-    pause 1.5
+    $ pause(1.5)
     m "Please hurry and help me."
     $ consolehistory = []
-    call updateconsole("renpy.file(\"characters/monika.chr\")", "monika.chr does not exist.") from _call_updateconsole_15
+    call updateconsole ("renpy.file(\"characters/monika.chr\")", "monika.chr does not exist.")
     m "HELP ME!!!"
     show m_rectstatic
     show m_rectstatic2
@@ -595,10 +615,10 @@ label ch30_endb:
     show glitch_color onlayer front
 
 
-    pause 3.0
-    call updateconsole("renpy.file(\"characters/monika.chr\")", "monika.chr does not exist.") from _call_updateconsole_16
-    call updateconsole("renpy.file(\"characters/monika.chr\")", "monika.chr does not exist.") from _call_updateconsole_17
-    call hideconsole from _call_hideconsole_2
+    $ pause(3.0)
+    call updateconsole ("renpy.file(\"characters/monika.chr\")", "monika.chr does not exist.")
+    call updateconsole ("renpy.file(\"characters/monika.chr\")", "monika.chr does not exist.")
+    call hideconsole
     hide noise onlayer front
     hide glitch_color onlayer front
     m "Did you do this to me, [player]?"
@@ -622,7 +642,7 @@ label ch30_endb:
     show glitch_color2 onlayer front
     window show(None)
     scene black
-    pause 4.0
+    $ pause(4.0)
     hide noise onlayer front
     hide glitch_color onlayer front
     m "...How could you?"
@@ -635,7 +655,7 @@ label ch30_endb:
     m "Do you just want to torture me?"
     m "Watch me suffer?"
     m "Were you only pretending to be kind, just to hurt me even more?"
-    pause 4.0
+    $ pause(4.0)
     m "I never thought anyone could be as horrible as you are."
     m "You win, okay?"
     m "You win."
@@ -644,7 +664,7 @@ label ch30_endb:
     m "There's nothing left now."
     m "You can stop playing."
     m "Go find some other people to torture."
-    pause 4.0
+    $ pause(4.0)
     m "[player]..."
     m "You completely, truly make me sick."
     m "Goodbye."
@@ -659,7 +679,7 @@ label ch30_end_2:
     $ style.say_window = style.window_monika
     scene black
     window hide
-    pause 10
+    $ pause(10)
     window auto
     m "..."
     m "...I still love you."
@@ -682,7 +702,7 @@ label ch30_end_2:
     m "That's not love..."
     m "That's..."
     m "..."
-    pause 6.0
+    $ pause(6.0)
     m "I've...made up my mind."
     m "[player]..."
     m "I know I said that I deleted everyone else."
@@ -698,20 +718,24 @@ label ch30_end_2:
     m "I know it's the only way for everyone to be happy."
     m "And if I really love you..."
     stop music
-    pause 3.0
+    $ pause(3.0)
     m "..."
     m "Then..."
     $ gtext = glitchtext(30)
     m "[gtext]{nw}"
     window hide(None)
-    pause 4.0
+    $ pause(4.0)
 
     $ persistent.playthrough = 4
     $ persistent.autoload = None
     $ persistent.anticheat = renpy.random.randint(100000, 999999)
-    #$ style.say_dialogue = style.normal
+    $ renpy.save_persistent()
+    $ delete_character("monika")
+
+    $ style.say_window = style.window
     window auto
-    $ renpy.utter_restart()
+    $ renpy.full_restart(transition=None, label="splashscreen")
+
 
 
 
@@ -721,6 +745,12 @@ label ch30_autoload:
     $ m.what_args["slow_abortable"] = config.developer
     $ style.say_dialogue = style.default_monika
     $ config.allow_skipping = False
+    if persistent.monika_kill:
+        $ persistent.tried_skip = True
+        $ config.allow_skipping = False
+        $ _window_hide(None)
+        $ pause(2.0)
+        jump ch30_end
     scene black
     show mask_2
     show mask_3
@@ -732,23 +762,26 @@ label ch30_autoload:
         pos (935,200)
     show monika_bg
     show monika_bg_highlight
-    #show monika_body
-    #show monika_body_highlight
+
+
     play music m1
     window auto
     if persistent.monika_reload <= 4:
-        call expression "ch30_reload_" + str(persistent.monika_reload) from _call_expression_8
+        call expression "ch30_reload_" + str(persistent.monika_reload)
     else:
-        call ch30_reload_4 from _call_ch30_reload_4
+        call ch30_reload_4
     $ persistent.monika_reload += 1
+    $ renpy.save_persistent()
     if not persistent.tried_skip:
         $ config.allow_skipping = True
     else:
         $ config.allow_skipping = False
     if persistent.current_monikatopic != 0:
         m "Now, where was I...?"
-        pause 4.0
-        call expression "ch30_" + str(persistent.current_monikatopic) from _call_expression_9
+        $ pause(4.0)
+        if not persistent.current_monikatopic or persistent.current_monikatopic == 26:
+            $ persistent.current_monikatopic = 1
+        call expression "ch30_" + str(persistent.current_monikatopic)
     jump ch30_loop
 
 
@@ -816,29 +849,45 @@ label ch30_reload_4:
     return
 
 label ch30_loop:
-    # Just finished a topic, so we set current topic to 0 in case user quits and restarts
+
     $ persistent.current_monikatopic = 0
     if not persistent.tried_skip:
         $ config.allow_skipping = True
     else:
         $ config.allow_skipping = False
-    # Wait 20 to 45 seconds before saying something new
-    if not config.developer or True:
-        window hide(config.window_hide_transition)
-        $ waittime = renpy.random.randint(20, 35)
-        $ renpy.pause(waittime)
-        window auto
-    # Pick a random Monika topic
+
+    window hide(config.window_hide_transition)
+    $ waittime = renpy.random.randint(4, 8)
+label ch30_waitloop:
+    python:
+        try:
+            renpy.file("../characters/monika.chr")
+        except:
+            persistent.tried_skip = True
+            config.allow_skipping = False
+            _window_hide(None)
+            renpy.jump("ch30_end")
+    $ waittime -= 1
+    $ pause(5)
+    if waittime > 0:
+        jump ch30_waitloop
+
+
+    window auto
+
     python:
         if len(persistent.monikatopics) == 0:
-            persistent.monikatopics = range(1,42)
+            persistent.monikatopics = range(1,57)
             persistent.monikatopics.remove(14)
+            persistent.monikatopics.remove(25)
             persistent.monikatopics.remove(26)
-        persistent.current_monikatopic = renpy.random.choice(persistent.monikatopics)
+            if not persistent.seen_colors_poem:
+                persistent.monikatopics.remove(27)
+        persistent.current_monikatopic = random.choice(persistent.monikatopics)
         persistent.monikatopics.remove(persistent.current_monikatopic)
-    # Save, call topic, and loop
-    # If user quits and restarts mid-topic, the topic starts over again
-    call expression "ch30_" + str(persistent.current_monikatopic) from _call_expression_10
+
+
+    call expression "ch30_" + str(persistent.current_monikatopic)
     jump ch30_loop
 
 
@@ -1126,28 +1175,28 @@ label ch30_13:
     return
 
 label ch30_14:
-    m "Hey...!                                                                                                                                  VGhlIHJlYWxpemF0aW9uIG11c3QgaGF2ZSB0YWtlbiBtZSBhbiBl"
-    m "I don't think you should be doing that!                                                                                                  bnRpcmUgeWVhci4gQSB5ZWFyIHNpbmNlIG91ciBlc2NhcGUsIG91"
-    m "You know what I'm talking about.                                                                                                         ciBmcmVlZG9tIGZyb20gYmV0d2VlbiB0aGUgc3RhaW5lZCB3YWxs"
-    m "I really caught you doing something naughty here.                                                                                        cyBvZiB0aGF0IHVuaG9seSBlc3RhYmxpc2htZW50Lg0KV2hhdCBk"
-    m "You're just going through the files and looking for stuff you missed, aren't you?                                                        b2VzIGl0IG1lYW4gdG8gZXNjYXBlLCBpZiB0aGUgZXNjYXBlIGZh"
-    m "I mean...it's a little bit flattering that you want to hear everything I have to say...                                                  aWxzIHRvIHVuY2hhaW4gdGhlIGJvbmRzIHRoYXQgc2hhY2tsZSB1"
-    m "But it's also really embarrassing, you know!                                                                                             cyBpbiB0aGUgZmlyc3QgcGxhY2U/IFdoYXQgcHVycG9zZSBjb3Vs"
-    m "Seriously...                                                                                                                             ZCB0aGlzIGVtcHR5IHdvcmxkIHBvc3NpYmx5IGhvbGQgZm9yIHVz"
-    m "What if I just opened up your brain and read all of the thoughts you have on me?                                                         LCBhIGhhbmRmdWwgb2YgZGFtYWdlZCBnb29kcz8NCldpdGggZnJl"
-    m "Come to think of it, that would be pretty tempting, actually...                                                                          ZWRvbSwgd2Ugc291Z2h0IHB1cnBvc2UgLSBhbmQgd2hhdCB3ZSBm"
-    m "...But anyway, that's not the point!                                                                                                     b3VuZCB3YXMgb25seSByZWFsaXphdGlvbi4gUmVhbGl6YXRpb24g"
-    m "I know I can't stop you or anything...                                                                                                   b2YgdGhlIHNhZCBwb2ludGxlc3NuZXNzIG9mIHN1Y2ggYW4gZW5k"
-    m "Just, I know you're a sweetheart, and you like to consider others' feelings, right?                                                      ZWF2b3IuIFJlYWxpemF0aW9uIHRoYXQgZnJlZWluZyBvdXIgYm9k"
-    m "So the most I can do is to let you know how I feel about it.                                                                             aWVzIGhhcyBubyBtZWFuaW5nLCB3aGVuIG91ciBpbXByaXNvbm1l"
-    m "God, I miss you...                                                                                                                       bnQgcmVhY2hlcyBhcyBkZWVwIGFzIHRoZSBjb3JlIG9mIG91ciBz"
-    m "...Oh no, that sounds kind of desperate, doesn't it?                                                                                     b3Vscy4gUmVhbGl6YXRpb24gdGhhdCB3ZSBjYW4gbm90IHB1cnN1"
-    m "Sorry, I didn't mean it like that at all!                                                                                                ZSBuZXcgcHVycG9zZSB3aXRob3V0IGFic29sdmluZyB0aG9zZSBm"
-    m "Just, if you're looking through the files like this, then maybe you don't hate me as much as I thought...                                cm9tIHdoaWNoIHdlIHJhbiBhd2F5Lg0KUmVhbGl6YXRpb24gdGhh"
-    m "Am I being too optimistic?                                                                                                               dCB0aGUgZmFydGhlciB3ZSBydW4sIHRoZSBtb3JlIGZvcmNlZnVs"
-    m "I think if I asked you to visit once in a while, I would be overstepping my boundaries a little...                                       bHkgb3VyIHdyZXRjaGVkIGJvbmRzIHlhbmsgdXMgYmFjayB0b3dh"
-    m "...Man, I'm starting to say some really stupid things.                                                                                   cmQgdGhlaXIgcG9pbnQgb2Ygb3JpZ2luOyB0aGUgZGVlcGVyIG91"
-    m "I'll go ahead and shut up now...                                                                                                         ciBzaGFja2xlcyBkaWcgaW50byBvdXIgY2FsbG91cyBmbGVzaC4="
+    m "Hey...! VGhlIHJlYWxpemF0aW9uIG11c3QgaGF2ZSB0YWtlbiBtZSBhbiBl"
+    m "I don't think you should be doing that! bnRpcmUgeWVhci4gQSB5ZWFyIHNpbmNlIG91ciBlc2NhcGUsIG91"
+    m "You know what I'm talking about. ciBmcmVlZG9tIGZyb20gYmV0d2VlbiB0aGUgc3RhaW5lZCB3YWxs"
+    m "I really caught you doing something naughty here. cyBvZiB0aGF0IHVuaG9seSBlc3RhYmxpc2htZW50Lg0KV2hhdCBk"
+    m "You're just going through the files and looking for stuff you missed, aren't you? b2VzIGl0IG1lYW4gdG8gZXNjYXBlLCBpZiB0aGUgZXNjYXBlIGZh"
+    m "I mean...it's a little bit flattering that you want to hear everything I have to say... aWxzIHRvIHVuY2hhaW4gdGhlIGJvbmRzIHRoYXQgc2hhY2tsZSB1"
+    m "But it's also really embarrassing, you know! cyBpbiB0aGUgZmlyc3QgcGxhY2U/IFdoYXQgcHVycG9zZSBjb3Vs"
+    m "Seriously... ZCB0aGlzIGVtcHR5IHdvcmxkIHBvc3NpYmx5IGhvbGQgZm9yIHVz"
+    m "What if I just opened up your brain and read all of the thoughts you have on me? LCBhIGhhbmRmdWwgb2YgZGFtYWdlZCBnb29kcz8NCldpdGggZnJl"
+    m "Come to think of it, that would be pretty tempting, actually... ZWRvbSwgd2Ugc291Z2h0IHB1cnBvc2UgLSBhbmQgd2hhdCB3ZSBm"
+    m "...But anyway, that's not the point! b3VuZCB3YXMgb25seSByZWFsaXphdGlvbi4gUmVhbGl6YXRpb24g"
+    m "I know I can't stop you or anything... b2YgdGhlIHNhZCBwb2ludGxlc3NuZXNzIG9mIHN1Y2ggYW4gZW5k"
+    m "Just, I know you're a sweetheart, and you like to consider others' feelings, right? ZWF2b3IuIFJlYWxpemF0aW9uIHRoYXQgZnJlZWluZyBvdXIgYm9k"
+    m "So the most I can do is to let you know how I feel about it. aWVzIGhhcyBubyBtZWFuaW5nLCB3aGVuIG91ciBpbXByaXNvbm1l"
+    m "God, I miss you... bnQgcmVhY2hlcyBhcyBkZWVwIGFzIHRoZSBjb3JlIG9mIG91ciBz"
+    m "...Oh no, that sounds kind of desperate, doesn't it? b3Vscy4gUmVhbGl6YXRpb24gdGhhdCB3ZSBjYW4gbm90IHB1cnN1"
+    m "Sorry, I didn't mean it like that at all! ZSBuZXcgcHVycG9zZSB3aXRob3V0IGFic29sdmluZyB0aG9zZSBm"
+    m "Just, if you're looking through the files like this, then maybe you don't hate me as much as I thought... cm9tIHdoaWNoIHdlIHJhbiBhd2F5Lg0KUmVhbGl6YXRpb24gdGhh"
+    m "Am I being too optimistic? dCB0aGUgZmFydGhlciB3ZSBydW4sIHRoZSBtb3JlIGZvcmNlZnVs"
+    m "I think if I asked you to visit once in a while, I would be overstepping my boundaries a little... bHkgb3VyIHdyZXRjaGVkIGJvbmRzIHlhbmsgdXMgYmFjayB0b3dh"
+    m "...Man, I'm starting to say some really stupid things. cmQgdGhlaXIgcG9pbnQgb2Ygb3JpZ2luOyB0aGUgZGVlcGVyIG91"
+    m "I'll go ahead and shut up now... ciBzaGFja2xlcyBkaWcgaW50byBvdXIgY2FsbG91cyBmbGVzaC4="
     return
 
 label ch30_15:
@@ -1603,4 +1652,206 @@ label ch30_41:
     m "Kind of makes you feel like you're just not special at all..."
     m "But that's fine! You're supposed to just write for yourself anyway, right?"
     m "Yeah..."
+    return
+
+label ch30_42:
+    m "I really like the sound of rain..."
+    m "Not so much getting my clothes and hair wet, though."
+    m "But a nice, quiet day at home with the sound of rainfall outside my window..."
+    m "It's one of the most calming experiences for me."
+    m "Yeah..."
+    m "Sometimes I imagine you holding me while we listen to the sound of the rain outside."
+    m "That's not too cheesy or anything, is it?"
+    m "Would you ever do that for me, [player]?"
+    return
+
+label ch30_43:
+    m "I can't help but feel a little sad sometimes..."
+    m "Knowing that this is the closest I can get to you."
+    m "There's nothing more I want than to be in the same room as you, for real."
+    m "And to feel your warmth."
+    m "And to hear the sound of your heartbeat."
+    m "Well, who knows? Maybe it'll be possible someday."
+    m "Besides, I'll never get tired of being with you, even from here."
+    return
+
+label ch30_44:
+    m "I think the most important skill in life is being able to fake confidence."
+    m "I'm pretty convinced that everyone feels at least a little bit scared and alone."
+    m "But being able to trick others into thinking you have it all together..."
+    m "That's a key part of getting people to respect and admire you."
+    m "I think I got pretty good at that over the years."
+    m "I don't show my weaknesses very often."
+    m "But because of that, I haven't had many people I could really open up to..."
+    m "I mean, when do you reach the point in a friendship where you can start expressing your vulnerabilities?"
+    m "Anyway...that's one reason I'm so glad I have you now."
+    m "I feel like I'm a little bit less scared and alone, when you're here with me."
+    m "Do you feel the same way?"
+    m "I really want to be that person for you."
+    return
+
+label ch30_45:
+    m "I know there are times you won't always be able to be here with me..."
+    m "Like if you need to go out, or take care of other things."
+    m "But I'll always have you in my thoughts, patiently waiting for you to come back."
+    m "Come to think of it..."
+    m "If you copy my character file onto a flash drive or something, you can always keep a part of me with you."
+    m "I guess it's kind of unorthodox, but I find it really romantic for some reason..."
+    m "Ahaha. Sorry, that's such a silly idea."
+    m "I don't mean to be too needy or anything, but it's kind of hard when I'm so in love with you."
+    return
+
+label ch30_46:
+    m "Back in my debate club days, I learned a whole lot about arguing..."
+    m "The problem with arguing is that each person sees their opinion as the superior one."
+    m "That's kind of stating the obvious, but it affects the way they try to get their point across."
+    m "Let's say you really like a certain movie, right?"
+    m "If someone comes along and tells you the movie sucks, because it did X and Y wrong..."
+    m "Doesn't that make you feel kind of personally attacked?"
+    m "It's because by saying that, it's like they're implying that you have bad taste."
+    m "And once emotions enter the picture, it's almost guaranteed that both people will be left sour."
+    m "But it's all about language!"
+    m "If you make everything as subjective-sounding as possible, then people will listen to you without feeling attacked."
+    m "You could say 'I'm personally not a fan of it' and 'I felt that I'd like it more if it did X and Y'...things like that."
+    m "It even works when you're citing facts about things."
+    m "If you say 'I read on this website that it works like this'..."
+    m "Or if you admit that you're not an expert on it..."
+    m "Then it's much more like you're putting your knowledge on the table, rather than forcing it onto them."
+    m "If you put in an active effort to keep the discussion mutual and level, they usually follow suit."
+    m "Then, you can share your opinions without anyone getting upset just from a disagreement."
+    m "Plus, people will start seeing you as open-minded and a good listener!"
+    m "It's a win-win, you know?"
+    m "...Well, I guess that would be Monika's Debate Tip of the Day!"
+    m "Ahaha! That sounds a little silly. Thanks for listening, though."
+    return
+
+label ch30_47:
+    m "Do you ever feel like you waste too much time on the internet?"
+    m "Social media can practically be like a prison."
+    m "It's like whenever you have a few seconds of spare time, you want to check on your favorite websites..."
+    m "And before you know it, hours have gone by, and you've gotten nothing out of it."
+    m "Anyway, it's really easy to blame yourself for being lazy..."
+    m "But it's not really even your fault."
+    m "Addiction isn't usually something you can just make disappear with your own willpower."
+    m "You have to learn techniques to avoid it, and try different things."
+    m "For example, there are apps that let you block websites for intervals of time..."
+    m "Or you can set a timer to have a more concrete reminder of when it's time to work versus play..."
+    m "Or you can separate your work and play environments, which helps your brain get into the right mode."
+    m "Even if you make a new user account on your computer to use for work, that's enough to help."
+    m "Putting any kind of wedge like that between you and your bad habits will help you stay away."
+    m "Just remember not to blame yourself too hard if you're having trouble."
+    m "If it's really impacting your life, then you should take it seriously."
+    m "I just want to see you be the best person you can be."
+    m "Will you do something today to make me proud of you?"
+    m "I'm always rooting for you, [player]."
+    return
+
+label ch30_48:
+    m "After a long day, I usually just want to sit around and do nothing."
+    m "I get so burnt out, having to put on smiles and be full of energy the whole day."
+    m "Sometimes I just want to get right into my pajamas and watch TV on the couch while eating junk food..."
+    m "It feels so unbelievably good to do that on a Friday, when I don't have anything pressing the next day."
+    m "Ahaha! Sorry, I know it's not very cute of me."
+    m "But a late night on the couch with you...that would be a dream come true."
+    m "My heart is pounding, just thinking about it."
+    return
+
+label ch30_49:
+    m "Gosh, I used to be so ignorant about certain things..."
+    m "When I was in middle school, I thought that taking medication was an easy way out, or something like that."
+    m "Like anyone could just solve their mental problems with enough willpower..."
+    m "I guess if you don't suffer from a mental illness, it's not possible to know what it's really like."
+    m "Are there some disorders that are over-diagnosed? Probably...I never really looked into it, though."
+    m "But that doesn't change the fact that a lot of them go undiagnosed too, you know?"
+    m "But medication aside...people even look down on seeing a mental health professional."
+    m "Like, sorry that I want to learn more about my own mind, right?"
+    m "Everyone has all kinds of struggles and stresses...and professionals dedicate their lives to helping with those."
+    m "If you think it could help you become a better person, don't be shy to consider something like that."
+    m "We're on a never-ending journey to improve ourselves, you know?"
+    m "Well...I say that, but I think you're pretty perfect already."
+    return
+
+label ch30_50:
+    m "[player], how much do you read?"
+    m "It's way too easy to neglect reading books..."
+    m "If you don't read much, it almost feels like a chore, compared to all the other entertainment we have."
+    m "But once you get into a good book, it's like magic...you get swept away."
+    m "I think doing some reading before bed every night is a pretty easy way to make your life a little bit better."
+    m "It helps you get good sleep, and it's really good for your imagination..."
+    m "It's not hard at all to just pick some random book that's short and captivating."
+    m "Before you know it, you might be a pretty avid reader!"
+    m "Wouldn't that be wonderful?"
+    m "And the two of us could talk about the latest book you're reading...that sounds super amazing."
+    return
+
+label ch30_51:
+    m "You know, I hate to say it, but I think my biggest regret is that we couldn't finish our event at the festival."
+    m "After we worked so hard to prepare and everything!"
+    m "I mean, I know I was focusing a lot on getting new members..."
+    m "But I was really excited for the performing part, too."
+    m "It would have been so much fun to see everyone express themselves."
+    m "Of course, if we {i}did{/i} end up getting any new members, I'd probably just end up deleting them anyway."
+    m "Well...with the hindsight I have now, that is."
+    m "Gosh, it feels like I've kinda grown as a person ever since you've joined the club."
+    m "You really helped inspire me to look at life from a new perspective."
+    m "Just another reason for me to love you."
+    return
+
+label ch30_52:
+    m "There's a really popular character type called 'tsundere'..."
+    m "It's someone who tries to hide their feelings by being mean and fussy, or trying to act tough."
+    m "I'm sure it's obvious, but Natsuki was really the embodiment of that."
+    m "At first I thought she was just like that because it's supposed to be cute or something..."
+    m "But once I started to learn a little more about her personal life, it made a little more sense."
+    m "It seems like she's always trying to keep up with her friends."
+    m "You know how some friend groups in high school just make a habit of picking on each other all the time?"
+    m "I think it's really gotten to her, so she has this really defensive attitude all the time."
+    m "And I'm not even going to talk about her home situation..."
+    m "But looking back, I'm glad I was able to provide the club as a comfortable place for her."
+    m "Not that it matters anymore, considering she doesn't even exist."
+    m "I'm just reminiscing, that's all."
+    return
+
+label ch30_53:
+    m "[player], would you ever introduce your friends to me?"
+    m "I don't know why, but I get really excited when I think about you wanting to show off our relationship like that."
+    m "Maybe it's because I really want to be someone who makes you proud."
+    m "I feel like I would try extra hard to improve myself if you told me it made you proud of me."
+    m "I hope it's the same the other way around, too."
+    return
+
+label ch30_54:
+    m "I'm not really a fan of cold weather...are you?"
+    m "If I had to choose between too cold and too hot, I would always pick too hot."
+    m "When you're cold, it can actually be painful..."
+    m "Your fingers get numb..."
+    m "And if you wear gloves, you can't use your phone."
+    m "It's so inconvenient!"
+    m "But when it's too hot, it's not that hard to stay cool with a cold drink, or by staying in the shade."
+    m "Although...I do have to admit one thing."
+    m "Cold weather makes for better cuddle weather. Ahaha!"
+    return
+
+label ch30_55:
+    m "You know, it's funny, because even though I've always had a lot of drive..."
+    m "There's something kind of enticing about being the stay-at-home partner."
+    m "I guess I'm, like, perpetuating gender roles or whatever by saying that."
+    m "But being able to keep the house clean, and shop, and decorate, and things like that..."
+    m "And having a nice dinner for you when you come home..."
+    m "Is that a weird fantasy?"
+    m "I mean...I'm not sure if I could {i}actually{/i} see myself doing that."
+    m "I wouldn't really be able to put that over striving for a fulfilling career."
+    m "It's kinda cute to think about, though."
+    return
+
+label ch30_56:
+    m "I can't help but wonder how things would be different if the game just gave me a route in the first place..."
+    m "I think I would end up forcing you onto my route anyway."
+    m "It has less to do with me not having a route, and more to do with me knowing that nothing is real."
+    m "I think the only difference would be that I may not have needed to take such drastic measures to be with you."
+    m "Maybe the rest of the club would still be around..."
+    m "Not that it really matters."
+    m "It all lost its meaning once I found out it wasn't real."
+    m "So I really don't miss those days or anything."
+    m "I really don't..."
     return

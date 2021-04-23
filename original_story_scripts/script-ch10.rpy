@@ -19,21 +19,21 @@ label ch10_main:
     "But if she's going to chase after me like this, I almost feel better off running away."
     "However, I just sigh and idle in front of the crosswalk and let [s_name] catch up to me."
 
-    show sayori glitch at t11 zorder 2
+    show sayori glitch zorder 2 at t11
     python:
         currentpos = get_pos()
         startpos = currentpos - 0.3
         if startpos < 0: startpos = 0
         track = "<from " + str(startpos) + " to " + str(currentpos) + ">bgm/2.ogg"
         renpy.music.play(track, loop=True)
-    pause 1.0
+    $ pause(1.0)
     $ gtext = glitchtext(48)
     s "{cps=60}[gtext]{/cps}{nw}"
-    pause 1.0
+    $ pause(1.0)
     $ gtext = glitchtext(48)
     s "{cps=60}[gtext]{/cps}{nw}"
     show screen tear(8, offtimeMult=1, ontimeMult=10)
-    pause 1.5
+    $ pause(1.5)
     hide screen tear
     window hide(None)
     window auto
@@ -42,5 +42,6 @@ label ch10_main:
     $ persistent.playthrough = 2
     $ persistent.anticheat = renpy.random.randint(100000, 999999)
     $ anticheat = persistent.anticheat
+    $ renpy.save_persistent()
 
     jump ch20_from_ch10

@@ -7,7 +7,7 @@ label natsuki_exclusive_1:
     "I approach her, in case she needs a hand."
     play music t6 fadeout 1
     scene bg closet
-    show natsuki 4r at t11 zorder 2
+    show natsuki 4r zorder 2 at t11
     with wipeleft_scene
     mc "You looking for something in there?"
     n 4x "Freaking Monika..."
@@ -53,13 +53,13 @@ label natsuki_exclusive_1:
     "It's...exceedingly \"moe\"."
     n 4b "Don't just stand there!"
     mc "Uwa--"
-    show natsuki at thide zorder 1
+    show natsuki zorder 1 at thide
     hide natsuki
     "Natsuki grabs my arm and pulls me out of the closet."
     "She then takes a seat against the wall, beneath the windowsills."
     "She pats on the ground next to her, signaling me to sit there."
     show bg club_day
-    show natsuki 2a at t11 zorder 2
+    show natsuki 2a zorder 2 at t11
     with wipeleft
     mc "Wouldn't chairs be more comfortable...?"
     "I take my seat."
@@ -133,6 +133,7 @@ label natsuki_exclusive_1:
     "Still, of all the hobbies to pick up from a manga, that's definitely one of the better ones."
     "Not to mention she's really good at it, so who am I to judge?"
     $ persistent.clear[0] = True
+    $ renpy.save_persistent()
     scene n_cg1_bg
     show n_cg1_base
     with dissolve_cg
@@ -221,28 +222,28 @@ label natsuki_exclusive_1:
     "It's hard to express in words the feeling you get when connecting with someone like that."
     "And being able to provide that to Natsuki, for whom it's a rare experience..."
     "The thought makes me smile a little to myself."
-    show monika 4b at f21 zorder 3
+    show monika 4b zorder 3 at f21
     m "Okay, everyone!"
     mc "Eh?"
     m "Are you all ready with today's poems?"
     mc "..."
-    show monika at t21 zorder 2
-    show natsuki 4w at f22 zorder 3
+    show monika zorder 2 at t21
+    show natsuki 4w zorder 3 at f22
     n "Oh, come on!"
     n "Could your timing be any worse?"
-    show natsuki at t22 zorder 2
-    show monika at f21 zorder 3
+    show natsuki zorder 2 at t22
+    show monika zorder 3 at f21
     m 5 "Sorry~!"
     m "I just need to make sure we have enough time."
     m "Though you do look pretty cozy over there. Ahaha!"
-    show monika at t21 zorder 2
-    show natsuki at f22 zorder 3
+    show monika zorder 2 at t21
+    show natsuki zorder 3 at f22
     n 4o "Eh...?"
     n 1p "A-Ah!"
     "Natsuki suddenly notices how close she's gotten to me."
     "She hastily slides herself a good twelve inches away from me."
-    show monika at thide zorder 1
-    show natsuki 1s at t11 zorder 2
+    show monika zorder 1 at thide
+    show natsuki 1s zorder 2 at t11
     hide monika
     mc "Alright..."
     mc "Guess I'll stop here for now."
@@ -261,7 +262,7 @@ label natsuki_exclusive_1:
     n "Just finish that one before tomorrow, so we can start the next one."
     n 4g "And if it gets bent, I'll kill you."
     mc "By tomorrow...?"
-    show natsuki at thide zorder 1
+    show natsuki zorder 1 at thide
     hide natsuki
     "I only got partway through the volume so far."
     "I might fall behind on some shows if I try to get through this..."
@@ -277,7 +278,7 @@ label natsuki_exclusive_2:
     $ n_exclusivewatched = True
     play music t6 fadeout 1
     scene bg club_day
-    show natsuki 4c at t11 zorder 2
+    show natsuki 4c zorder 2 at t11
     with wipeleft_scene
     n "..."
     "It's not long before Natsuki comes up to me expectantly."
@@ -295,12 +296,12 @@ label natsuki_exclusive_2_ch3:
     mc "I don't blame you."
     n 2j "Well anyway, let me put this one back."
     n "I'm gonna get the next one, okay?"
-    show natsuki at thide zorder 1
+    show natsuki zorder 1 at thide
     hide natsuki
     "Natsuki makes her way to the closet."
     "I follow."
     show bg closet
-    show natsuki 2l at t11 zorder 2
+    show natsuki 2l zorder 2 at t11
     with wipeleft
     n "So you're gonna tell me everything you thought, right??"
     n 2k "Where did this volume leave off again? I forget."
@@ -317,7 +318,7 @@ label natsuki_exclusive_2_ch3:
     m "The teacher got mad at me for taking up so much space in her closet..."
     m "So I had to move some stuff around and clean up a little bit."
     m 3b "It's all still there, I just had to organize it a bit!"
-    show monika at thide zorder 1
+    show monika zorder 1 at thide
     hide monika
     n 1r "Ugh..."
     "The top shelf is far above Natsuki's head."
@@ -369,7 +370,7 @@ label natsuki_exclusive_2_ch3:
     n "I don't want your help, okay?"
     mc "Sigh..."
     n "I'm gonna get a chair, so just hang on."
-    show natsuki at thide zorder 1
+    show natsuki zorder 1 at thide
     hide natsuki
     "Natsuki forces her way past me out of the closet."
     n "Let's see..."
@@ -377,7 +378,7 @@ label natsuki_exclusive_2_ch3:
     n "Aha!"
     "Natsuki trots over to the teacher's desk, which has a computer chair behind it."
     "She rolls it on its wheels back over to the closet."
-    show natsuki 4a at t11 zorder 2
+    show natsuki 4a zorder 2 at t11
     mc "Ah--"
     "It's a little dangerous, since the chair swivels and rolls."
     "But I've already learned my lesson, so I keep my mouth shut."
@@ -385,6 +386,7 @@ label natsuki_exclusive_2_ch3:
     "Natsuki climbs onto the chair, then slowly balances onto her feet."
     "Since she refuses my help, I take a seat with my back against the side of the doorway and simply watch."
     $ persistent.clear[1] = True
+    $ renpy.save_persistent()
     scene n_cg2_bg
     show n_cg2_base
     with dissolve_cg
@@ -470,7 +472,7 @@ label natsuki_exclusive_2_ch3:
         alpha 0
         0.10
         linear 0.10 alpha 1
-    pause 0.20
+    $ pause(0.20)
     stop music
     play sound "sfx/fall2.ogg"
     "{i}Crash!{/i}"
@@ -494,35 +496,35 @@ label natsuki_exclusive_2_ch3:
     mc "Ghak--!"
     "A fist pounds into my chest."
     "Natsuki then hoists herself to her feet."
-    show natsuki 1x at t11 zorder 2
+    show natsuki 1x zorder 2 at t11
     n "What were you thinking?!"
     n "You sicko!"
-    show monika 1d at f31 zorder 3
+    show monika 1d zorder 3 at f31
     m "Everything okay over there...?"
     m "I heard a loud noise..."
     "Monika suddenly peers in."
-    show monika at t31 zorder 2
-    show natsuki at f11 zorder 3
+    show monika zorder 2 at t31
+    show natsuki zorder 3 at f11
     n 1e "Monika!"
     n "See what happens when you put the manga on the top shelf?!"
     n 1w "Are you trying to kill your club members or something?"
     n "Jeez!"
-    show natsuki at t11 zorder 2
-    show monika at f31 zorder 3
+    show natsuki zorder 2 at t11
+    show monika zorder 3 at f31
     m 5 "S-Sorry, sorry!"
     m "Ahaha..."
-    show monika at t31 zorder 2
-    show natsuki at f11 zorder 3
+    show monika zorder 2 at t31
+    show natsuki zorder 3 at f11
     n 5r "Oh, and one more thing."
     n "It seems like your most recent club member is a total pervert."
     n "So I hope you're happy."
-    show natsuki at t11 zorder 2
+    show natsuki zorder 2 at t11
     mc "I didn't--!"
     "Somehow, it's impossible for me to explain this whole bizarre situation to Monika."
     mc "I didn't do anything, I swear...!"
-    show monika at f31 zorder 3
+    show monika zorder 3 at f31
     m 1l "I know, I know, don't worry~"
-    show monika at thide zorder 1
+    show monika zorder 1 at thide
     hide monika
     "Monika says that quietly to me."
     "Looks like I'm off the hook..."
@@ -544,7 +546,7 @@ label natsuki_exclusive_2_ch3:
     show natsuki 12d at s11
     n "{i}*Sob*{/i}"
     mc "...Natsuki, are you--"
-    show natsuki at t11 zorder 2
+    show natsuki zorder 2 at t11
     n 12f "No!"
     "Natsuki's voice squeaks."
     "I see tears on her face."
@@ -623,7 +625,7 @@ label natsuki_exclusive_2_ch3:
     "In the end, I'm pretty impressed by how everything ties together in this manga."
     "I guess Natsuki has good taste after all."
     "After some time, Monika gets our attention as usual, and it's time to share poems again."
-    show natsuki 2j at t11 zorder 2
+    show natsuki 2j zorder 2 at t11
     mc "Guess I'll be holding onto this for now."
     n "Yep!"
     n "Even you sound more enthusiastic this time."
@@ -631,7 +633,7 @@ label natsuki_exclusive_2_ch3:
     n 4z "Ehehe."
     n "Told you."
     mc "Yeah, yeah..."
-    show natsuki at thide zorder 1
+    show natsuki zorder 1 at thide
     hide natsuki
     "I return to my seat and slip the book into my bag."
     return

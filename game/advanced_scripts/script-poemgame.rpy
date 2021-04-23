@@ -344,16 +344,17 @@ label poem(transition=True):
         $ quick_menu = False
         play sound "sfx/eyes.ogg"
         $ persistent.seen_eyes = True
+        $ renpy.save_persistent()
         stop music
         scene black with None
         show bg eyes_move
-        pause 1.2
+        $ pause(1.2)
         hide bg eyes_move
         show bg eyes
-        pause 0.5
+        $ pause(0.5)
         hide bg eyes
         show bg eyes_move
-        pause 1.25
+        $ pause(1.25)
         hide bg eyes with None
         $ quick_menu = True
     #Turn back on UI options for reading portion
@@ -364,7 +365,7 @@ label poem(transition=True):
     show black as fadeout:
         alpha 0
         linear 1.0 alpha 1.0
-    pause 1.0
+    $ pause(1.0)
     return
 
 

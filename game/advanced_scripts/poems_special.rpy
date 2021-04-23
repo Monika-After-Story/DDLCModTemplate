@@ -78,7 +78,7 @@ label poem_special_7:
     show poem_special7a as ps with Dissolve(1.0)
     $ pause()
     show poem_special7b as ps
-    pause 0.01
+    $ pause(0.01)
     $ quick_menu = True
     return
 label poem_special_8:
