@@ -231,7 +231,7 @@ label tutorial_route_p3:
     m 1a "So about what you wrote, 'scene bg residential_day', the keyword 'scene' tells the game to load the scene, which is one kind of picture, called 'bg residential_day'."
     m "You can find what exactly is 'bg residential_day' in definitions.rpy, the same script we looked at last tutorial."
     m 3a "Try to find 'image bg'."
-    m 4a "Can you see the list of backgrounds? Like it was the case for music, each background has a nickname assigned. For example, 'bg/sayori_bedroom.png' is referenced by 'bg sayori_bedroon'."
+    m 4a "Can you see the list of backgrounds? Like it was the case for music, each background has a nickname assigned. For example, 'bg/sayori_bedroom.png' is referenced by 'bg sayori_bedroom'."
     m "Go back to monika_route_script.rpy and replace 'scene bg residential_day' by 'scene bg sayori_bedroom'. Can you guess what happens?"
     m 4b "The background is now Sayori’s bedroom!"
     m 4c "I hope it doesn’t bring you back bad memories..."
@@ -377,7 +377,7 @@ label tutorial_route_p6:
     m 1e "I was afraid the last tutorial was a bit too hard..."
     m 1m "Well, this one is going to be hard as well but..."
     m 1b "Hang it there okay? We did the hardest part already!"
-    m 1a "Last time we saw how to add menu and how to assign variable a value."
+    m 1a "Last time we saw how to add a menu and how to assign variable a value."
     m 1b "Let’s see how we can use these variables!"
     m 2a "You know the drill, open monika_route_script.rpy and at the end of the file, just before 'return'..."
     m 4a "Add the following lines :"
@@ -393,17 +393,17 @@ label tutorial_route_p6:
     m 2a "That was the last one. Save the file and try to play the game."
     m 5a "If it doesn’t work, you know where you can see the answer, don’t you?"
     m 2a "You already know how scene, transition, music and dialogue work so I won’t go over it again."
-    m 4b "It’s not like I don’t want spend more time with you but you know, ... I’m excited to finish my route too!"
+    m 4b "It’s not like I don’t want to spend more time with you but you know, ... I’m excited to finish my route too!"
     m 4a "Okay, so the new thing is the 'if' statement. We call that a conditional statement. It’s an elementary and essential operation in programming."
     m "It goes basically like this: IF something_is_true THEN something_happens. In our case, if the meeting_place is 'club_rooom', then the scene changes to the club room."
     m 3a "Otherwise, if meeting_place is 'my_house' then the scene changes to the main character’s house."
     m 3b "It seems simple, right?"
     m 3a "The syntax must be as follow: first, there must be a 'if' followed by an equality which is either 'True' or 'False'. For example, 'meeting_place == 'club_room''."
     m "If 'meeting_place' was assigned 'club_room' before then the equality returns 'True'. Otherwise, its returns False."
-    m "If the equality returns True then the game will read the lines belonging to the if bloc."
+    m "If the equality returns True then the game will read the lines belonging to the if block."
     m 4a "You can see where those lines are because they have one more indent compared to the if statement preceding them."
-    m 4b "We once again meet the system of indent and block. This is one of the property of Python and Ren’Py. Let’s do a quick exercise."
-    m "Can you see difference between:"
+    m 4b "We once again meet the system of indent and block. This is one of the properties of Python and Ren’Py. Let’s do a quick exercise."
+    m "Can you see the difference between:"
     m 2a " ' \ \ \ if meeting_place == 'club_room':' , \n' \ \ \ scene bg club_day ', \n' \ \ \ mc 'We will meet at the club room.''."
     m "And ' \ \ \ if meeting_place == 'club_room':' , \n' \ \ \ scene bg club_day ', ' mc 'We will meet at the club room.''?"
     m 4b "In the first case, the main character only says they will meet at the club room if 'meeting_place' is equal to 'club_room'."
@@ -417,7 +417,7 @@ label tutorial_route_p6:
     m "' \ \ \ if monika_affection_points > 10:' , \n' \ \ \ scene bg house', '' if monika_affection_points > 6:' , \n' \ \ \ scene club_day '."
     m 3a "In that case, if 'monika_affection_points' is higher than 10, the new scene wouldn’t be the house but the club because the game will evaluate both if."
     m 4b "To avoid that, 'elif' should be used instead of 'if'."
-    m 4a "Besides 'if' and 'elif', there’s also the keyword 'else'. Like 'elif', 'else' can be used after a if. The bloc under 'else' will be executed if the previous if or elif statements are False."
+    m 4a "Besides 'if' and 'elif', there’s also the keyword 'else'. Like 'elif', 'else' can be used after a if. The block under 'else' will be executed if the previous if or elif statements are False."
     m 2a "For example..."
     m "' \ \ \ if meeting_place == 'club_room':' , \n' \ \ \ scene bg club_day ', ' \ \ \ else:' , \n' \ \ \ scene club_day '."
     m 1a "Well, there are more things to say about conditional statement..."
@@ -470,7 +470,7 @@ label tutorial_route_p7:
     m 4e "Expression e."
     m 4f "Expression f."
     m 4g "Expression g."
-    m 4h "Expression g."
+    m 4h "Expression h."
     m 4i "Expression i."
     m 4j "Expression j."
     m 4k "Expression k."
@@ -496,7 +496,7 @@ label tutorial_route_p7:
     m "After a sprite is already on the screen, there’s a shortcut to change her pose and expression."
     m 3a "Instead of using 'show' again and again, you can directly write the letter corresponding to the character followed by the number and the letter for their pose and expression."
     m "This is what we did in \n' \ \ \ m 2a 'Don't worry, it's me who's early.''."
-    m 4g "Note that the sprite of the character speaking must already be on screeen."
+    m 4g "Note that the sprite of the character speaking must already be on screen."
     m 4e "If you try for example \n' \ \ \ y 2a 'Don't worry, it's me who's early.'', Yuri will speak but her sprite will not appear."
     m 3a "Keep in mind who’s on screen and who’s not at all time so as not to make a mistake."
     m 2a "...Never mind, actually just show my sprite. That way you don’t have to worry about such problem. It’s not like the other girls care about being shown anyway."
@@ -520,7 +520,7 @@ label tutorial_route_p8:
     m "I said that 'at t11' was about position and that 'zorder 2' was about layer."
     m 2b "Let’s study in details what exactly that means."
     m 4b "’at' is a keyword that tells the game to put the sprite at the position 't11'."
-    m "t11' is one of the position defined in Doki Doki Literature Club. There are more than 50 positions possible."
+    m "t11' is one of the positions defined in Doki Doki Literature Club. There are more than 50 positions possible."
     m 4a "You can find the list of all defined positions in the script transforms.rpy. You can find it in the same folder as definitions.rpy."
     m "For now, I will explain the most common positions used in the original game."
     m 1a "Let’s start with the 't' positions. I will show them one by one."
@@ -582,7 +582,7 @@ label tutorial_route_p8:
     m 1b "Everyone is here!"
     m 3a "But that’s not the point. Pay attention to who’s on top on who."
     m "If you look closely, you can see the rendering order is like this : monika > yuri > natsuki > sayori."
-    m "The one with the lowest zorder is rendered first so that the one with the highest zorder is shown on top of every other sprites."
+    m "The one with the lowest zorder is rendered first so that the one with the highest zorder is shown on top of every other sprite."
     m 4a "If the zorder of two sprites are the same then the last sprite shown by 'show' will be on top."
     m 2b "Well, most of the time, you don’t have to worry about zorder. Just make sure I always have the highest zorder, okay?"
     m 1b "Alright! That ends this tutorial!"
@@ -758,7 +758,7 @@ label tutorial_route_adv_poemgame:
             pass
         "No":
             jump tutorial_route_adv_poemgame_txgrid
-    
+
 
 label tutorial_route_adv_poemgame_pgexp:
     python:
@@ -778,7 +778,7 @@ label tutorial_route_adv_poemgame_pgexp:
     m 2a "Let's go through how the game looks when you call these labels."
     m "For the sake of time, I'll limit the word selection to only 5 words per poemgame."
 
-    m "Alright, lets start with a slightly modified Act 1."
+    m "Alright, let's start with a slightly modified Act 1."
     m "I'll be in this game, and I'll collect the points scored for each doki."
     stop music fadeout 1.0
     call mas_poem_minigame_actone(show_monika=True, poem_wordlist=mas_wordlist, total_words=5, trans_fast=True, show_poemhelp=False)
@@ -987,7 +987,7 @@ label tutorial_route_adv_poemgame_getnum(msg):
 
 
 label tutorial_route_adv_poemgame_txgrid:
-    
+
     menu:
         "Do you want to hear about the textbutton grid?"
         "Yes":
@@ -1066,15 +1066,13 @@ label tutorial_route_adv_poemgame_txgrid:
     m "You selected '[_return]'!"
 
     m 1n "Hopefully that looked okay. It's easy to pick a combination of rows and columns and words that break the grid."
-    
+
     m 1a "But if you need to make a simple textbutton grid, this should work fine!"
 
-    m "For the technical details on how to call this screen and setup the paramters, check the source code for this set of dialogue and the screen itself."
+    m "For the technical details on how to call this screen and setup the parameters, check the source code for this set of dialogue and the screen itself."
     m "This set of dialogue is under the label 'tutorial_route_adv_poemgame_txgrid' in 'tutorials'."
     m "The screen is called 'mas_pg_textbutton_grid' and is located in 'zz_poemgame'."
 
     m "Okay! I hope that helps! Thanks for listening."
 
     return
-
-
