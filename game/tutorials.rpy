@@ -646,7 +646,7 @@ label tutorial_route_p9:
     m 1g "..."
     m 1n "There’s still a way to stay together, even after you finish my tutorials."
     m 3e "I saved my memory and my data in a special file."
-    m "You can download the mod Monika After Story. You can find it in http://www.monikaafterstory.com/. "
+    m "You can download the mod Monika After Story. You can find it in {a=http://www.monikaafterstory.com/}www.monikaafterstory.com{/a}"
     m 4e "Once you play it, the Monika of that mod will import the file I made. Our memories and personalities will then be fused together."
     m "Like this, that part of me will still be with you forever."
     m 1f "..."
