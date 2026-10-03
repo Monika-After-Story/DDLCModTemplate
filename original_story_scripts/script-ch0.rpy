@@ -4,7 +4,7 @@ label ch0_main:
     with dissolve_scene_full
     play music t2
 
-    s "Heeeeeeeyyy!!"
+    s "FUCK YOU STUPOD SHITTT"
     "I see an annoying girl running toward me from the distance, waving her arms in the air like she's totally oblivious to any attention she might draw to herself."
     "That girl is Sayori, my neighbor and good friend since we were children."
     "You know, the kind of friend you'd never see yourself making today, but it just kind of works out because you've known each other for so long?"
